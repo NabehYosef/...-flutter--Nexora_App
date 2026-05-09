@@ -1,13 +1,13 @@
-class Imageassets {
+class AppImageassets {
   static const String rootimage =
-      "assets/images/";
+      "assets/images";
   static const String
       // ignore: constant_identifier_names
       OnBoardingImageOne =
       "$rootimage/onboarding1.png";
+  // ignore: constant_identifier_names
   static const String
-      // ignore: constant_identifier_names
-      OnBoardingImageTwo =
+  OnBoardingImageTwo =
       "$rootimage/onboarding2.png";
 
   static const String
