@@ -7,5 +7,6 @@ class OnBoardingModel {
     this.title,
     this.imageurl,
     this.body,
+    required String image,
   });
 }

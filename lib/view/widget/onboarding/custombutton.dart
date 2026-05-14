@@ -1,26 +1,36 @@
+import 'package:e_commerce/controller/onboardingcontroller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 
-class Custombutton
-    extends StatelessWidget {
-  const Custombutton({super.key});
+class CustomButtonOnBoarding
+    extends
+        GetView<
+          OnBoardingControllerImp
+        > {
+  const CustomButtonOnBoarding({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         bottom: 30,
       ),
       height: 40,
       child: MaterialButton(
-        padding: EdgeInsets.symmetric(
-          horizontal: 100,
-          vertical: 0,
-        ),
-        onPressed: () {},
+        padding:
+            const EdgeInsets.symmetric(
+              horizontal: 100,
+              vertical: 0,
+            ),
         textColor: Colors.white,
+        onPressed: () {
+          controller.next();
+        },
         color: AppColor.primarycolor,
-        child: Text("Continu"),
+        child: const Text("Continue"),
       ),
     );
   }
