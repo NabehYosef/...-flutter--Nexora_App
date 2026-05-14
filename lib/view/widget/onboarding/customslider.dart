@@ -35,7 +35,7 @@ class CustomSliderOnBoarding
               SizedBox(height: 10),
               Image.asset(
                 onBoardingList[i]
-                    .imageurl!,
+                    .image!,
                 width: 200,
                 height: 230,
                 fit: BoxFit.fill,
