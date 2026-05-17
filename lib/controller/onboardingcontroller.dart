@@ -1,9 +1,7 @@
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/data/datasource/static/static.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 abstract class OnboardingController
     extends GetxController {
@@ -17,6 +15,7 @@ class OnBoardingControllerImp
 
   int currentpage = 0;
 
+  @override
   void onInit() {
     pageController = PageController(
       initialPage: 0,
@@ -26,7 +25,7 @@ class OnBoardingControllerImp
 
   @override
   void next() {
-    if (currentpage >
+    if (currentpage ==
         onBoardingList.length - 1) {
       Get.offAllNamed(AppRoute.login);
     } else {

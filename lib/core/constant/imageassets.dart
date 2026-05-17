@@ -1,14 +1,12 @@
 class AppImageAsset {
   static const String rootImages =
       "assets/images";
-
-  static const String
-  onBoardingImageOne =
+  static String logo =
+      "$rootImages/logo.png";
+  static String onBoardingImageOne =
       "$rootImages/one.PNG";
-  static const String
-  onBoardingImageTwo =
+  static String onBoardingImageTwo =
       "$rootImages/two.PNG";
-  static const String
-  onBoardingImageThree =
+  static String onBoardingImageThree =
       "$rootImages/three.PNG";
 }

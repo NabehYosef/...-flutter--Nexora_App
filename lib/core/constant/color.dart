@@ -9,4 +9,6 @@ class AppColor {
   );
   static const Color primarycolor =
       Color(0xffAF3830);
+  static const Color backgroundcolor =
+      Color(0xffF8F9FD);
 }

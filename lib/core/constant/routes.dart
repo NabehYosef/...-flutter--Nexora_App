@@ -1,3 +1,6 @@
 class AppRoute {
-  static const String login = "/login";
+  static String login = "/login";
+  static String signUp = "/signup";
+  static String onBoarding =
+      "/onBoarding";
 }
