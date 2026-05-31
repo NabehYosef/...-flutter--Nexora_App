@@ -19,18 +19,28 @@ class CustomButtonOnBoarding
         bottom: 30,
       ),
       height: 40,
-      child: MaterialButton(
-        padding:
+      child: Container(
+        margin:
             const EdgeInsets.symmetric(
-              horizontal: 100,
-              vertical: 0,
+              horizontal: 50,
             ),
-        textColor: Colors.white,
-        onPressed: () {
-          controller.next();
-        },
-        color: AppColor.primarycolor,
-        child: const Text("Continue"),
+        decoration: BoxDecoration(
+          borderRadius:
+              BorderRadius.circular(40),
+        ),
+        child: MaterialButton(
+          padding:
+              const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 0,
+              ),
+          textColor: Colors.white,
+          onPressed: () {
+            controller.next();
+          },
+          color: AppColor.primarycolor,
+          child: const Text("Continue"),
+        ),
       ),
     );
   }

@@ -5,6 +5,8 @@ import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
 import 'package:e_commerce/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
@@ -12,7 +14,8 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SignUpControllerImp controller =
-        SignUpControllerImp();
+        Get.put(SignUpControllerImp());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor:
@@ -83,16 +86,7 @@ class Signup extends StatelessWidget {
                   Icons.lock_outline,
               //mycontroller;
             ),
-            Text(
-              " Forget Password? ",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(
-                    color:
-                        AppColor.grey,
-                  ),
-            ),
+
             CustomButtomAuth(
               text: " Sign Up ",
               onPressed: () {},

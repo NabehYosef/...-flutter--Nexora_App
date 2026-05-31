@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/routes.dart';
+import 'package:e_commerce/test.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: AppColor.primarycolor,
       ),
       home: OnBoarding(),
+      // home: Test(), //
       routes: routes,
     );
   }

@@ -121,17 +121,22 @@ class Login extends StatelessWidget {
                   alignment: Alignment
                       .centerRight,
 
-                  child: Text(
-                    "Forget Password?",
+                  child: InkWell(
+                    onTap: () {
+                      controller.GoToForgetPassword();
+                    },
+                    child: Text(
+                      "Forget Password?",
 
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                          color:
-                              AppColor
-                                  .grey,
-                        ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(
+                            color:
+                                AppColor
+                                    .grey,
+                          ),
+                    ),
                   ),
                 ),
 

@@ -9,6 +9,7 @@ abstract class LoginController
   // ignore: strict_top_level_inference
   login();
   GoToSignUp();
+  GoToForgetPassword();
 }
 
 class LoginControllerImp
@@ -24,6 +25,14 @@ class LoginControllerImp
   // ignore: non_constant_identifier_names
   GoToSignUp() {
     Get.toNamed(AppRoute.signUp);
+  }
+
+  @override
+  // ignore: non_constant_identifier_names
+  GoToForgetPassword() {
+    Get.toNamed(
+      AppRoute.forgetPassword,
+    );
   }
 
   @override
