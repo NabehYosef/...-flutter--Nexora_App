@@ -23,7 +23,9 @@ class SignUpControllerImp
 
   /// Signup Function
   @override
-  void signup() {}
+  void signup() {
+    Get.offNamed(AppRoute.checkemail);
+  }
 
   /// Go To Login
   @override

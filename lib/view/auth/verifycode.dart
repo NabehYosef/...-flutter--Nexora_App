@@ -1,4 +1,5 @@
 import 'package:e_commerce/controller/auth/forgetpasswordcontroller.dart';
+import 'package:e_commerce/controller/auth/verifycodecontroller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
@@ -7,6 +8,7 @@ import 'package:e_commerce/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:pinput/pinput.dart';
 
 class VerifyCode
     extends StatelessWidget {
@@ -14,10 +16,10 @@ class VerifyCode
 
   @override
   Widget build(BuildContext context) {
-    ForgetPasswordControllerImp
-    controller = Get.put(
-      ForgetPasswordControllerImp(),
-    );
+    VerifyCodeControllerImp controller =
+        Get.put(
+          VerifyCodeControllerImp(),
+        );
 
     return Scaffold(
       appBar: AppBar(
@@ -52,21 +54,53 @@ class VerifyCode
             ),
             SizedBox(height: 10),
 
-            CustomTextFormAuth(
-              controller:
-                  controller.email,
-              hintText:
-                  "Enter Your Email",
-              labelText: "Email",
-              iconData:
-                  Icons.email_outlined,
-            ),
+            Pinput(
+              length: 5,
 
-            CustomButtomAuth(
-              text: " Check ",
-              onPressed: () {},
+              defaultPinTheme: PinTheme(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius:
+                      BorderRadius.circular(
+                        20,
+                      ),
+                ),
+              ),
+
+              focusedPinTheme: PinTheme(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors
+                        .deepPurple,
+                    width: 2,
+                  ),
+                  borderRadius:
+                      BorderRadius.circular(
+                        20,
+                      ),
+                ),
+              ),
+              onChanged: (value) {
+                print(
+                  "Changed: $value",
+                );
+              },
+
+              onCompleted:
+                  (
+                    String
+                    verificationcode,
+                  ) {
+                    controller
+                        .goToResetPassword();
+                  },
             ),
-            SizedBox(height: 10),
           ],
         ),
       ),

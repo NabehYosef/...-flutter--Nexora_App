@@ -11,4 +11,10 @@ class AppRoute {
       "/verifycode";
   static String ResetPassword =
       "/resetpassword";
+  static String successResetPassword =
+      "/successresetpassword";
+  static String SignUpSuccess =
+      "/signupsuccess";
+  static String checkemail =
+      "/checkemail";
 }

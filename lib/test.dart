@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:otp_text_field/otp_text_field.dart';
+import 'package:pinput/pinput.dart';
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -10,18 +10,49 @@ class Test extends StatelessWidget {
       appBar: AppBar(
         title: Text("Test"),
       ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            //   OTPTextField(
-            //   numberOfFields: 4,
-            //   borderColor: Color(0xFF512DA8),
-            //   focusedBorderColor: Color(0xFF512DA8),
-            //   showFieldAsBox: true,
-            // ),
-          ],
-        ),
+      body: ListView(
+        children: [
+          Pinput(
+            length: 5,
+
+            defaultPinTheme: PinTheme(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                ),
+                borderRadius:
+                    BorderRadius.circular(
+                      20,
+                    ),
+              ),
+            ),
+
+            focusedPinTheme: PinTheme(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color:
+                      Colors.deepPurple,
+                  width: 2,
+                ),
+                borderRadius:
+                    BorderRadius.circular(
+                      20,
+                    ),
+              ),
+            ),
+            onChanged: (value) {
+              print("Changed: $value");
+            },
+
+            onCompleted: (pin) {
+              print("Completed: $pin");
+            },
+          ),
+        ],
       ),
     );
   }

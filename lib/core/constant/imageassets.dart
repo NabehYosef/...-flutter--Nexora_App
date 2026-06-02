@@ -4,9 +4,9 @@ class AppImageAsset {
   static String logo =
       "$rootImages/logo.png";
   static String onBoardingImageOne =
-      "$rootImages/one.PNG";
+      "$rootImages/Onboardingone.webp";
   static String onBoardingImageTwo =
-      "$rootImages/two.PNG";
+      "$rootImages/Onboardingtwo.webp";
   static String onBoardingImageThree =
-      "$rootImages/three.PNG";
+      "$rootImages/Onboardingthree.webp";
 }

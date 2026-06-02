@@ -1,4 +1,4 @@
-import 'package:e_commerce/controller/auth/forgetpasswordcontroller.dart';
+import 'package:e_commerce/controller/auth/checkemail_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
-class Resetpassword
+class CheckEmail
     extends StatelessWidget {
-  const Resetpassword({super.key});
+  const CheckEmail({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ForgetPasswordControllerImp
-    controller = Get.put(
-      ForgetPasswordControllerImp(),
-    );
+    CheckEmailControllerImp controller =
+        Get.put(
+          CheckEmailControllerImp(),
+        );
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +26,7 @@ class Resetpassword
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Forget Password",
+          "Check Email",
           style: Theme.of(context)
               .textTheme
               .headlineMedium!
@@ -44,11 +44,11 @@ class Resetpassword
           children: [
             SizedBox(height: 10),
             CustomTextTitleAuth(
-              text: "Check Your Email",
+              text: "Success SignUp",
             ),
             CustomTextBodyAuth(
               textbody:
-                  "Create your account using email and password",
+                  "please Enter Your Email Address To Recive A verification code",
             ),
             SizedBox(height: 10),
 
@@ -64,7 +64,10 @@ class Resetpassword
 
             CustomButtomAuth(
               text: " Check ",
-              onPressed: () {},
+              onPressed: () {
+                controller
+                    .goToSuccessSignup();
+              },
             ),
             SizedBox(height: 10),
           ],
