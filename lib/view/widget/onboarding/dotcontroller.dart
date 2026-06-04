@@ -1,4 +1,4 @@
-import 'package:e_commerce/controller/onboardingcontroller.dart';
+import 'package:e_commerce/controller/onboarding_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/data/datasource/static/static.dart';
 

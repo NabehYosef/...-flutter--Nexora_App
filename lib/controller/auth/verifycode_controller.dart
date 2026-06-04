@@ -6,7 +6,7 @@ abstract class VerifyCodeController
     extends GetxController {
   void checkCode();
 
-  void goToResetPassword();
+  void goToSignUpSuccess();
 }
 
 class VerifyCodeControllerImp
@@ -24,9 +24,9 @@ class VerifyCodeControllerImp
 
   /// Go To Login
   @override
-  void goToResetPassword() {
+  void goToSignUpSuccess() {
     Get.offNamed(
-      AppRoute.ResetPassword,
+      AppRoute.SignUpSuccess,
     );
   }
 

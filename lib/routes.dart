@@ -7,6 +7,8 @@ import 'package:e_commerce/view/auth/signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/success_resetpass.dart';
 import 'package:e_commerce/view/auth/success_signup.dart';
 import 'package:e_commerce/view/auth/verifycode.dart';
+import 'package:e_commerce/view/auth/verifysighup.dart';
+import 'package:e_commerce/view/screen/language.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,9 @@ Map<
   Widget Function(BuildContext)
 >
 routes = {
+  //Language
+  AppRoute.language: (context) =>
+      Language(),
   //======Auth
   AppRoute.login: (context) => Login(),
   //=================================
@@ -40,6 +45,8 @@ routes = {
   AppRoute.checkemail: (context) =>
       CheckEmail(),
   //=================================
+  AppRoute.VerifyCodeSignup:
+      (context) => VerifyCodeSignup(),
 
   //=====OnBoarding
   AppRoute.onBoarding: (context) =>

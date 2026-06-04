@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
-class VerifyCode
+class VerifyCodeSignup
     extends StatelessWidget {
-  const VerifyCode({super.key});
+  const VerifyCodeSignup({super.key});
 
   @override
   Widget build(BuildContext context) {

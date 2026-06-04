@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
-ThemeData themEnglish = ThemeData(
+ThemeData themeEnglish = ThemeData(
   fontFamily: "PlayfairDisplay",
   textTheme: TextTheme(
     headlineMedium: TextStyle(
@@ -31,7 +31,7 @@ ThemeData themEnglish = ThemeData(
   // primarySwatch: AppColor.primarycolor,
 );
 
-ThemeData themArabic = ThemeData(
+ThemeData themeArabic = ThemeData(
   fontFamily: "Cairo",
   textTheme: TextTheme(
     headlineMedium: TextStyle(

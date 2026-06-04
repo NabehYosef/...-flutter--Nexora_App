@@ -1,6 +1,8 @@
+import 'package:e_commerce/controller/auth/successresetpassword_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SuccessResetPassword
     extends StatelessWidget {
@@ -10,16 +12,18 @@ class SuccessResetPassword
 
   @override
   Widget build(BuildContext context) {
+    SuccessresetpasswordControllerImp
+    controller = Get.put(
+      SuccessresetpasswordControllerImp(),
+    );
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor:
             AppColor.backgroundcolor,
-        elevation: 0,
-        centerTitle: true,
-
+        elevation: 0.0,
         title: Text(
-          "Success Reset Password",
-
+          'Success',
           style: Theme.of(context)
               .textTheme
               .headlineMedium!
@@ -29,10 +33,12 @@ class SuccessResetPassword
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(
+          15,
+        ),
         child: Column(
           children: [
-            Center(
+            const Center(
               child: Icon(
                 Icons
                     .check_circle_outline,
@@ -42,37 +48,26 @@ class SuccessResetPassword
               ),
             ),
             Text(
-              "Successfully",
+              "37".tr,
               style: Theme.of(context)
                   .textTheme
                   .headlineMedium!
                   .copyWith(
-                    color:
-                        AppColor.grey,
+                    fontSize: 30,
                   ),
             ),
-            Text(
-              "Your Account Has Been Created ",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(
-                    color:
-                        AppColor.grey,
-                  ),
-            ),
-            Spacer(),
-
+            Text("36".tr),
+            const Spacer(),
             SizedBox(
               width: double.infinity,
               child: CustomButtomAuth(
-                text: " Go To Login ",
+                text: "31".tr,
                 onPressed: () {
-                  // controller.goToLogin();
+                  controller
+                      .goToLogin();
                 },
               ),
             ),
-            SizedBox(height: 30),
           ],
         ),
       ),

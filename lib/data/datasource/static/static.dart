@@ -1,28 +1,24 @@
 import 'package:e_commerce/core/constant/imageassets.dart';
 import 'package:e_commerce/model/onboardingmodel.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 // ignore: non_constant_identifier_names
 List<OnBoardingModel> onBoardingList = [
   OnBoardingModel(
-    title: "Product Delivery",
-    body:
-        "Your Product is delivered to your home \n safely and securely",
+    title: "2".tr,
+    body: "3".tr,
     image: AppImageAsset
         .onBoardingImageOne,
   ),
-
   OnBoardingModel(
-    title: "Easy And Safe Payment",
-    body:
-        "Pay for the product you buy safely and \n easily",
+    title: "4".tr,
+    body: "5".tr,
     image: AppImageAsset
         .onBoardingImageTwo,
   ),
-
   OnBoardingModel(
-    title: "Find Favorite Items",
-    body:
-        "Find your favirite products that you want to buy easily",
+    title: "6".tr,
+    body: "7".tr,
     image: AppImageAsset
         .onBoardingImageThree,
   ),

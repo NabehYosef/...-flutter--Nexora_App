@@ -1,45 +1,36 @@
 import 'package:e_commerce/core/constant/routes.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 abstract class CheckEmailController
     extends GetxController {
-  void checkemail();
-
-  void goToSuccessSignup();
+  checkemail();
+  goToVerfiyCode();
 }
 
 class CheckEmailControllerImp
     extends CheckEmailController {
-  /// Form Key
-  TextEditingController email =
-      TextEditingController();
+  late TextEditingController email;
 
-  /// Signup Function
   @override
-  void checkemail() {}
+  checkemail() {}
 
-  /// Go To Login
   @override
-  void goToSuccessSignup() {
+  goToVerfiyCode() {
     Get.offNamed(
-      AppRoute.SignUpSuccess,
+      AppRoute.VerifyCodeSignup,
     );
   }
 
-  /// Init
   @override
   void onInit() {
     email = TextEditingController();
-
     super.onInit();
   }
 
-  /// Dispose
   @override
   void dispose() {
     email.dispose();
-
     super.dispose();
   }
 }

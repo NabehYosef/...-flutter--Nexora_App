@@ -4,9 +4,9 @@ import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
 import 'package:e_commerce/view/widget/auth/customtexttitleauth.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get.dart';
 
 class CheckEmail
     extends StatelessWidget {
@@ -18,15 +18,14 @@ class CheckEmail
         Get.put(
           CheckEmailControllerImp(),
         );
-
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor:
             AppColor.backgroundcolor,
-        elevation: 0,
-        centerTitle: true,
+        elevation: 0.0,
         title: Text(
-          "Check Email",
+          '27'.tr,
           style: Theme.of(context)
               .textTheme
               .headlineMedium!
@@ -36,40 +35,40 @@ class CheckEmail
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 15,
-          horizontal: 30,
-        ),
+        padding:
+            const EdgeInsets.symmetric(
+              vertical: 15,
+              horizontal: 30,
+            ),
         child: ListView(
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             CustomTextTitleAuth(
-              text: "Success SignUp",
+              text: "28".tr,
             ),
+            const SizedBox(height: 10),
             CustomTextBodyAuth(
-              textbody:
-                  "please Enter Your Email Address To Recive A verification code",
+              textbody: "29".tr,
             ),
-            SizedBox(height: 10),
 
+            const SizedBox(height: 15),
             CustomTextFormAuth(
               controller:
                   controller.email,
-              hintText:
-                  "Enter Your Email",
-              labelText: "Email",
+              hintText: "12".tr,
               iconData:
                   Icons.email_outlined,
+              labelText: "18".tr,
+              // mycontroller: ,
             ),
-
             CustomButtomAuth(
-              text: " Check ",
+              text: "30".tr,
               onPressed: () {
                 controller
-                    .goToSuccessSignup();
+                    .goToVerfiyCode();
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 40),
           ],
         ),
       ),

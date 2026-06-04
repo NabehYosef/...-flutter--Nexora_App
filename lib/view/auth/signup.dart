@@ -1,12 +1,12 @@
-import 'package:e_commerce/controller/auth/signupcontroller.dart';
+import 'package:e_commerce/controller/auth/signup_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
+import 'package:e_commerce/view/widget/auth/customtextsigbuporsignin.dart';
 import 'package:e_commerce/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get.dart';
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
@@ -15,15 +15,14 @@ class Signup extends StatelessWidget {
   Widget build(BuildContext context) {
     SignUpControllerImp controller =
         Get.put(SignUpControllerImp());
-
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor:
             AppColor.backgroundcolor,
-        elevation: 0,
-        centerTitle: true,
+        elevation: 0.0,
         title: Text(
-          "Sign Up",
+          '17'.tr,
           style: Theme.of(context)
               .textTheme
               .headlineMedium!
@@ -33,105 +32,71 @@ class Signup extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 15,
-          horizontal: 30,
-        ),
+        padding:
+            const EdgeInsets.symmetric(
+              vertical: 15,
+              horizontal: 30,
+            ),
         child: ListView(
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             CustomTextTitleAuth(
-              text: "Create Account",
+              text: "10".tr,
             ),
+            const SizedBox(height: 10),
             CustomTextBodyAuth(
-              textbody:
-                  "Create your account using email and password",
+              textbody: "24".tr,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 15),
             CustomTextFormAuth(
               controller:
                   controller.username,
-              hintText:
-                  "Enter Your User Name",
-              labelText: "User Name",
+              hintText: "23".tr,
               iconData:
                   Icons.person_outline,
+              labelText: "20".tr,
+              // mycontroller: ,
             ),
             CustomTextFormAuth(
               controller:
                   controller.email,
-              hintText:
-                  "Enter Your Email",
-              labelText: "Email",
+              hintText: "12".tr,
               iconData:
                   Icons.email_outlined,
+              labelText: "18".tr,
+              // mycontroller: ,
             ),
             CustomTextFormAuth(
               controller:
                   controller.phone,
-              hintText:
-                  "Enter Your phone",
-              labelText: "Phone",
-              iconData:
-                  Icons.phone_outlined,
+              hintText: "22".tr,
+              iconData: Icons
+                  .phone_android_outlined,
+              labelText: "21".tr,
+              // mycontroller: ,
             ),
-            //   SizedBox(height: 20),
             CustomTextFormAuth(
               controller:
                   controller.password,
-              hintText:
-                  "Enter Your Password",
-              labelText: "Password",
+              hintText: "13".tr,
               iconData:
                   Icons.lock_outline,
-              //mycontroller;
+              labelText: "19".tr,
+              // mycontroller: ,
             ),
-
             CustomButtomAuth(
-              text: " Sign Up ",
+              text: "17".tr,
               onPressed: () {
                 controller.signup();
               },
             ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment:
-                  MainAxisAlignment
-                      .center,
-              children: [
-                Text(
-                  "Do you have an account? ",
-                  style:
-                      Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(
-                            color:
-                                AppColor
-                                    .grey,
-                          ),
-                ),
-
-                InkWell(
-                  onTap: () {
-                    controller
-                        .goToSignIn();
-                  },
-                  child: Text(
-                    "Sign In",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                          color: AppColor
-                              .primarycolor,
-                          fontWeight:
-                              FontWeight
-                                  .bold,
-                        ),
-                  ),
-                ),
-              ],
+            const SizedBox(height: 40),
+            CustomTextSignUpORSignIn(
+              textone: "25".tr,
+              texttwo: "26".tr,
+              onTap: () {
+                controller.goToSignIn();
+              },
             ),
           ],
         ),
