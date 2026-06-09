@@ -1,5 +1,6 @@
 import 'package:e_commerce/controller/auth/forgetpassword_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
+import 'package:e_commerce/core/functions/validinput.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
@@ -15,10 +16,12 @@ class Forgetpassword
 
   @override
   Widget build(BuildContext context) {
-    ForgetPasswordControllerImp
-    controller = Get.put(
-      ForgetPasswordControllerImp(),
+    Get.lazyPut(
+      () =>
+          ForgetPasswordControllerImp(),
     );
+    ForgetPasswordControllerImp
+    controller = Get.find();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,24 +48,33 @@ class Forgetpassword
           children: [
             SizedBox(height: 10),
             CustomTextTitleAuth(
-              text: "27.tr",
+              text: "27".tr,
             ),
             CustomTextBodyAuth(
-              textbody: "29.tr",
+              textbody: "29".tr,
             ),
             SizedBox(height: 10),
 
             CustomTextFormAuth(
+              isNumber: false,
+              valid: (value) {
+                return validInput(
+                  value!,
+                  5,
+                  100,
+                  "email",
+                );
+              },
               controller:
                   controller.email,
-              //   hintText: "12.tr",
-              // labelText: "18.tr",
+              hintText: "12".tr,
+              labelText: "18".tr,
               iconData:
                   Icons.email_outlined,
             ),
 
             CustomButtomAuth(
-              text: "30.tr",
+              text: "30".tr,
               onPressed: () {
                 controller
                     .goToVerifyCode();

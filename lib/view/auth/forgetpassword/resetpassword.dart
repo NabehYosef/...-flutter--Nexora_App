@@ -1,5 +1,6 @@
 import 'package:e_commerce/controller/auth/resetpassword_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
+import 'package:e_commerce/core/functions/validinput.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
@@ -53,6 +54,8 @@ class Resetpassword
             ),
             const SizedBox(height: 15),
             CustomTextFormAuth(
+              isNumber: false,
+              valid: (value) {},
               controller:
                   controller.password,
               hintText: "13".tr,
@@ -62,6 +65,15 @@ class Resetpassword
               // controller: ,
             ),
             CustomTextFormAuth(
+              isNumber: false,
+              valid: (value) {
+                return validInput(
+                  value!,
+                  3,
+                  49,
+                  "password",
+                );
+              },
               controller:
                   controller.repassword,
               hintText: "Re ${"13".tr}",

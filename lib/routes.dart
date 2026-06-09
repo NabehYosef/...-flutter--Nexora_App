@@ -1,5 +1,4 @@
 import 'package:e_commerce/core/constant/routes.dart';
-import 'package:e_commerce/view/auth/checkemail.dart';
 import 'package:e_commerce/view/auth/forgetpassword/forgetpassword.dart';
 import 'package:e_commerce/view/auth/login.dart';
 import 'package:e_commerce/view/auth/forgetpassword/resetpassword.dart';
@@ -42,8 +41,7 @@ routes = {
   AppRoute.SignUpSuccess: (context) =>
       SuccessSignUp(),
   //=================================
-  AppRoute.checkemail: (context) =>
-      CheckEmail(),
+
   //=================================
   AppRoute.VerifyCodeSignup:
       (context) => VerifyCodeSignup(),

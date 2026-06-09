@@ -1,6 +1,7 @@
 import 'package:e_commerce/controller/onboarding_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get/state_manager.dart';
 
 class CustomButtonOnBoarding
@@ -39,7 +40,7 @@ class CustomButtonOnBoarding
             controller.next();
           },
           color: AppColor.primarycolor,
-          child: const Text("Continue"),
+          child: Text("0".tr),
         ),
       ),
     );

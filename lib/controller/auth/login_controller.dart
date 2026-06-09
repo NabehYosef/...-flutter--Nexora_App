@@ -14,17 +14,45 @@ abstract class LoginController
 
 class LoginControllerImp
     extends LoginController {
+  GlobalKey<FormState> formstate =
+      GlobalKey<FormState>();
+
   TextEditingController email =
       TextEditingController();
+
   TextEditingController password =
       TextEditingController();
+
+  bool isShowPassword = true;
+
+  void showPassword() {
+    isShowPassword = !isShowPassword;
+    update();
+  }
+
   @override
-  login() {}
+  login() {
+    var formdata =
+        formstate.currentState;
+    if (formdata!.validate()) {
+      print("Valid");
+    } else {
+      print("Not Valid");
+    }
+
+    // if (formdata!.validate()) {
+    //   formdata.save();
+    //   // Get.offNamed(AppRoute);
+    // } else {
+    //   // ignore: avoid_print
+    //   print("Not Valid");
+    // }
+  }
 
   @override
   // ignore: non_constant_identifier_names
   GoToSignUp() {
-    Get.toNamed(AppRoute.signUp);
+    Get.offNamed(AppRoute.signUp);
   }
 
   @override

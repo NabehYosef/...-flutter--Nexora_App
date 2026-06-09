@@ -11,6 +11,9 @@ abstract class SignUpController
 
 class SignUpControllerImp
     extends SignUpController {
+  GlobalKey<FormState> formstate =
+      GlobalKey<FormState>();
+
   /// Form Key
   TextEditingController email =
       TextEditingController();
@@ -22,9 +25,22 @@ class SignUpControllerImp
       TextEditingController();
 
   /// Signup Function
+
+  // void signup() {
+  //   Get.offNamed(AppRoute.checkemail);
+  // }
   @override
   void signup() {
-    Get.offNamed(AppRoute.checkemail);
+    var formdata =
+        formstate.currentState;
+    if (formdata!.validate()) {
+      formdata.save();
+      Get.offNamed(
+        AppRoute.VerifyCodeSignup,
+      );
+    } else {
+      print("Not Valid");
+    }
   }
 
   /// Go To Login

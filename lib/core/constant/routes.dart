@@ -16,8 +16,7 @@ class AppRoute {
       "/successresetpassword";
   static String SignUpSuccess =
       "/signupsuccess";
-  static String checkemail =
-      "/checkemail";
+
   static String VerifyCodeSignup =
       "/verifycodesignup";
 }

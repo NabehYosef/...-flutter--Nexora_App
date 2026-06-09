@@ -1,5 +1,7 @@
 import 'package:e_commerce/controller/auth/signup_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
+import 'package:e_commerce/core/functions/alertexitapp.dart';
+import 'package:e_commerce/core/functions/validinput.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
@@ -13,8 +15,9 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignUpControllerImp controller =
-        Get.put(SignUpControllerImp());
+    Get.lazyPut(
+      () => SignUpControllerImp(),
+    );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -31,75 +34,140 @@ class Signup extends StatelessWidget {
               ),
         ),
       ),
-      body: Container(
-        padding:
-            const EdgeInsets.symmetric(
-              vertical: 15,
-              horizontal: 30,
+      body: GetBuilder<SignUpControllerImp>(
+        builder: (controller) {
+          return WillPopScope(
+            onWillPop: alertExitApp,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(
+                    vertical: 15,
+                    horizontal: 30,
+                  ),
+              child: Form(
+                key: controller
+                    .formstate,
+                child: ListView(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextTitleAuth(
+                      text: "10".tr,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomTextBodyAuth(
+                      textbody: "24".tr,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    CustomTextFormAuth(
+                      isNumber: false,
+                      valid: (value) {
+                        return validInput(
+                          value!,
+                          5,
+                          100,
+                          "username",
+                        );
+                      },
+                      controller:
+                          controller
+                              .username,
+                      hintText: "23".tr,
+                      iconData: Icons
+                          .person_outline,
+                      labelText:
+                          "20".tr,
+                      // mycontroller: ,
+                    ),
+                    CustomTextFormAuth(
+                      isNumber: false,
+                      valid: (value) {
+                        return validInput(
+                          value!,
+                          5,
+                          100,
+                          "email",
+                        );
+                      },
+                      controller:
+                          controller
+                              .email,
+                      hintText: "12".tr,
+                      iconData: Icons
+                          .email_outlined,
+                      labelText:
+                          "18".tr,
+                      // mycontroller: ,
+                    ),
+                    CustomTextFormAuth(
+                      isNumber: true,
+                      valid: (value) {
+                        return validInput(
+                          value!,
+                          5,
+                          11,
+                          "phone",
+                        );
+                      },
+                      controller:
+                          controller
+                              .phone,
+                      hintText: "22".tr,
+                      iconData: Icons
+                          .phone_android_outlined,
+                      labelText:
+                          "21".tr,
+                      // mycontroller: ,
+                    ),
+                    CustomTextFormAuth(
+                      isNumber: false,
+                      valid: (value) {
+                        return validInput(
+                          value!,
+                          5,
+                          100,
+                          "password",
+                        );
+                      },
+                      controller:
+                          controller
+                              .password,
+                      hintText: "13".tr,
+                      iconData: Icons
+                          .lock_outline,
+                      labelText:
+                          "19".tr,
+                      // mycontroller: ,
+                    ),
+                    CustomButtomAuth(
+                      text: "17".tr,
+                      onPressed: () {
+                        controller
+                            .signup();
+                      },
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    CustomTextSignUpORSignIn(
+                      textone: "25".tr,
+                      texttwo: "26".tr,
+                      onTap: () {
+                        controller
+                            .goToSignIn();
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-        child: ListView(
-          children: [
-            const SizedBox(height: 20),
-            CustomTextTitleAuth(
-              text: "10".tr,
-            ),
-            const SizedBox(height: 10),
-            CustomTextBodyAuth(
-              textbody: "24".tr,
-            ),
-            const SizedBox(height: 15),
-            CustomTextFormAuth(
-              controller:
-                  controller.username,
-              hintText: "23".tr,
-              iconData:
-                  Icons.person_outline,
-              labelText: "20".tr,
-              // mycontroller: ,
-            ),
-            CustomTextFormAuth(
-              controller:
-                  controller.email,
-              hintText: "12".tr,
-              iconData:
-                  Icons.email_outlined,
-              labelText: "18".tr,
-              // mycontroller: ,
-            ),
-            CustomTextFormAuth(
-              controller:
-                  controller.phone,
-              hintText: "22".tr,
-              iconData: Icons
-                  .phone_android_outlined,
-              labelText: "21".tr,
-              // mycontroller: ,
-            ),
-            CustomTextFormAuth(
-              controller:
-                  controller.password,
-              hintText: "13".tr,
-              iconData:
-                  Icons.lock_outline,
-              labelText: "19".tr,
-              // mycontroller: ,
-            ),
-            CustomButtomAuth(
-              text: "17".tr,
-              onPressed: () {
-                controller.signup();
-              },
-            ),
-            const SizedBox(height: 40),
-            CustomTextSignUpORSignIn(
-              textone: "25".tr,
-              texttwo: "26".tr,
-              onTap: () {
-                controller.goToSignIn();
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

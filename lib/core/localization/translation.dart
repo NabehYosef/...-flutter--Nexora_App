@@ -6,6 +6,7 @@ class MyTranslation
   Map<String, Map<String, String>>
   get keys => {
     "ar": {
+      "0": "التالي",
       "1": "اختر اللغة",
       "2": "اختر المنتجة",
       "3":
@@ -52,8 +53,14 @@ class MyTranslation
           "تم اعادة تعيين كلمة المرور بنجاح",
       "37": "تهانينا",
       "38": "تم التسجيل بنجاح",
+      "39": "تنبيه !!",
+      "40":
+          "هل انت متأكد انك تريد الخروج من التطبيق ؟",
+      "41": "نعم",
+      "42": "لا",
     },
     "en": {
+      "0": "Continue",
       "1": "Choose Language",
       "2": "Choose Product",
       "3":
@@ -100,6 +107,11 @@ class MyTranslation
           "Password has been reset successfully",
       "37": "congratulations",
       "38": "successfully registered",
+      "39": "Alert !!",
+      "40":
+          "Are you sure you want to exit the app ?",
+      "41": "Yes",
+      "42": "No",
     },
   };
 }

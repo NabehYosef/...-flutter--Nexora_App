@@ -7,15 +7,22 @@ class CustomTextFormAuth
   final IconData? iconData;
   final TextEditingController
   controller;
-  final bool obscureText;
+  final String? Function(String?)?
+  valid;
+  final bool isNumber;
+  final bool? obscureText;
+  final void Function()? onTapIcon;
 
   const CustomTextFormAuth({
-    super.key,
-    this.hintText,
-    this.labelText,
-    this.iconData,
-    required this.controller,
     this.obscureText = false,
+    this.onTapIcon,
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    required this.iconData,
+    required this.controller,
+    required this.valid,
+    required this.isNumber,
   });
 
   @override
@@ -24,11 +31,15 @@ class CustomTextFormAuth
       margin: const EdgeInsets.only(
         bottom: 20,
       ),
-
       child: TextFormField(
+        obscureText: obscureText!,
+        keyboardType: isNumber
+            ? TextInputType.numberWithOptions(
+                decimal: true,
+              )
+            : TextInputType.text,
+        validator: valid,
         controller: controller,
-        obscureText: obscureText,
-
         decoration: InputDecoration(
           floatingLabelBehavior:
               FloatingLabelBehavior
@@ -54,7 +65,13 @@ class CustomTextFormAuth
             fontSize: 14,
           ),
 
-          suffixIcon: Icon(iconData),
+          suffixIcon: InkWell(
+            onTap: onTapIcon,
+            child: Icon(
+              iconData,
+              size: 20,
+            ),
+          ),
 
           border: OutlineInputBorder(
             borderRadius:
