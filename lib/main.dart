@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: controller.Language,
       theme: controller.appTheme,
-      home: Language(),
       // home: Test(), //
-      routes: routes,
+      getPages: routes,
+      //  routes: routes,
     );
   }
 }

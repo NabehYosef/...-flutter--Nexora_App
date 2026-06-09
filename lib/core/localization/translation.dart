@@ -6,9 +6,11 @@ class MyTranslation
   Map<String, Map<String, String>>
   get keys => {
     "ar": {
+      "-2": "إنشاء حساب",
+      "-1": "تسجيل الدخول",
       "0": "التالي",
       "1": "اختر اللغة",
-      "2": "اختر المنتجة",
+      "2": "اختر المنتج",
       "3":
           "نحن لدينا 100 الف منتج  , اختر \n  منتجك  من  متجرنا",
       "4": "سهل وامن للشراء",
@@ -60,6 +62,8 @@ class MyTranslation
       "42": "لا",
     },
     "en": {
+      "-2": "Sign Up",
+      "-1": "Sign In",
       "0": "Continue",
       "1": "Choose Language",
       "2": "Choose Product",

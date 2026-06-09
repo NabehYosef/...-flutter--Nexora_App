@@ -12,10 +12,11 @@ class SuccessResetPassword
 
   @override
   Widget build(BuildContext context) {
-    SuccessresetpasswordControllerImp
-    controller = Get.put(
-      SuccessresetpasswordControllerImp(),
+    Get.lazyPut(
+      () =>
+          SuccessresetpasswordControllerImp(),
     );
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -32,45 +33,58 @@ class SuccessResetPassword
               ),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(
-          15,
-        ),
-        child: Column(
-          children: [
-            const Center(
-              child: Icon(
-                Icons
-                    .check_circle_outline,
-                size: 200,
-                color: AppColor
-                    .primarycolor,
-              ),
-            ),
-            Text(
-              "37".tr,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(
-                    fontSize: 30,
-                  ),
-            ),
-            Text("36".tr),
-            const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: CustomButtomAuth(
-                text: "31".tr,
-                onPressed: () {
-                  controller
-                      .goToLogin();
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+      body:
+          GetBuilder<
+            SuccessresetpasswordControllerImp
+          >(
+            builder: (controller) {
+              return Container(
+                padding:
+                    const EdgeInsets.all(
+                      15,
+                    ),
+                child: Column(
+                  children: [
+                    const Center(
+                      child: Icon(
+                        Icons
+                            .check_circle_outline,
+                        size: 200,
+                        color: AppColor
+                            .primarycolor,
+                      ),
+                    ),
+                    Text(
+                      "37".tr,
+                      style:
+                          Theme.of(
+                                context,
+                              )
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontSize:
+                                    30,
+                              ),
+                    ),
+                    Text("36".tr),
+                    const Spacer(),
+                    SizedBox(
+                      width: double
+                          .infinity,
+                      child: CustomButtomAuth(
+                        text: "31".tr,
+                        onPressed: () {
+                          controller
+                              .goToLogin();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
     );
   }
 }
