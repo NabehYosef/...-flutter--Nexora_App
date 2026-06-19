@@ -19,4 +19,6 @@ class AppRoute {
 
   static String VerifyCodeSignup =
       "/verifycodesignup";
+
+  static String Home = "/home";
 }

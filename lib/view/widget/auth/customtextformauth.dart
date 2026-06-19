@@ -44,13 +44,11 @@ class CustomTextFormAuth
           floatingLabelBehavior:
               FloatingLabelBehavior
                   .always,
-
           contentPadding:
               const EdgeInsets.symmetric(
                 vertical: 5,
                 horizontal: 30,
               ),
-
           label: Container(
             margin:
                 const EdgeInsets.symmetric(
@@ -58,13 +56,10 @@ class CustomTextFormAuth
                 ),
             child: Text(labelText!),
           ),
-
           hintText: hintText,
-
           hintStyle: const TextStyle(
             fontSize: 14,
           ),
-
           suffixIcon: InkWell(
             onTap: onTapIcon,
             child: Icon(
@@ -72,7 +67,6 @@ class CustomTextFormAuth
               size: 20,
             ),
           ),
-
           border: OutlineInputBorder(
             borderRadius:
                 BorderRadius.circular(

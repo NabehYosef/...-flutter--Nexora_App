@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/middleware/mymiddleware.dart';
+import 'package:e_commerce/view/Home.dart';
 import 'package:e_commerce/view/auth/forgetpassword/forgetpassword.dart';
 import 'package:e_commerce/view/auth/login.dart';
 import 'package:e_commerce/view/auth/forgetpassword/resetpassword.dart';
@@ -13,6 +14,10 @@ import 'package:e_commerce/view/screen/onboarding.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? routes = [
+  // GetPage(
+  //   name: "/",
+  //   page: () => const TestView(),
+  // ),
   GetPage(
     name: "/",
     page: () => const Language(),
@@ -54,6 +59,12 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.VerifyCodeSignup,
     page: () => VerifyCodeSignup(),
+  ),
+  //==================
+  //app
+  GetPage(
+    name: AppRoute.Home,
+    page: () => Home(),
   ),
 ];
 //=================================

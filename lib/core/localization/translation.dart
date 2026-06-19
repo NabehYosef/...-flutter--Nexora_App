@@ -60,6 +60,7 @@ class MyTranslation
           "هل انت متأكد انك تريد الخروج من التطبيق ؟",
       "41": "نعم",
       "42": "لا",
+      "43": "عيد ميلادك",
     },
     "en": {
       "-2": "Sign Up",
@@ -116,6 +117,7 @@ class MyTranslation
           "Are you sure you want to exit the app ?",
       "41": "Yes",
       "42": "No",
+      "43": "Your BirthDate",
     },
   };
 }

@@ -11,9 +11,7 @@ abstract class VerifyCodeController
 
 class VerifyCodeControllerImp
     extends VerifyCodeController {
-  /// Form Key
-  TextEditingController email =
-      TextEditingController();
+  String? email;
 
   late String? verifycode;
 
@@ -33,6 +31,7 @@ class VerifyCodeControllerImp
   /// Init
   @override
   void onInit() {
+    email = Get.arguments['email'];
     super.onInit();
   }
 }

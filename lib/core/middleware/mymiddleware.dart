@@ -7,6 +7,7 @@ import 'package:get/get_navigation/src/routes/route_middleware.dart';
 
 class Mymiddleware
     extends GetMiddleware {
+  @override
   int? get priority => 1;
 
   MyServices myServices = Get.find();

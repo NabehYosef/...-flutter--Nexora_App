@@ -1,6 +1,10 @@
+import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
+import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
+import 'package:e_commerce/data/datasource/static/remote/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
@@ -24,30 +28,81 @@ class LoginControllerImp
       TextEditingController();
 
   bool isShowPassword = true;
-
+  Statusrequest? statusrequest;
+  LoginData logindata = LoginData(
+    Get.find(),
+  );
   void showPassword() {
     isShowPassword = !isShowPassword;
     update();
   }
 
   @override
-  login() {
-    var formdata =
-        formstate.currentState;
-    if (formdata!.validate()) {
-      print("Valid");
-    } else {
-      print("Not Valid");
-    }
+  login() async {
+    if (formstate.currentState!
+        .validate()) {
+      statusrequest =
+          Statusrequest.loading;
+      update();
 
-    // if (formdata!.validate()) {
-    //   formdata.save();
-    //   // Get.offNamed(AppRoute);
-    // } else {
-    //   // ignore: avoid_print
-    //   print("Not Valid");
-    // }
+      var response = await logindata
+          .post(
+            email.text,
+            password.text,
+          );
+
+      print(response);
+
+      statusrequest = handlingData(
+        response,
+      );
+      print(
+        "AFTER handlingData: $statusrequest",
+      );
+
+      if (statusrequest ==
+          Statusrequest.success) {
+        if (response is Map &&
+            response.containsKey(
+              "user",
+            )) {
+          print(
+            "ENTERED SUCCESS BLOCK",
+          );
+          Get.offAllNamed(
+            AppRoute.Home,
+            arguments: {
+              "email":
+                  response["user"]["email"],
+              "password": password.text,
+              "token":
+                  response["token"],
+              "userName":
+                  response["user"]["userName"],
+            },
+          );
+        } else {
+          statusrequest =
+              Statusrequest.failure;
+          Get.defaultDialog(
+            title: "Error",
+            middleText:
+                "Unexpected server response",
+          );
+        }
+      }
+
+      update();
+    }
   }
+
+  // if (formdata!.validate()) {
+  //   formdata.save();
+  //   // Get.offNamed(AppRoute);
+  // } else {
+  //   // ignore: avoid_print
+  //   print("Not Valid");
+  // }
 
   @override
   // ignore: non_constant_identifier_names
