@@ -1,4 +1,4 @@
-import 'package:e_commerce/controller/auth/signup_controller.dart';
+import 'package:e_commerce/controller/auth/signup/signup_controller.dart';
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/functions/alertexitapp.dart';

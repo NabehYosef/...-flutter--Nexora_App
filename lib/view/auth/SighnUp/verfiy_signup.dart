@@ -1,4 +1,4 @@
-import 'package:e_commerce/controller/auth/verifycodesignup_controller.dart';
+import 'package:e_commerce/controller/auth/signup/verfiycodesignup_controller.dart';
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/customtextbodyauth.dart';

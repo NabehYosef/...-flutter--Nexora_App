@@ -7,5 +7,9 @@ class InitialBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(Crud());
+    Get.lazyPut<Crud>(
+      () => Crud(),
+      fenix: true,
+    );
   }
 }

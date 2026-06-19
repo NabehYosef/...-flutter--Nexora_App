@@ -6,7 +6,7 @@ class AppRoute {
   static String signUp = "/signup";
   static String onBoarding =
       "/onBoarding";
-  static String forgetPassword =
+  static String Forgetpassword =
       "/forgetpassword";
   static String VerifyCode =
       "/verifycode";
@@ -17,7 +17,7 @@ class AppRoute {
   static String SignUpSuccess =
       "/signupsuccess";
 
-  static String VerifyCodeSignup =
+  static String verifyCodeSignup =
       "/verifycodesignup";
 
   static String Home = "/home";

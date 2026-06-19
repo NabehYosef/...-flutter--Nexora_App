@@ -3,15 +3,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class Successresetpassword
+abstract class SuccessSignUpController
     extends GetxController {
-  void goToLogin() {}
+  goToPageLogin();
 }
 
-class SuccessresetpasswordControllerImp
-    extends Successresetpassword {
+class SuccessSignUpControllerImp
+    extends SuccessSignUpController {
   @override
-  void goToLogin() {
-    Get.offNamed(AppRoute.login);
+  goToPageLogin() {
+    Get.offAllNamed(AppRoute.login);
   }
 }

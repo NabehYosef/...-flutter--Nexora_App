@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
-import 'package:e_commerce/data/datasource/static/remote/auth/verifycode.dart';
+import 'package:e_commerce/data/datasource/static/remote/auth/signup/verifycodeSignUp.dart';
 import 'package:get/get.dart';
 
 abstract class VerifyCodeSignUpController
@@ -17,16 +17,19 @@ class VerifyCodeSignUpControllerImp
   VerifycodeOtp verifycodeOtp =
       VerifycodeOtp(Get.find());
 
-  late String email;
-  late String token;
+  String? email;
+  String? token;
 
   Statusrequest statusrequest =
       Statusrequest.none;
 
   @override
   void onInit() {
+    print("EMAIL = $email");
+    print("TOKEN = $token");
     email = Get.arguments['email'];
     token = Get.arguments['token'];
+
     super.onInit();
   }
 
@@ -52,9 +55,9 @@ class VerifyCodeSignUpControllerImp
 
     var response = await verifycodeOtp
         .post(
-          email,
+          email!,
           verifycodeSignUp,
-          token,
+          token!,
         );
 
     print("OTP RESPONSE: $response");
@@ -81,7 +84,15 @@ class VerifyCodeSignUpControllerImp
             Statusrequest.failure;
       }
     }
-
+    print(
+      "===== VERIFY OTP DEBUG =====",
+    );
+    print("email: $email");
+    print("otp: $verifycodeSignUp");
+    print("token: $token");
+    print(
+      "============================",
+    );
     update();
   }
 

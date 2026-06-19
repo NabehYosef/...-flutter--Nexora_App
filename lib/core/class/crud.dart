@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/functions/checkinternet.dart';
@@ -13,41 +12,75 @@ class Crud {
     String? token,
   }) async {
     if (await CheckInternet()) {
-      Map<String, String> headers = {
+      /// 🔥 HEADERS FIXED
+      Map<String, String>
+      requestHeaders = {
         "Content-Type":
-            "application/json",
+            "application/json; charset=UTF-8",
       };
 
       if (token != null &&
           token.isNotEmpty) {
-        headers["token"] = token;
+        requestHeaders["token"] = token;
       }
-      print("=====headerrrrrr=====");
-      print(headers);
 
-      var response = await http.post(
-        Uri.parse(linkurl),
-        headers: headers,
-        body: jsonEncode(data),
-      );
+      ///  add token
+      if (token != null &&
+          token.isNotEmpty) {
+        requestHeaders["authorization"] =
+            "Bearer $token";
+      }
 
-      print(
-        "STATUS CODE = ${response.statusCode}",
-      );
-      print("BODY = ${response.body}");
+      print("===== HEADERS =====");
+      print(requestHeaders);
 
-      if (response.statusCode == 200 ||
-          response.statusCode == 201) {
-        Map responsebody = jsonDecode(
-          response.body,
+      print("===== BODY =====");
+      print(data);
+
+      try {
+        var response = await http.post(
+          Uri.parse(linkurl),
+          headers: requestHeaders,
+          body: jsonEncode(data),
         );
 
-        return Right(responsebody);
-      }
+        print(
+          "STATUS CODE = ${response.statusCode}",
+        );
+        print(
+          "BODY = ${response.body}",
+        );
 
-      return const Left(
-        Statusrequest.serverfailure,
-      );
+        /// 🔥 ACCEPT ANY SUCCESS CODE RANGE
+        if (response.statusCode >=
+                200 &&
+            response.statusCode < 300) {
+          Map responseBody = jsonDecode(
+            response.body,
+          );
+
+          print(
+            "===== DECODED RESPONSE =====",
+          );
+          print(responseBody);
+
+          return Right(responseBody);
+        }
+
+        /// 🔥 IMPORTANT: show real error body
+        print(
+          "SERVER ERROR RESPONSE: ${response.body}",
+        );
+
+        return const Left(
+          Statusrequest.serverfailure,
+        );
+      } catch (e) {
+        print("CRUD ERROR: $e");
+        return const Left(
+          Statusrequest.serverfailure,
+        );
+      }
     }
 
     return const Left(

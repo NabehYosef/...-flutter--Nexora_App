@@ -1,7 +1,8 @@
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
-import 'package:e_commerce/data/datasource/static/remote/auth/login.dart';
+import 'package:e_commerce/data/datasource/static/remote/auth/login/login.dart';
+import 'package:e_commerce/view/auth/forgetpassword/forgetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -113,8 +114,9 @@ class LoginControllerImp
   @override
   // ignore: non_constant_identifier_names
   GoToForgetPassword() {
+    statusrequest = Statusrequest.none;
     Get.toNamed(
-      AppRoute.forgetPassword,
+      AppRoute.Forgetpassword,
     );
   }
 

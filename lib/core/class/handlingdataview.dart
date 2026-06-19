@@ -5,14 +5,14 @@ import 'package:lottie/lottie.dart';
 
 class HandlingDataView
     extends StatelessWidget {
-  final Statusrequest statusRequest;
+  final Statusrequest? statusRequest;
   final Widget widget;
-  const HandlingDataView({
+  const HandlingDataView(
+    Statusrequest? statusrequest, {
     super.key,
     required this.statusRequest,
     required this.widget,
   });
-
   @override
   Widget build(BuildContext context) {
     return statusRequest ==

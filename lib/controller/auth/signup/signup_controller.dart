@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
-import 'package:e_commerce/data/datasource/static/remote/auth/sighnup.dart';
+import 'package:e_commerce/data/datasource/static/remote/auth/signup/sighnup.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -70,7 +70,7 @@ class SignUpControllerImp
               "data",
             )) {
           Get.offNamed(
-            AppRoute.VerifyCodeSignup,
+            AppRoute.verifyCodeSignup,
             arguments: {
               "email":
                   response["data"]["email"],

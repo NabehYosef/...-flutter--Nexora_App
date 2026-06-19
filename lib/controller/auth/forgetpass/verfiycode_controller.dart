@@ -1,5 +1,4 @@
 import 'package:e_commerce/core/constant/routes.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class VerifyCodeController
@@ -12,6 +11,7 @@ abstract class VerifyCodeController
 class VerifyCodeControllerImp
     extends VerifyCodeController {
   String? email;
+  String? token;
 
   late String? verifycode;
 
@@ -32,6 +32,7 @@ class VerifyCodeControllerImp
   @override
   void onInit() {
     email = Get.arguments['email'];
+    token = Get.arguments['token'];
     super.onInit();
   }
 }

@@ -1,4 +1,4 @@
-import 'package:e_commerce/controller/auth/successsignup_controller.dart';
+import 'package:e_commerce/controller/auth/signup/successsignup.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:flutter/material.dart';
