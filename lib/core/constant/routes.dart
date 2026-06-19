@@ -20,5 +20,5 @@ class AppRoute {
   static String verifyCodeSignup =
       "/verifycodesignup";
 
-  static String Home = "/home";
+  static String HomeScreen = "/home";
 }

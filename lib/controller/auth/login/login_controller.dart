@@ -2,12 +2,12 @@ import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/data/datasource/static/remote/auth/login/login.dart';
-import 'package:e_commerce/view/auth/forgetpassword/forgetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LoginController
     extends GetxController {
@@ -37,6 +37,8 @@ class LoginControllerImp
     isShowPassword = !isShowPassword;
     update();
   }
+
+  SharedPreferences? sharedPreferences;
 
   @override
   login() async {
@@ -71,7 +73,7 @@ class LoginControllerImp
             "ENTERED SUCCESS BLOCK",
           );
           Get.offAllNamed(
-            AppRoute.Home,
+            AppRoute.HomeScreen,
             arguments: {
               "email":
                   response["user"]["email"],
@@ -104,7 +106,6 @@ class LoginControllerImp
   //   // ignore: avoid_print
   //   print("Not Valid");
   // }
-
   @override
   // ignore: non_constant_identifier_names
   GoToSignUp() {

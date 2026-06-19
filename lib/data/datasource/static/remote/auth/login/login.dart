@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/class/crud.dart';
-import 'package:e_commerce/data/datasource/static/linkapi.dart';
+import 'package:e_commerce/core/services/Apis/linkapi.dart';
 
 class LoginData {
   Crud crud;
