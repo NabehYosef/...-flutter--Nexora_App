@@ -44,32 +44,31 @@ class ForgetPasswordControllerImp
 
       if (statusrequest ==
           Statusrequest.success) {
-        if (response["message"] ==
-            "OTP sent to email") {
+        if (response.containsKey(
+          "token",
+        )) {
           Get.offNamed(
             AppRoute.VerifyCode,
             arguments: {
-              "email": email.text,
+              "otp": response["otp"],
               "token":
                   response["token"],
             },
           );
-        } else {
-          Get.defaultDialog(
-            title: "Warning",
-            middleText:
-                response["message"],
-          );
-
-          statusrequest =
-              Statusrequest.failure;
         }
-      }
+      } else {
+        Get.defaultDialog(
+          title: "Warning",
+          middleText:
+              response["message"],
+        );
 
-      update();
-    } else {
-      print("Not Valid");
+        statusrequest =
+            Statusrequest.failure;
+      }
     }
+
+    update();
   }
 
   @override

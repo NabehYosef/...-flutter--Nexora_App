@@ -1,6 +1,7 @@
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
+import 'package:e_commerce/core/services/services.dart';
 import 'package:e_commerce/data/datasource/static/remote/auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -39,6 +40,7 @@ class LoginControllerImp
   }
 
   SharedPreferences? sharedPreferences;
+  MyServices myServices = Get.find();
 
   @override
   login() async {
@@ -69,6 +71,22 @@ class LoginControllerImp
             response.containsKey(
               "user",
             )) {
+          myServices.sharedPreferences
+              .setString(
+                "token",
+                response["token"],
+              );
+
+          sharedPreferences =
+              await SharedPreferences.getInstance();
+          await sharedPreferences!
+              .setString(
+                "token",
+                response["token"],
+              );
+          print(
+            "✅ Token saved: ${response["token"]}",
+          );
           print(
             "ENTERED SUCCESS BLOCK",
           );
@@ -78,10 +96,15 @@ class LoginControllerImp
               "email":
                   response["user"]["email"],
               "password": password.text,
-              "token":
-                  response["token"],
+
               "userName":
                   response["user"]["userName"],
+              "birthDate":
+                  response["user"]["birthDate"],
+              "phone":
+                  response["user"]["phone"],
+              "token":
+                  response["token"],
             },
           );
         } else {

@@ -8,6 +8,7 @@ import 'package:e_commerce/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class Resetpassword
@@ -16,8 +17,7 @@ class Resetpassword
 
   @override
   Widget build(BuildContext context) {
-    ResetPasswordControllerImp
-    controller = Get.put(
+    final controller = Get.put(
       ResetPasswordControllerImp(),
     );
     return Scaffold(
@@ -86,7 +86,7 @@ class Resetpassword
               text: "33".tr,
               onPressed: () {
                 controller
-                    .goToSuccessResetPassword();
+                    .resetPassword();
               },
             ),
             const SizedBox(height: 40),

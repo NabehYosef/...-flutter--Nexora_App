@@ -1,6 +1,8 @@
 import 'package:e_commerce/model/product.dart';
+import 'package:e_commerce/view/screen/App/cart_screen.dart';
 import 'package:e_commerce/view/widget/App/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class LaptopScreen
     extends StatefulWidget {
@@ -83,9 +85,16 @@ class _LaptopScreenState
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 200,
-                    child: ProductCard(
-                      product:
-                          products[index],
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(
+                          CartScreen(),
+                        );
+                      },
+                      child: ProductCard(
+                        product:
+                            products[index],
+                      ),
                     ),
                   );
                 },

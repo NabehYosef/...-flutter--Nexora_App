@@ -52,10 +52,10 @@ class VerifyCodeSignUpControllerImp
     statusrequest =
         Statusrequest.loading;
     update();
-
+    print("VERIFY TOKEN: $token");
     var response = await verifycodeOtp
         .post(
-          email!,
+          //  email!,
           verifycodeSignUp,
           token!,
         );

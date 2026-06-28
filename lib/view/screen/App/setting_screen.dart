@@ -1,4 +1,5 @@
 import 'package:e_commerce/controller/App/setting_controller.dart';
+import 'package:e_commerce/controller/auth/logout/logout_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/App/setting_avatar_header.dart';
 import 'package:e_commerce/view/widget/App/setting_option_card.dart';
@@ -136,20 +137,30 @@ class SettingsScreen
                                     28,
                               ),
                             ),
-                            const SettingsOptionTile(
-                              title:
-                                  'Logout',
-                              isLast:
-                                  true,
-                              trailing: Icon(
-                                Icons
-                                    .logout_outlined,
-                                color: Color(
-                                  0xFF666666,
-                                ),
-                                size:
-                                    28,
-                              ),
+                            GetBuilder<
+                              LogoutControllerImp
+                            >(
+                              init:
+                                  LogoutControllerImp(),
+                              builder:
+                                  (
+                                    controller,
+                                  ) => InkWell(
+                                    onTap: () {
+                                      controller.logout();
+                                    },
+                                    child: const SettingsOptionTile(
+                                      title: 'Logout',
+                                      isLast: true,
+                                      trailing: Icon(
+                                        Icons.logout_outlined,
+                                        color: Color(
+                                          0xFF666666,
+                                        ),
+                                        size: 28,
+                                      ),
+                                    ),
+                                  ),
                             ),
                           ],
                         ),

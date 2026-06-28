@@ -9,7 +9,7 @@ import 'package:e_commerce/view/auth/forgetpassword/resetpassword.dart';
 import 'package:e_commerce/view/auth/SighnUp/signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/success_resetpass.dart';
 import 'package:e_commerce/view/auth/SighnUp/verfiy_signup.dart';
-import 'package:e_commerce/view/auth/forgetpassword/verifycode.dart';
+import 'package:e_commerce/view/auth/forgetpassword/verifycodeforgetpass.dart';
 import 'package:e_commerce/view/screen/App/Home.dart';
 import 'package:e_commerce/view/screen/language.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
@@ -26,7 +26,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: "/",
     page: () => const Language(),
-    // middlewares: [Mymiddleware()],
+    middlewares: [Mymiddleware()],
   ),
   GetPage(
     name: AppRoute.login,

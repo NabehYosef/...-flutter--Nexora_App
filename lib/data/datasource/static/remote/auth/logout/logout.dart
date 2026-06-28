@@ -1,25 +1,18 @@
 import 'package:e_commerce/core/class/crud.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
 
-class VerifycodeOtp {
+class LogoutData {
   Crud crud;
-
-  VerifycodeOtp(this.crud);
+  LogoutData(this.crud);
 
   Future<dynamic> post(
-    String otp,
-    String? token,
+    String token,
   ) async {
-    if (token == null ||
-        token.isEmpty) {
-      return;
-    }
     var response = await crud.postData(
-      AppLink.verifyOtp,
-      {"otp": otp},
+      AppLink.logout,
+      {},
       token: token,
     );
-
     return response.fold(
       (l) => l,
       (r) => r,

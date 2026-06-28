@@ -72,10 +72,10 @@ class SignUpControllerImp
           Get.offNamed(
             AppRoute.verifyCodeSignup,
             arguments: {
-              "email":
-                  response["data"]["email"],
               "userId":
                   response["data"]["userId"],
+              "email":
+                  response["data"]["email"],
               "token":
                   response["data"]["token"],
               "otp":

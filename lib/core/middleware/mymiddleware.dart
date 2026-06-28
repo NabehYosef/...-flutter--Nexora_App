@@ -1,9 +1,7 @@
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/services/services.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/routes/route_middleware.dart';
+import 'package:get/get.dart';
 
 class Mymiddleware
     extends GetMiddleware {
@@ -16,13 +14,31 @@ class Mymiddleware
   RouteSettings? redirect(
     String? route,
   ) {
-    if (myServices.sharedPreferences
-            .getString("onboarding") ==
-        "1") {
+    String? onboarding = myServices
+        .sharedPreferences
+        .getString("onboarding");
+    String? token = myServices
+        .sharedPreferences
+        .getString("token");
+
+    // ① ما شاف الـ onboarding بعد
+    if (onboarding == null) {
       return RouteSettings(
-        name: AppRoute.login,
+        name: AppRoute.onBoarding,
       );
     }
-    return null;
+
+    // ② عنده token = مسجل دخول → HomeScreen مباشرة
+    if (token != null &&
+        token.isNotEmpty) {
+      return RouteSettings(
+        name: AppRoute.HomeScreen,
+      );
+    }
+
+    // ③ ما عنده token = Login
+    return RouteSettings(
+      name: AppRoute.login,
+    );
   }
 }

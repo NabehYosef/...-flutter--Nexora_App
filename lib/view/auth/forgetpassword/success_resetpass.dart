@@ -1,5 +1,4 @@
-import 'package:e_commerce/controller/auth/forgetpass/resetpassword_controller.dart';
-import 'package:e_commerce/controller/auth/forgetpass/verfiycode_controller.dart';
+import 'package:e_commerce/controller/auth/forgetpass/verfiycodeforgetpass_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/auth/custombuttomauth.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,9 @@ class SuccessResetPassword
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(
-      () => VerifyCodeControllerImp(),
-    );
+    // Get.lazyPut(
+    //   () => VerifyCodeForgetPasswordControllerImp(),
+    // );
 
     return Scaffold(
       appBar: AppBar(
@@ -33,53 +32,58 @@ class SuccessResetPassword
               ),
         ),
       ),
-      body: GetBuilder<VerifyCodeControllerImp>(
-        builder: (controller) {
-          return Container(
-            padding:
-                const EdgeInsets.all(
-                  15,
+      body:
+          GetBuilder<
+            VerifyForgetPasswordControllerImp
+          >(
+            builder: (controller) {
+              return Container(
+                padding:
+                    const EdgeInsets.all(
+                      15,
+                    ),
+                child: Column(
+                  children: [
+                    const Center(
+                      child: Icon(
+                        Icons
+                            .check_circle_outline,
+                        size: 200,
+                        color: AppColor
+                            .primarycolor,
+                      ),
+                    ),
+                    Text(
+                      "37".tr,
+                      style:
+                          Theme.of(
+                                context,
+                              )
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontSize:
+                                    30,
+                              ),
+                    ),
+                    Text("36".tr),
+                    const Spacer(),
+                    SizedBox(
+                      width: double
+                          .infinity,
+                      child: CustomButtomAuth(
+                        text: "31".tr,
+                        // onPressed: () {
+                        //   controller
+                        //    //   .goToSignUpSuccess();
+                        // },
+                      ),
+                    ),
+                  ],
                 ),
-            child: Column(
-              children: [
-                const Center(
-                  child: Icon(
-                    Icons
-                        .check_circle_outline,
-                    size: 200,
-                    color: AppColor
-                        .primarycolor,
-                  ),
-                ),
-                Text(
-                  "37".tr,
-                  style:
-                      Theme.of(context)
-                          .textTheme
-                          .headlineMedium!
-                          .copyWith(
-                            fontSize:
-                                30,
-                          ),
-                ),
-                Text("36".tr),
-                const Spacer(),
-                SizedBox(
-                  width:
-                      double.infinity,
-                  child: CustomButtomAuth(
-                    text: "31".tr,
-                    // onPressed: () {
-                    //   controller
-                    //    //   .goToSignUpSuccess();
-                    // },
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ),
     );
   }
 }

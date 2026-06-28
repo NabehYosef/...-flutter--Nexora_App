@@ -1,6 +1,5 @@
 import 'package:e_commerce/controller/auth/login/login_controller.dart';
 import 'package:e_commerce/core/class/handlingdataview.dart';
-import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/functions/alertexitapp.dart';
 import 'package:e_commerce/core/functions/validinput.dart';

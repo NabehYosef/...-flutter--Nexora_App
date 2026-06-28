@@ -1,27 +1,26 @@
+// lib/data/datasource/remote/auth/forgetpassword/reset_password.dart
+
 import 'package:e_commerce/core/class/crud.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
 
 class ResetPasswordData {
   Crud crud;
-
   ResetPasswordData(this.crud);
 
   Future<dynamic> post(
-    String token,
-    int otp,
+    String otp,
     String newPassword,
+    String token,
   ) async {
     var response = await crud.postData(
       AppLink.resetpassword,
       {
-        "otp": otp,
+        "otp": int.parse(otp),
         "newPassword": newPassword,
       },
-      // headers: {
-      //   "Authorization": "Bearer $token",
-      // },
+      token:
+          token, // ✅ يروح في Header تلقائياً من الـ Crud
     );
-
     return response.fold(
       (l) => l,
       (r) => r,

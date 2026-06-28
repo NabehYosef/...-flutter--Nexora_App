@@ -1,3 +1,5 @@
+// lib/core/class/crud.dart
+
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/class/statusrequest.dart';
@@ -12,28 +14,20 @@ class Crud {
     String? token,
   }) async {
     if (await CheckInternet()) {
-      /// 🔥 HEADERS FIXED
       Map<String, String>
       requestHeaders = {
         "Content-Type":
             "application/json; charset=UTF-8",
       };
 
+      // ✅ الـ token يروح في Header بطريقة واحدة فقط
       if (token != null &&
           token.isNotEmpty) {
         requestHeaders["token"] = token;
       }
 
-      ///  add token
-      if (token != null &&
-          token.isNotEmpty) {
-        requestHeaders["authorization"] =
-            "Bearer $token";
-      }
-
       print("===== HEADERS =====");
       print(requestHeaders);
-
       print("===== BODY =====");
       print(data);
 
@@ -51,27 +45,22 @@ class Crud {
           "BODY = ${response.body}",
         );
 
-        /// 🔥 ACCEPT ANY SUCCESS CODE RANGE
         if (response.statusCode >=
                 200 &&
             response.statusCode < 300) {
           Map responseBody = jsonDecode(
             response.body,
           );
-
           print(
             "===== DECODED RESPONSE =====",
           );
           print(responseBody);
-
           return Right(responseBody);
         }
 
-        /// 🔥 IMPORTANT: show real error body
         print(
           "SERVER ERROR RESPONSE: ${response.body}",
         );
-
         return const Left(
           Statusrequest.serverfailure,
         );
