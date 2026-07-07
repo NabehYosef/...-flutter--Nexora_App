@@ -24,6 +24,9 @@ class AppLink {
   static const String resendotp =
       "$server/auth/resendOtp";
   //==============================================
+  //Home User
+  static const String home =
+      "$server/home";
 }
 
 //nabeh12

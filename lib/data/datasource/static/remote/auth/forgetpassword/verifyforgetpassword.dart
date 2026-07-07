@@ -10,14 +10,10 @@ class VerifyForgetPasswordData {
     String token,
   ) async {
     var response = await crud.postData(
-      AppLink
-          .resetpassword, // POST /api/auth/resetPassword
+      AppLink.resetpassword,
       {
-        "otp": int.parse(
-          otp,
-        ), // السيرفر يتوقع رقم مو string
-        "newPassword":
-            token, // ← هذا مؤقت، راح نعدله في الخطوة 3
+        "otp": int.parse(otp),
+        "newPassword": token,
       },
     );
     return response.fold(

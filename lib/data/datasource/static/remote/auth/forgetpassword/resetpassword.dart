@@ -18,8 +18,7 @@ class ResetPasswordData {
         "otp": int.parse(otp),
         "newPassword": newPassword,
       },
-      token:
-          token, // ✅ يروح في Header تلقائياً من الـ Crud
+      token: token, //Header
     );
     return response.fold(
       (l) => l,

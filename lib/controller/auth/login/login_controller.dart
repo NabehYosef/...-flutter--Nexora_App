@@ -96,7 +96,6 @@ class LoginControllerImp
               "email":
                   response["user"]["email"],
               "password": password.text,
-
               "userName":
                   response["user"]["userName"],
               "birthDate":

@@ -14,12 +14,9 @@ abstract class VerifyForgetPasswordController
 class VerifyForgetPasswordControllerImp
     extends
         VerifyForgetPasswordController {
-  // ① نستقبل هذي من Forgot Password
   late String token;
-  late String
-  otp; // الـ OTP اللي جاء من السيرفر
+  late String otp; 
 
-  // ② المستخدم يكتب هذا
   late TextEditingController otpInput;
 
   Statusrequest statusrequest =
@@ -30,7 +27,6 @@ class VerifyForgetPasswordControllerImp
         Get.find(),
       );
 
-  //late TextEditingController otpInput;
 
   @override
   void onInit() {
@@ -53,9 +49,7 @@ class VerifyForgetPasswordControllerImp
     print(
       "متطابقين؟ ${otpInput.text.trim() == otp}",
     );
-    // ③ نقارن اللي كتبه المستخدم مع اللي جاء من السيرفر
     if (otpInput.text.trim() == otp) {
-      // ④ صح → روح لـ Reset Password وحمل الـ token معك
       Get.offNamed(
         AppRoute.ResetPassword,
         arguments: {

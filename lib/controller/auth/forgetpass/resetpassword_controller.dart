@@ -36,18 +36,18 @@ class ResetPasswordControllerImp
     if (password.text.isEmpty ||
         repassword.text.isEmpty) {
       Get.defaultDialog(
-        title: "خطأ",
+        title: "Error!",
         middleText:
-            "يرجى ملء جميع الحقول",
+            "Please Enter the Code",
       );
       return;
     }
 
     if (password.text.length < 6) {
       Get.defaultDialog(
-        title: "خطأ",
+        title: "Error",
         middleText:
-            "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+            "Password must be minimum 6 char",
       );
       return;
     }
@@ -55,9 +55,8 @@ class ResetPasswordControllerImp
     if (password.text !=
         repassword.text) {
       Get.defaultDialog(
-        title: "خطأ",
-        middleText:
-            "كلمتا المرور غير متطابقتين",
+        title: "Error",
+        middleText: "Mismatch",
       );
       return;
     }
@@ -84,10 +83,10 @@ class ResetPasswordControllerImp
       Get.offAllNamed(AppRoute.login);
     } else {
       Get.defaultDialog(
-        title: "خطأ",
+        title: "Error",
         middleText:
             response["message"] ??
-            "حدث خطأ، حاول مجدداً",
+            "Error ! , Please Try again",
       );
     }
 
