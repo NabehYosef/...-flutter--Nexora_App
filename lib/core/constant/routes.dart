@@ -21,4 +21,10 @@ class AppRoute {
       "/verifycodesignup";
 
   static String HomeScreen = "/home";
+  //=======================================
+  //======================================
+  //settings
+  static String aboutUs = "/aboutus";
+  static String contactUS =
+      "/contactus";
 }

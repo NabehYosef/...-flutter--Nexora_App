@@ -76,6 +76,32 @@ class MyTranslation
       "50": "⚠️تحذير",
       "51":
           "⚠️ البريد الالكتروني غير موجود",
+      "52": "خطأ !",
+      "53": " لا يمكن فتح تطبيق الهاتف",
+      "54":
+          " واتساب غير مثبت على الجهاز",
+      "55":
+          "لا يوجد تطبيق بريد إلكتروني",
+      "56": "لا يمكن فتح الرابط",
+      "57": "اتصل بنا",
+      "58": "واتساب",
+      "59": "تواصل معنا عبر واتساب",
+      "60": "البريد الإلكتروني",
+      "61": "فيسبوك",
+      "62": "تابعنا على فيسبوك",
+      "63": "انستغرام",
+      "64": "تابعنا على انستغرام",
+      "65": "رقم الهاتف",
+      "66": "العنوان",
+      "67": "سوريا ,دمشق",
+      "68": "الموقع الالكتروني",
+      "69":
+          "تابعنا على موقعنا الالكتروني",
+      "70": "من نحن",
+      "71":
+          "نحن تطبيق تجارة إلكترونية يهدف إلى تقديم تجربة تسوق سهلة وسريعة وآمنة لجميع المستخدمين، "
+          "مع مجموعة واسعة من المنتجات المختارة بعناية وأسعار تنافسية وخدمة عملاء متميزة.",
+      "72": "تابعنا",
     },
     "en": {
       "-2": "Sign Up",
@@ -147,6 +173,31 @@ class MyTranslation
           "⚠️ This field can't be empty",
       "50": "⚠️ Warning",
       "51": "Email Not Found ⚠️",
+      "52": "Error !",
+      "53":
+          "Unable to open the Phone app ",
+      "54":
+          "WhatsApp is not installed on the device",
+      "55": "No Email App Found",
+      "56": "Unable to open the link",
+      "57": "Contact Us",
+      "58": "WhatsApp",
+      "59": "Contact us via WhatsApp",
+      "60": "Email",
+      "61": "Facebook",
+      "62": "Follow us on Facebook",
+      "63": "Instagram",
+      "64": "Follow us on Instagram",
+      "65": "Phone number",
+      "66": "Address",
+      "67": "Syria ,Damascus",
+      "68": "Website",
+      "69": "Follow us on our website",
+      "70": "About us",
+      "71":
+          "We are an e-commerce application that aims to provide an easy, fast, and secure shopping experience for all users, "
+          "with a wide range of carefully selected products, competitive prices, and excellent customer service.",
+      "72": "Follw US",
     },
   };
 }

@@ -13,6 +13,8 @@ import 'package:e_commerce/view/auth/forgetpassword/verifycodeforgetpass.dart';
 import 'package:e_commerce/view/screen/App/Home.dart';
 import 'package:e_commerce/view/screen/language.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
+import 'package:e_commerce/view/settings/about_us_view.dart';
+import 'package:e_commerce/view/settings/contact_us_view.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -78,6 +80,17 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.HomeScreen,
     page: () => HomeScreen(),
+  ),
+  //=======================================
+  //======================================
+  //settings
+  GetPage(
+    name: AppRoute.aboutUs,
+    page: () => const AboutUs(),
+  ),
+  GetPage(
+    name: AppRoute.contactUS,
+    page: () => ContactUsView(),
   ),
 ];
 //=================================

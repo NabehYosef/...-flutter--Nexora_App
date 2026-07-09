@@ -1,6 +1,7 @@
 import 'package:e_commerce/controller/App/setting_controller.dart';
 import 'package:e_commerce/controller/auth/logout/logout_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
+import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/view/widget/App/setting_avatar_header.dart';
 import 'package:e_commerce/view/widget/App/setting_option_card.dart';
 import 'package:e_commerce/view/widget/App/setting_option_tile.dart';
@@ -98,45 +99,69 @@ class SettingsScreen
                                 ),
                               ),
                             ),
-                            const SettingsOptionTile(
-                              title:
-                                  'Address',
-                              trailing: Icon(
-                                Icons
-                                    .location_on,
-                                color: Color(
-                                  0xFF666666,
+
+                            // Address
+                            InkWell(
+                              onTap: () => Get.toNamed(
+                                AppRoute
+                                    .aboutUs,
+                              ),
+                              child: const SettingsOptionTile(
+                                title:
+                                    'Address',
+                                trailing: Icon(
+                                  Icons
+                                      .location_on,
+                                  color: Color(
+                                    0xFF666666,
+                                  ),
+                                  size:
+                                      30,
                                 ),
-                                size:
-                                    30,
                               ),
                             ),
-                            const SettingsOptionTile(
-                              title:
-                                  'About us',
-                              trailing: Icon(
-                                Icons
-                                    .help_outline,
-                                color: Color(
-                                  0xFF666666,
+
+                            InkWell(
+                              onTap: () => Get.toNamed(
+                                AppRoute
+                                    .aboutUs,
+                              ),
+                              child: const SettingsOptionTile(
+                                title:
+                                    'About us',
+                                trailing: Icon(
+                                  Icons
+                                      .help_outline,
+                                  color: Color(
+                                    0xFF666666,
+                                  ),
+                                  size:
+                                      28,
                                 ),
-                                size:
-                                    28,
                               ),
                             ),
-                            const SettingsOptionTile(
-                              title:
-                                  'Contact us',
-                              trailing: Icon(
-                                Icons
-                                    .call_outlined,
-                                color: Color(
-                                  0xFF666666,
+
+                            // ✅ Contact us
+                            InkWell(
+                              onTap: () => Get.toNamed(
+                                AppRoute
+                                    .contactUS,
+                              ),
+                              child: const SettingsOptionTile(
+                                title:
+                                    'Contact us',
+                                trailing: Icon(
+                                  Icons
+                                      .call_outlined,
+                                  color: Color(
+                                    0xFF666666,
+                                  ),
+                                  size:
+                                      28,
                                 ),
-                                size:
-                                    28,
                               ),
                             ),
+
                             GetBuilder<
                               LogoutControllerImp
                             >(
