@@ -34,7 +34,20 @@ class VerifyCodeSignUpControllerImp
   }
 
   @override
-  checkCode() {}
+  checkCode() {
+    if (statusrequest ==
+        Statusrequest.serverfailure) {
+      Get.snackbar(
+        "Error",
+        "Verification code is incorrect",
+      );
+      Get.defaultDialog(
+        title: "Error",
+        middleText:
+            "Verification code is incorrect",
+      );
+    }
+  }
 
   @override
   goToSuccessSignUp(
@@ -93,6 +106,7 @@ class VerifyCodeSignUpControllerImp
     print(
       "============================",
     );
+    checkCode();
     update();
   }
 

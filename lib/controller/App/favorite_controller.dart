@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/services/Apis/Apiserevices.dart';
+import 'package:e_commerce/core/services/Apis/api_service.dart';
 import 'package:e_commerce/model/product.dart';
 import 'package:get/get.dart';
 

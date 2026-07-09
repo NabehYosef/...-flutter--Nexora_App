@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 abstract class ForgetPasswordController
     extends GetxController {
   checkemail();
+  checkCode();
 }
 
 class ForgetPasswordControllerImp
@@ -20,9 +21,27 @@ class ForgetPasswordControllerImp
   Statusrequest statusrequest =
       Statusrequest.none;
 
+  dynamic lastResponse;
+
   ForgetPasswordData
   forgetPasswordData =
       ForgetPasswordData(Get.find());
+
+  @override
+  checkCode() {
+    if (statusrequest ==
+        Statusrequest.serverfailure) {
+      String message =
+          "Email not found";
+      if (lastResponse is Map &&
+          lastResponse["message"] !=
+              null) {
+        message =
+            lastResponse["message"];
+      }
+      Get.snackbar("Error", message);
+    }
+  }
 
   @override
   Future<void> checkemail() async {
@@ -38,15 +57,18 @@ class ForgetPasswordControllerImp
             email.text,
           );
 
+      lastResponse = response;
+
       statusrequest = handlingData(
         response,
       );
 
       if (statusrequest ==
           Statusrequest.success) {
-        if (response.containsKey(
-          "token",
-        )) {
+        if (response is Map &&
+            response.containsKey(
+              "token",
+            )) {
           Get.offNamed(
             AppRoute.VerifyCode,
             arguments: {
@@ -58,9 +80,11 @@ class ForgetPasswordControllerImp
         }
       } else {
         Get.defaultDialog(
-          title: "Warning",
-          middleText:
-              response["message"],
+          title: "⚠️ Warning".tr,
+          middleText: response is Map
+              ? (response["message"] ??
+                    "Email not found")
+              : "Email Not Found ⚠️".tr,
         );
 
         statusrequest =
@@ -68,6 +92,7 @@ class ForgetPasswordControllerImp
       }
     }
 
+    checkCode();
     update();
   }
 

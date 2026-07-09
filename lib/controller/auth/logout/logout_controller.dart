@@ -4,9 +4,9 @@ import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/services.dart';
+import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/data/datasource/static/remote/auth/logout/logout.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LogoutController
     extends GetxController {
@@ -36,14 +36,8 @@ class LogoutControllerImp
             Statusrequest.loading;
         update();
 
-        SharedPreferences
-        sharedPreferences =
-            await SharedPreferences.getInstance();
         String token =
-            sharedPreferences.getString(
-              "token",
-            ) ??
-            "";
+            await TokenStorage.getToken();
         print(
           "Token for logout: $token",
         );
@@ -60,10 +54,7 @@ class LogoutControllerImp
 
         if (statusrequest ==
             Statusrequest.success) {
-          await sharedPreferences
-              .clear();
-          myServices.sharedPreferences
-              .remove("token");
+          await TokenStorage.clearToken();
           Get.offAllNamed(
             AppRoute.login,
           );

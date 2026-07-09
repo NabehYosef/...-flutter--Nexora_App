@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/services/Apis/Apiserevices.dart';
+import 'package:e_commerce/core/services/Apis/api_service.dart';
 import 'package:e_commerce/model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -145,16 +145,14 @@ class HomeContentController
             limit: 1000,
           );
 
+      products.value = items;
       if (items.isEmpty) {
         error.value =
-            'Failed to load products from any host';
-        products.clear();
-      } else {
-        products.value = items;
+            'لا توجد منتجات متاحة حاليًا';
       }
     } catch (err) {
       error.value =
-          'Error fetching products: $err';
+          'حدث خطأ أثناء تحميل المنتجات: $err';
       products.clear();
     } finally {
       isLoading.value = false;

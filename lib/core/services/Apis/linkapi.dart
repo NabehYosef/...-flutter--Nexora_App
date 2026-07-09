@@ -1,8 +1,10 @@
 class AppLink {
-  static const String server =
-      "http://localhost:5000/api";
+  // static const String server =
+  //     "http://localhost:5000/api";
   //
   //      //"http://10.0.2.2:5000/api";
+  static const String server =
+      "http://10.0.2.2:5000/api";
 
   static const String register =
       "$server/register";

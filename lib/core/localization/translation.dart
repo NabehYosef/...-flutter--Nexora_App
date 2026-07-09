@@ -61,6 +61,21 @@ class MyTranslation
       "41": "نعم",
       "42": "لا",
       "43": "عيد ميلادك",
+      "44":
+          "⚠️ الرجاء ادخال اسم المستخدم",
+      "45":
+          "⚠️ الرجاء ادخال البريد الالكتروني",
+      "46":
+          "⚠️ الرجاء ادخال رقم الهاتف",
+      "47":
+          "⚠️ الرجاء ادخال كلمة المرور",
+      "48":
+          "⚠️ الرجاء ادخال تاريخ الميلاد",
+      "49":
+          "⚠️ هذا الحقل لا يمكن ان يكون فارغ",
+      "50": "⚠️تحذير",
+      "51":
+          "⚠️ البريد الالكتروني غير موجود",
     },
     "en": {
       "-2": "Sign Up",
@@ -118,6 +133,20 @@ class MyTranslation
       "41": "Yes",
       "42": "No",
       "43": "Your BirthDate",
+      "44":
+          "⚠️ Please enter your username",
+      "45":
+          "⚠️ Please enter your email address",
+      "46":
+          "⚠️ Please enter your phone number",
+      "47":
+          "⚠️ Please enter your password",
+      "48":
+          "⚠️ Please enter your birth date",
+      "49":
+          "⚠️ This field can't be empty",
+      "50": "⚠️ Warning",
+      "51": "Email Not Found ⚠️",
     },
   };
 }

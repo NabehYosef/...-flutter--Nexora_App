@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:e_commerce/model/product.dart';
+import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:flutter/foundation.dart'
     show
         kIsWeb,
@@ -8,23 +9,11 @@ import 'package:flutter/foundation.dart'
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  /// Shared singleton instance. Constructing an ApiService with an authToken
-  /// will set `ApiService.shared` if it's not already set.
   static ApiService? shared;
-  // Use a short timeout for host probing
   static const Duration _probeTimeout =
       Duration(seconds: 4);
 
-  // Default auth token (moved from controllers). Replace with secure storage later.
-  static const String defaultAuthToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMzU3OTdkMDM2MTgyNzA0NTM5OWQ0OCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc4MTg4OTQxOH0.8hNCmh2hQKtRxG6H_5jb1JntLpo8nJhjQcsu1QiJY-I';
-
-  final String authToken;
-
-  ApiService({String? authToken})
-    : authToken =
-          authToken ??
-          ApiService.defaultAuthToken {
+  ApiService() {
     shared ??= this;
   }
 
@@ -62,6 +51,20 @@ class ApiService {
       ];
     }
     return ['localhost:5000'];
+  }
+
+  /// يجيب أحدث توكن محفوظ فعليًا من التخزين قبل كل طلب.
+  Future<Map<String, String>>
+  _authHeaders() async {
+    final token =
+        await TokenStorage.getToken();
+    return {
+      'Authorization': 'Bearer $token',
+      'token': token,
+      'Accept': 'application/json',
+      'Content-Type':
+          'application/json',
+    };
   }
 
   Future<List<dynamic>>
@@ -104,20 +107,105 @@ class ApiService {
   }) async {
     final hosts = _candidateHosts();
     List<dynamic> items = [];
-
-    final headers = <String, String>{
-      'Authorization':
-          'Bearer $authToken',
-      'token': authToken,
-      'Accept': 'application/json',
-      'Content-Type':
-          'application/json',
-    };
+    final headers =
+        await _authHeaders(); // ⬅️ توكن طازة من TokenStorage
 
     for (final host in hosts) {
       try {
         final uri = Uri.parse(
           'http://$host/api/product/products?page=$page&limit=$limit',
+        );
+        final res = await _tryGet(
+          uri,
+          headers: headers,
+        );
+
+        print(
+          'HOST: $host  STATUS: ${res?.statusCode}  BODY: ${res?.body}',
+        );
+
+        if (res != null &&
+            res.statusCode == 200) {
+          final body = json.decode(
+            res.body,
+          );
+          if (body is List) {
+            items = body;
+            break;
+          } else if (body is Map &&
+              body['data'] != null) {
+            items = body['data'];
+            break;
+          } else if (body is Map &&
+              body['products'] !=
+                  null) {
+            items = body['products'];
+            break;
+          } else if (body is Map &&
+              body['result'] != null) {
+            items = body['result'];
+            break;
+          } else if (body is Map &&
+              body['docs'] != null) {
+            items = body['docs'];
+            break;
+          }
+        }
+      } catch (_) {
+        // try next host
+      }
+    }
+
+    final List<Product> products = items
+        .map<Product>((e) {
+          return Product.fromMap(
+            e as Map<String, dynamic>,
+            _normalizeImagePath,
+          );
+        })
+        .toList();
+
+    return products;
+  }
+
+  Future<List<Product>> filterProducts({
+    String? category,
+    String? name,
+    int page = 1,
+    int limit = 1000,
+    int? minPrice,
+    int? maxPrice,
+  }) async {
+    final hosts = _candidateHosts();
+    List<dynamic> items = [];
+    final headers =
+        await _authHeaders(); // ⬅️ توكن طازة من TokenStorage
+
+    final Map<String, String> q = {};
+    if (category != null &&
+        category.isNotEmpty)
+      q['category'] = category;
+    if (name != null && name.isNotEmpty)
+      q['name'] = name;
+    if (minPrice != null)
+      q['minPrice'] = minPrice
+          .toString();
+    if (maxPrice != null)
+      q['maxPrice'] = maxPrice
+          .toString();
+    q['page'] = page.toString();
+    q['limit'] = limit.toString();
+
+    for (final host in hosts) {
+      try {
+        final qs = q.entries
+            .map(
+              (e) =>
+                  '${Uri.encodeQueryComponent(e.key)}=${Uri.encodeQueryComponent(e.value)}',
+            )
+            .join('&');
+        final uri = Uri.parse(
+          'http://$host/api/product/filter${qs.isNotEmpty ? '?$qs' : ''}',
         );
         final res = await _tryGet(
           uri,
@@ -155,7 +243,6 @@ class ApiService {
       }
     }
 
-    // Map raw items to Product objects
     final List<Product> products = items
         .map<Product>((e) {
           return Product.fromMap(
@@ -168,20 +255,13 @@ class ApiService {
     return products;
   }
 
-  /// Add product to user's favourite list. Returns true on success.
   Future<bool> addToFavourite(
     String productId,
   ) async {
     if (productId.isEmpty) return false;
 
-    final headers = <String, String>{
-      'Authorization':
-          'Bearer $authToken',
-      'token': authToken,
-      'Accept': 'application/json',
-      'Content-Type':
-          'application/json',
-    };
+    final headers =
+        await _authHeaders(); // ⬅️ توكن طازة من TokenStorage
 
     for (final host
         in _candidateHosts()) {
@@ -195,7 +275,6 @@ class ApiService {
         if (res.statusCode == 201 ||
             res.statusCode == 200)
           return true;
-        // If 400 and product already exists, treat as failure (already favourite)
         return false;
       } catch (_) {
         // try next host
@@ -205,7 +284,6 @@ class ApiService {
     return false;
   }
 
-  // Normalize image path returned by API so Flutter web can load assets correctly.
   String _normalizeImagePath(
     dynamic raw,
   ) {
@@ -221,16 +299,6 @@ class ApiService {
     }
 
     var path = s.replaceAll('\\', '/');
-    // If the path looks like a server-uploaded image (e.g. filename starts with digits),
-    // treat it as an API-hosted file so web will load it via network instead of local assets.
-    final filename = path.contains('/')
-        ? path.split('/').last
-        : path;
-    if (RegExp(
-      r'^\d',
-    ).hasMatch(filename)) {
-      return apiHostForPath(path);
-    }
     if (path.startsWith('assets/'))
       return path;
     if (path.startsWith('images/'))

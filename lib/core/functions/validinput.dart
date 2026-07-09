@@ -1,3 +1,4 @@
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
 
 String? validInput(
@@ -12,17 +13,17 @@ String? validInput(
   if (val.isEmpty) {
     switch (type) {
       case "username":
-        return "⚠️ Please enter your username";
+        return "44".tr;
       case "email":
-        return "⚠️ Please enter your email address";
+        return "45".tr;
       case "phone":
-        return "⚠️ Please enter your phone number";
+        return "46".tr;
       case "password":
-        return "⚠️ Please enter your password";
+        return "47".tr;
       case "birthDate":
-        return "⚠️ Please enter your birth date";
+        return "48".tr;
       default:
-        return "⚠️ This field can't be empty";
+        return "49".tr;
     }
   }
 

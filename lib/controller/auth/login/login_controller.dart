@@ -2,18 +2,19 @@ import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/services.dart';
+import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/data/datasource/static/remote/auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LoginController
     extends GetxController {
   // ignore: strict_top_level_inference
   login();
+  checkCode();
   GoToSignUp();
   GoToForgetPassword();
 }
@@ -25,7 +26,6 @@ class LoginControllerImp
 
   TextEditingController email =
       TextEditingController();
-
   TextEditingController password =
       TextEditingController();
 
@@ -34,13 +34,29 @@ class LoginControllerImp
   LoginData logindata = LoginData(
     Get.find(),
   );
+
   void showPassword() {
     isShowPassword = !isShowPassword;
     update();
   }
 
-  SharedPreferences? sharedPreferences;
   MyServices myServices = Get.find();
+
+  @override
+  checkCode() {
+    if (statusrequest ==
+        Statusrequest.serverfailure) {
+      Get.snackbar(
+        "‼‼ Error",
+        "Incorrect email or password",
+      );
+      Get.defaultDialog(
+        title: "Error",
+        middleText:
+            "Incorrect email or password",
+      );
+    }
+  }
 
   @override
   login() async {
@@ -71,25 +87,17 @@ class LoginControllerImp
             response.containsKey(
               "user",
             )) {
-          myServices.sharedPreferences
-              .setString(
-                "token",
-                response["token"],
-              );
+          await TokenStorage.setToken(
+            response["token"],
+          );
 
-          sharedPreferences =
-              await SharedPreferences.getInstance();
-          await sharedPreferences!
-              .setString(
-                "token",
-                response["token"],
-              );
           print(
             "✅ Token saved: ${response["token"]}",
           );
           print(
             "ENTERED SUCCESS BLOCK",
           );
+
           Get.offAllNamed(
             AppRoute.HomeScreen,
             arguments: {
@@ -117,17 +125,11 @@ class LoginControllerImp
         }
       }
 
+      checkCode();
       update();
     }
   }
 
-  // if (formdata!.validate()) {
-  //   formdata.save();
-  //   // Get.offNamed(AppRoute);
-  // } else {
-  //   // ignore: avoid_print
-  //   print("Not Valid");
-  // }
   @override
   // ignore: non_constant_identifier_names
   GoToSignUp() {

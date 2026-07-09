@@ -26,7 +26,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: "/",
     page: () => const Language(),
-    //middlewares: [Mymiddleware()],
+    middlewares: [Mymiddleware()],
   ),
   GetPage(
     name: AppRoute.login,
@@ -70,7 +70,7 @@ List<GetPage<dynamic>>? routes = [
     binding: BindingsBuilder(() {
       Get.put(
         VerifyCodeSignUpControllerImp(),
-      ); // 👈 IMPORTANT
+      );
     }),
   ),
   //==================
