@@ -2,7 +2,12 @@ import 'package:e_commerce/controller/App/home_content_controller.dart';
 import 'package:e_commerce/controller/App/home_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/screen/App/favorite_screen.dart';
-import 'package:e_commerce/view/screen/App/laptop_screen.dart';
+import 'package:e_commerce/view/screen/App/Category/laptop_screen.dart';
+import 'package:e_commerce/view/screen/App/Category/camera_screen.dart';
+import 'package:e_commerce/view/screen/App/Category/mobile_screen.dart';
+import 'package:e_commerce/view/screen/App/Category/shoes_screen.dart';
+import 'package:e_commerce/view/screen/App/Category/dress_screen.dart';
+import 'package:e_commerce/view/screen/App/Category/watch_screen.dart';
 import 'package:e_commerce/view/screen/App/setting_screen.dart';
 import 'package:e_commerce/view/widget/App/ads_banner.dart';
 import 'package:e_commerce/view/widget/App/category_section.dart';
@@ -54,6 +59,38 @@ class HomeScreen
     );
   }
 
+  void _navigateToCategory(
+    String name,
+  ) {
+    final n = name.trim().toLowerCase();
+
+    if (n.contains('laptop')) {
+      Get.to(
+        () => const LaptopScreen(),
+      );
+    } else if (n.contains('camera')) {
+      Get.to(
+        () => const CameraScreen(),
+      );
+    } else if (n.contains('mobile') ||
+        n.contains('phone')) {
+      Get.to(
+        () => const MobileScreen(),
+      );
+    } else if (n.contains('shoe')) {
+      Get.to(() => const ShoesScreen());
+    } else if (n.contains('dress')) {
+      Get.to(() => const DressScreen());
+    } else if (n.contains('watch')) {
+      Get.to(() => const WatchScreen());
+    } else {
+      Get.snackbar(
+        'Category',
+        'No screen mapped for "$name" yet',
+      );
+    }
+  }
+
   Widget _buildPage(
     HomeController controller,
     HomeContentController
@@ -103,22 +140,8 @@ class HomeScreen
                       contentController
                           .categories
                           .toList(),
-                  onCategoryTap: (name) {
-                    final n = name
-                        .toLowerCase();
-                    if (n.contains(
-                          'laptop',
-                        ) ||
-                        n.contains(
-                          'laptops',
-                        ) ||
-                        n == 'laptop') {
-                      Get.to(
-                        () =>
-                            const LaptopScreen(),
-                      );
-                    }
-                  },
+                  onCategoryTap:
+                      _navigateToCategory,
                 ),
               ),
               const SizedBox(

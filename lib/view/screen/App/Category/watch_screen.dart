@@ -4,31 +4,31 @@ import 'package:e_commerce/view/widget/App/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
-class LaptopScreen
+class WatchScreen
     extends StatefulWidget {
-  const LaptopScreen({super.key});
+  const WatchScreen({super.key});
 
   @override
-  State<LaptopScreen> createState() =>
-      _LaptopScreenState();
+  State<WatchScreen> createState() =>
+      _WatchScreenState();
 }
 
-class _LaptopScreenState
-    extends State<LaptopScreen> {
-  String selectedCategory = "laptop";
+class _WatchScreenState
+    extends State<WatchScreen> {
+  String selectedCategory = "watch";
 
   final List<Product> products = [
     Product(
       id: null,
-      category: 'laptop',
-      name: 'MacBook Pro M2',
+      category: 'watch',
+      name: 'Apple Watch Series 9',
       description:
-          '16GB RAM • 512GB SSD • 14-inch',
-      image: 'assets/images/laptop.jpg',
+          '45mm • GPS • Aluminum Case',
+      image: 'assets/images/watch.webp',
       images: [],
-      priceValue: 1200,
-      price: '\$1200',
-      stock: 10,
+      priceValue: 400,
+      price: '\$400',
+      stock: 14,
       colors: [],
       averageRating: 0,
       createdAt: null,
@@ -36,15 +36,15 @@ class _LaptopScreenState
     ),
     Product(
       id: null,
-      category: 'laptop',
-      name: 'ASUS ROG Strix',
+      category: 'watch',
+      name: 'Samsung Galaxy Watch 6',
       description:
-          '16GB RAM • 1TB SSD • RTX 4060',
-      image: 'assets/images/laptop.jpg',
+          '44mm • GPS • AMOLED Display',
+      image: 'assets/images/watch.webp',
       images: [],
-      priceValue: 1400,
-      price: '\$1400',
-      stock: 8,
+      priceValue: 320,
+      price: '\$320',
+      stock: 16,
       colors: [],
       averageRating: 0,
       createdAt: null,
@@ -63,7 +63,7 @@ class _LaptopScreenState
         backgroundColor:
             Colors.deepOrange,
         title: const Text(
-          'Laptops',
+          'Watches',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -73,7 +73,6 @@ class _LaptopScreenState
         child: Column(
           children: [
             const SizedBox(height: 10),
-            // Simple header and product list for the laptop category
             Expanded(
               child: ListView.builder(
                 padding:

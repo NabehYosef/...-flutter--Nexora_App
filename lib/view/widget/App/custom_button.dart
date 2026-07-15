@@ -45,6 +45,7 @@ class CustomBottomNav
                           .value,
                   onTap: controller
                       .changeIndex,
+                  title: 'Home',
                 ),
                 _NavItem(
                   icon: Icons
@@ -56,6 +57,8 @@ class CustomBottomNav
                           .value,
                   onTap: controller
                       .changeIndex,
+                  title:
+                      'Notifications',
                 ),
                 GestureDetector(
                   onTap: () =>
@@ -92,6 +95,7 @@ class CustomBottomNav
                           .value,
                   onTap: controller
                       .changeIndex,
+                  title: 'Profile',
                 ),
                 _NavItem(
                   icon: Icons
@@ -103,6 +107,7 @@ class CustomBottomNav
                           .value,
                   onTap: controller
                       .changeIndex,
+                  title: 'Settings',
                 ),
               ],
             );
@@ -115,12 +120,14 @@ class CustomBottomNav
 
 class _NavItem extends StatelessWidget {
   final IconData icon;
+  final String title;
   final int index;
   final int currentIndex;
   final void Function(int) onTap;
 
   const _NavItem({
     required this.icon,
+    required this.title,
     required this.index,
     required this.currentIndex,
     required this.onTap,
@@ -137,14 +144,35 @@ class _NavItem extends StatelessWidget {
         padding:
             const EdgeInsets.symmetric(
               horizontal: 10,
-              vertical: 8,
+              vertical: 4,
             ),
-        child: Icon(
-          icon,
-          size: 26,
-          color: isSelected
-              ? AppColor.primarycolor
-              : AppColor.grey,
+        child: Column(
+          mainAxisSize:
+              MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 26,
+              color: isSelected
+                  ? AppColor
+                        .primarycolor
+                  : AppColor.grey,
+            ),
+            const SizedBox(height: 2),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 11,
+                color: isSelected
+                    ? AppColor
+                          .primarycolor
+                    : AppColor.grey,
+                fontWeight: isSelected
+                    ? FontWeight.w600
+                    : FontWeight.w400,
+              ),
+            ),
+          ],
         ),
       ),
     );

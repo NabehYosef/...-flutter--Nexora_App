@@ -4,6 +4,7 @@ import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/services.dart';
 import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/data/datasource/static/remote/auth/login/login.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -147,6 +148,18 @@ class LoginControllerImp
 
   @override
   onInit() {
+    FirebaseMessaging.instance
+        .getToken()
+        .then((token) {
+          print(
+            "Firebase Messaging Token: $token",
+          );
+        })
+        .catchError((error) {
+          print(
+            "Error retrieving Firebase Messaging Token: $error",
+          );
+        });
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();
