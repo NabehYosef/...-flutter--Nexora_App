@@ -13,7 +13,7 @@ class AboutUs extends StatelessWidget {
       ),
       appBar: AppBar(
         backgroundColor:
-            AppColor.primarycolor,
+            AppColor.primaryColor,
         elevation: 0,
         title: const Text(
           "About Us",
@@ -47,9 +47,9 @@ class AboutUs extends StatelessWidget {
                       .bottomCenter,
                   colors: [
                     AppColor
-                        .primarycolor,
+                        .primaryColor,
                     AppColor
-                        .primarycolor,
+                        .primaryColor,
                   ],
                 ),
               ),
@@ -87,7 +87,7 @@ class AboutUs extends StatelessWidget {
                           .shopping_bag_rounded,
                       size: 46,
                       color: AppColor
-                          .primarycolor,
+                          .primaryColor,
                     ),
                   ),
                   const SizedBox(
@@ -143,7 +143,7 @@ class AboutUs extends StatelessWidget {
                           FontWeight
                               .w700,
                       color: AppColor
-                          .primarycolor,
+                          .primaryColor,
                     ),
                   ),
                   const SizedBox(
@@ -233,7 +233,7 @@ class AboutUs extends StatelessWidget {
                           FontWeight
                               .w700,
                       color: AppColor
-                          .primarycolor,
+                          .primaryColor,
                     ),
                   ),
                   const SizedBox(
@@ -314,7 +314,7 @@ class _InfoTile
                 ),
             decoration: BoxDecoration(
               color: AppColor
-                  .primarycolor
+                  .primaryColor
                   .withOpacity(0.08),
               borderRadius:
                   BorderRadius.circular(
@@ -324,7 +324,7 @@ class _InfoTile
             child: Icon(
               icon,
               color:
-                  AppColor.primarycolor,
+                  AppColor.primaryColor,
               size: 20,
             ),
           ),
@@ -351,7 +351,7 @@ class _InfoTile
                   fontWeight:
                       FontWeight.w600,
                   color: AppColor
-                      .primarycolor,
+                      .primaryColor,
                 ),
               ),
             ],
@@ -382,7 +382,7 @@ class _SocialIcon
         width: 46,
         height: 46,
         decoration: BoxDecoration(
-          color: AppColor.primarycolor,
+          color: AppColor.primaryColor,
           shape: BoxShape.circle,
         ),
         child: Icon(

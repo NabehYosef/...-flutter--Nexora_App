@@ -19,8 +19,15 @@ class AppRoute {
 
   static String verifyCodeSignup =
       "/verifycodesignup";
-
-  static String HomeScreen = "/home";
+  //=======================================
+  //======================================
+  // Home
+  static String HomePage = "/home";
+  static String Items = "/items";
+  static const String productdetails =
+      "/productdetails";
+  static const String myfavroite =
+      "/myfavroite";
   //=======================================
   //======================================
   //settings

@@ -10,9 +10,12 @@ import 'package:e_commerce/view/auth/SighnUp/signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/success_resetpass.dart';
 import 'package:e_commerce/view/auth/SighnUp/verfiy_signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/verifycodeforgetpass.dart';
-import 'package:e_commerce/view/screen/App/Home.dart';
+import 'package:e_commerce/view/screen/home_screen.dart';
+import 'package:e_commerce/view/screen/items.dart';
 import 'package:e_commerce/view/screen/language.dart';
+import 'package:e_commerce/view/screen/my_favorite.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
+import 'package:e_commerce/view/screen/productdetails.dart';
 import 'package:e_commerce/view/settings/about_us_view.dart';
 import 'package:e_commerce/view/settings/contact_us_view.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -28,7 +31,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: "/",
     page: () => const Language(),
-    middlewares: [Mymiddleware()],
+    //middlewares: [Mymiddleware()],
   ),
   GetPage(
     name: AppRoute.login,
@@ -78,8 +81,8 @@ List<GetPage<dynamic>>? routes = [
   //==================
   //app
   GetPage(
-    name: AppRoute.HomeScreen,
-    page: () => HomeScreen(),
+    name: AppRoute.HomePage,
+    page: () => const HomeScreen(),
   ),
   //=======================================
   //======================================
@@ -91,6 +94,18 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.contactUS,
     page: () => ContactUsView(),
+  ),
+  GetPage(
+    name: AppRoute.Items,
+    page: () => const Items(),
+  ),
+  GetPage(
+    name: AppRoute.productdetails,
+    page: () => const ProductDetails(),
+  ),
+  GetPage(
+    name: AppRoute.myfavroite,
+    page: () => const MyFavorite(),
   ),
 ];
 //=================================

@@ -24,7 +24,7 @@ class CustomButtomAuth
           vertical: 13,
         ),
         onPressed: onPressed,
-        color: AppColor.primarycolor,
+        color: AppColor.primaryColor,
 
         textColor: Colors.white,
         child: Text(text!),

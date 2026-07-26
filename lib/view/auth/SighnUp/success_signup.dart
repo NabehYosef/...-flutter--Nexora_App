@@ -42,7 +42,7 @@ class SuccessSignUp
                     .check_circle_outline,
                 size: 200,
                 color: AppColor
-                    .primarycolor,
+                    .primaryColor,
               ),
             ),
             Text(

@@ -43,7 +43,7 @@ class CustomDotControllerOnBoarding
                 height: 6,
                 decoration: BoxDecoration(
                   color: AppColor
-                      .primarycolor,
+                      .primaryColor,
                   borderRadius:
                       BorderRadius.circular(
                         10,

@@ -37,7 +37,7 @@ class CustomTextSignUpORSignIn
                 .bodyMedium!
                 .copyWith(
                   color: AppColor
-                      .primarycolor,
+                      .primaryColor,
                   fontWeight:
                       FontWeight.bold,
                 ),

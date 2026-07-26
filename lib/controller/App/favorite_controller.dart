@@ -1,75 +1,111 @@
-import 'package:e_commerce/core/services/Apis/api_service.dart';
-import 'package:e_commerce/model/product.dart';
+import 'package:e_commerce/core/class/statusrequest.dart';
+import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
+import 'package:e_commerce/core/services/Apis/troken_storage.dart';
+import 'package:e_commerce/data/datasource/static/remote/favorite_data.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 class FavoriteController
     extends GetxController {
-  final favoriteProducts =
-      <Product>[].obs;
+  FavoriteData favoriteData =
+      FavoriteData(Get.find());
 
-  bool isFavorite(Product product) {
-    if (product.id != null &&
-        product.id!.isNotEmpty) {
-      return favoriteProducts.any(
-        (p) => p.id == product.id,
-      );
-    }
-    return favoriteProducts.any(
-      (p) =>
-          p.name == product.name &&
-          p.image == product.image,
+  // مفتاح: productId — قيمة: true/false (هل هو مفضل أو لأ)
+  Map<String, bool> isFavorite = {};
+
+  Statusrequest? statusRequest;
+
+  setFavorite(
+    String productId,
+    bool val,
+  ) {
+    isFavorite[productId] = val;
+    update();
+  }
+
+  addFavorite(String productId) async {
+    statusRequest =
+        Statusrequest.loading;
+    update();
+
+    String token =
+        await TokenStorage.getToken();
+
+    var response = await favoriteData
+        .addFavorite(
+          productId,
+          token: token,
+        );
+
+    print(
+      "=============================== Controller $response ",
     );
-  }
 
-  Future<void> add(
-    Product product,
-  ) async {
-    if (isFavorite(product)) return;
+    statusRequest = handlingData(
+      response,
+    );
 
-    try {
-      final api = ApiService.shared;
-      if (api != null &&
-          (product.id != null &&
-              product.id!.isNotEmpty)) {
-        final ok = await api
-            .addToFavourite(
-              product.id!,
-            );
-        if (!ok) {
-          favoriteProducts.add(product);
-          return;
-        }
+    if (Statusrequest.success ==
+        statusRequest) {
+      if (response is Map &&
+          response['message'] != null) {
+        setFavorite(productId, true);
+        Get.rawSnackbar(
+          title: "إشعار",
+          messageText: const Text(
+            "تم إضافة المنتج للمفضلة",
+          ),
+        );
+      } else {
+        statusRequest =
+            Statusrequest.failure;
       }
-    } catch (_) {}
+    }
 
-    if (!isFavorite(product))
-      favoriteProducts.add(product);
+    update();
   }
 
-  Future<void> remove(
-    Product product,
+  removeFavorite(
+    String productId,
   ) async {
-    if (product.id != null &&
-        product.id!.isNotEmpty) {
-      favoriteProducts.removeWhere(
-        (p) => p.id == product.id,
-      );
-    } else {
-      favoriteProducts.removeWhere(
-        (p) =>
-            p.name == product.name &&
-            p.image == product.image,
-      );
-    }
-  }
+    statusRequest =
+        Statusrequest.loading;
+    update();
 
-  Future<void> toggle(
-    Product product,
-  ) async {
-    if (isFavorite(product)) {
-      await remove(product);
-    } else {
-      await add(product);
+    String token =
+        await TokenStorage.getToken();
+
+    var response = await favoriteData
+        .removeFavorite(
+          productId,
+          token: token,
+        );
+
+    print(
+      "=============================== Controller $response ",
+    );
+
+    statusRequest = handlingData(
+      response,
+    );
+
+    if (Statusrequest.success ==
+        statusRequest) {
+      if (response is Map &&
+          response['message'] != null) {
+        setFavorite(productId, false);
+        Get.rawSnackbar(
+          title: "إشعار",
+          messageText: const Text(
+            "تم حذف المنتج من المفضلة",
+          ),
+        );
+      } else {
+        statusRequest =
+            Statusrequest.failure;
+      }
     }
+
+    update();
   }
 }

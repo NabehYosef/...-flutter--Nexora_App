@@ -39,7 +39,7 @@ class CustomButtonOnBoarding
           onPressed: () {
             controller.next();
           },
-          color: AppColor.primarycolor,
+          color: AppColor.primaryColor,
           child: Text("0".tr),
         ),
       ),

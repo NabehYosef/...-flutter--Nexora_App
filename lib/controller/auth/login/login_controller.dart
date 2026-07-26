@@ -100,7 +100,7 @@ class LoginControllerImp
           );
 
           Get.offAllNamed(
-            AppRoute.HomeScreen,
+            AppRoute.HomePage,
             arguments: {
               "email":
                   response["user"]["email"],

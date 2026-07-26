@@ -1,6 +1,6 @@
 class AppLink {
-  // static const String server =
-  //     "http://localhost:5000/api";
+  //  static const String server =
+  //       "http://localhost:5000/api";
   //
   //      //"http://10.0.2.2:5000/api";
   static const String server =
@@ -8,7 +8,15 @@ class AppLink {
 
   static const String register =
       "$server/register";
-
+  //====================================
+  static const String imagesBaseUrl =
+      "http://10.0.2.2:5000";
+  //========================== Image ============================
+  static const String
+  imagestCategories =
+      "$imagesBaseUrl/categories";
+  static const String imagestItems =
+      "$imagesBaseUrl/items";
   //=/================Auth==============
   static const String signup =
       "$server/auth/register";
@@ -29,6 +37,18 @@ class AppLink {
   //Home User
   static const String home =
       "$server/home";
+  //=================Product==============
+  static const String products =
+      "$server/product/products";
+  //=================Favorite==============
+  static const String addToFavourite =
+      "$server/user/addToFavourite";
+  static const String
+  removeFromFavourite =
+      "$server/user/removeFromFavourite";
+  static const String
+  showFavouriteList =
+      "$server/user/favouriteList";
 }
 
 //nabeh12

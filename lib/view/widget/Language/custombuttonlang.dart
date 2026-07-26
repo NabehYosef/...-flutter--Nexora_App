@@ -20,7 +20,7 @@ class CustomButtonLang
           ),
       width: double.infinity,
       child: MaterialButton(
-        color: AppColor.primarycolor,
+        color: AppColor.primaryColor,
         textColor: Colors.white,
         onPressed: onPressed,
         child: Text(

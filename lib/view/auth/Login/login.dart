@@ -40,7 +40,8 @@ class Login extends StatelessWidget {
         onWillPop: alertExitApp,
         child: GetBuilder<LoginControllerImp>(
           builder: (controller) => HandlingDataView(
-            controller.statusrequest,
+            statusRequest: controller
+                .statusrequest,
             widget: Container(
               padding:
                   const EdgeInsets.symmetric(
@@ -153,7 +154,6 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            statusRequest: null,
           ),
         ),
       ),

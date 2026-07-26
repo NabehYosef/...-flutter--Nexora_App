@@ -27,7 +27,7 @@ class Mymiddleware
     if (token != null &&
         token.isNotEmpty) {
       return RouteSettings(
-        name: AppRoute.HomeScreen,
+        name: AppRoute.HomePage,
       );
     }
 

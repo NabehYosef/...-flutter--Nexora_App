@@ -1,10 +1,104 @@
+import 'package:e_commerce/core/class/statusrequest.dart';
+import 'package:e_commerce/core/constant/routes.dart';
+import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
+import 'package:e_commerce/core/services/Apis/troken_storage.dart';
+import 'package:e_commerce/core/services/services.dart';
+import 'package:e_commerce/data/datasource/static/remote/home_data.dart';
+import 'package:e_commerce/model/productmodel.dart';
 import 'package:get/get.dart';
 
-class HomeController
+abstract class HomeController
     extends GetxController {
-  var currentIndex = 0.obs;
+  initialData();
+  getdata();
+  goToItems(
+    List categories,
+    int selectedCat,
+  );
+}
 
-  void changeIndex(int index) {
-    currentIndex.value = index;
+class HomeControllerImp
+    extends HomeController {
+  MyServices myServices = Get.find();
+
+  String? username;
+  String? id;
+
+  HomeData homedata = HomeData(
+    Get.find(),
+  );
+
+  List categories = [];
+
+  List<ProductModel> products = [];
+
+  late Statusrequest statusRequest;
+
+  @override
+  initialData() {
+    username = myServices
+        .sharedPreferences
+        .getString("username");
+    id = myServices.sharedPreferences
+        .getString("id");
+  }
+
+  @override
+  void onInit() {
+    getdata();
+    initialData();
+    super.onInit();
+  }
+
+  @override
+  getdata() async {
+    statusRequest =
+        Statusrequest.loading;
+    update();
+
+    String token =
+        await TokenStorage.getToken();
+
+    var response = await homedata
+        .getData(token: token);
+
+    print(
+      "=============================== Controller $response ",
+    );
+
+    statusRequest = handlingData(
+      response,
+    );
+
+    if (Statusrequest.success ==
+        statusRequest) {
+      if (response['data'] != null) {
+        List rawList = response['data'];
+        products = rawList
+            .map(
+              (item) =>
+                  ProductModel.fromJson(
+                    item,
+                  ),
+            )
+            .toList();
+      } else {
+        statusRequest =
+            Statusrequest.failure;
+      }
+    }
+
+    update();
+  }
+
+  @override
+  goToItems(categories, selectedCat) {
+    Get.toNamed(
+      AppRoute.Items,
+      arguments: {
+        "categories": categories,
+        "selectedcat": selectedCat,
+      },
+    );
   }
 }

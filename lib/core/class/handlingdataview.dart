@@ -7,8 +7,7 @@ class HandlingDataView
     extends StatelessWidget {
   final Statusrequest? statusRequest;
   final Widget widget;
-  const HandlingDataView(
-    Statusrequest? statusrequest, {
+  const HandlingDataView({
     super.key,
     required this.statusRequest,
     required this.widget,
