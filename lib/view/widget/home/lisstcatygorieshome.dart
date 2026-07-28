@@ -1,9 +1,8 @@
 import 'package:e_commerce/controller/App/home_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
-import 'package:e_commerce/model/productmodel.dart';
+import 'package:e_commerce/model/category_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ListCategoriesHome
@@ -14,7 +13,7 @@ class ListCategoriesHome
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 110,
       child: ListView.separated(
         separatorBuilder:
             (context, index) =>
@@ -50,6 +49,18 @@ class Categories
 
   @override
   Widget build(BuildContext context) {
+    String? fullImageUrl;
+    if (categoriesModel.image != null &&
+        categoriesModel
+            .image!
+            .isNotEmpty) {
+      String cleanPath = categoriesModel
+          .image!
+          .replaceAll("\\", "/");
+      fullImageUrl =
+          "${AppLink.imagesBaseUrl}/images/$cleanPath";
+    }
+
     return InkWell(
       onTap: () {
         controller.goToItems(
@@ -60,6 +71,7 @@ class Categories
       child: Column(
         children: [
           Container(
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               color:
                   AppColor.thirdColor,
@@ -70,11 +82,35 @@ class Categories
             ),
             height: 70,
             width: 70,
-            //  child: SvgPicture.network(
-            //   "${AppLink.imagestCategories}/${categoriesModel.categoriesImage}",
-            //   color: AppColor.secondColor),
+            child: fullImageUrl != null
+                ? ClipRRect(
+                    borderRadius:
+                        BorderRadius.circular(
+                          20,
+                        ),
+                    child: Image.network(
+                      fullImageUrl,
+                      fit: BoxFit.cover,
+                      height: 70,
+                      width: 70,
+                      errorBuilder:
+                          (
+                            context,
+                            error,
+                            stackTrace,
+                          ) {
+                            return const Icon(
+                              Icons
+                                  .category_outlined,
+                            );
+                          },
+                    ),
+                  )
+                : const Icon(
+                    Icons
+                        .category_outlined,
+                  ),
           ),
-
           const SizedBox(height: 5),
           Text(
             "${categoriesModel.categoryName}",

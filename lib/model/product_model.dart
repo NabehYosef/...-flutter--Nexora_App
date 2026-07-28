@@ -1,27 +1,4 @@
-class CategoryModel {
-  String? id;
-  String? categoryName;
-
-  CategoryModel({
-    this.id,
-    this.categoryName,
-  });
-
-  CategoryModel.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    id = json['_id'];
-    categoryName = json['categoryName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =
-        {};
-    data['_id'] = id;
-    data['categoryName'] = categoryName;
-    return data;
-  }
-}
+import 'package:e_commerce/model/category_model.dart';
 
 class ProductModel {
   String? id;

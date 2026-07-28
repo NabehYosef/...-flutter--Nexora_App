@@ -4,7 +4,8 @@ import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/core/services/services.dart';
 import 'package:e_commerce/data/datasource/static/remote/home_data.dart';
-import 'package:e_commerce/model/productmodel.dart';
+import 'package:e_commerce/model/category_model.dart';
+import 'package:e_commerce/model/product_model.dart';
 import 'package:get/get.dart';
 
 abstract class HomeController
@@ -28,7 +29,7 @@ class HomeControllerImp
     Get.find(),
   );
 
-  List categories = [];
+  List<CategoryModel> categories = [];
 
   List<ProductModel> products = [];
 
@@ -59,21 +60,32 @@ class HomeControllerImp
     String token =
         await TokenStorage.getToken();
 
-    var response = await homedata
-        .getData(token: token);
+    var productsResponse =
+        await homedata.getData(
+          token: token,
+        );
+    var categoriesResponse =
+        await homedata.getCategories(
+          token: token,
+        );
 
     print(
-      "=============================== Controller $response ",
+      "=============================== Products $productsResponse ",
+    );
+    print(
+      "=============================== Categories $categoriesResponse ",
     );
 
     statusRequest = handlingData(
-      response,
+      productsResponse,
     );
 
     if (Statusrequest.success ==
         statusRequest) {
-      if (response['data'] != null) {
-        List rawList = response['data'];
+      if (productsResponse['data'] !=
+          null) {
+        List rawList =
+            productsResponse['data'];
         products = rawList
             .map(
               (item) =>
@@ -86,6 +98,21 @@ class HomeControllerImp
         statusRequest =
             Statusrequest.failure;
       }
+    }
+
+    if (categoriesResponse is Map &&
+        categoriesResponse['categories'] !=
+            null) {
+      List rawCategories =
+          categoriesResponse['categories'];
+      categories = rawCategories
+          .map(
+            (e) =>
+                CategoryModel.fromJson(
+                  e,
+                ),
+          )
+          .toList();
     }
 
     update();

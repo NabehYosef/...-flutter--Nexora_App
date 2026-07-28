@@ -1,12 +1,14 @@
+import 'package:e_commerce/core/constant/routes.dart';
+import 'package:e_commerce/core/services/services.dart';
 import 'package:get/get.dart';
 
 class SettingsController
     extends GetxController {
-  final notificationsEnabled = true.obs;
+  MyServices myServices = Get.find();
 
-  void toggleNotifications(bool value) {
-    notificationsEnabled.value = value;
+  logout() {
+    myServices.sharedPreferences
+        .clear();
+    Get.offAllNamed(AppRoute.login);
   }
-
-  void logout() {}
 }

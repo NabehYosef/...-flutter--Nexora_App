@@ -19,4 +19,15 @@ class HomeData {
       (r) => r,
     );
   }
+
+  getCategories({String? token}) async {
+    var response = await crud.getData(
+      AppLink.categories,
+      token: token,
+    );
+    return response.fold(
+      (l) => l,
+      (r) => r,
+    );
+  }
 }

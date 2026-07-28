@@ -1,4 +1,4 @@
-import 'package:e_commerce/model/productmodel.dart';
+import 'package:e_commerce/model/product_model.dart';
 import 'package:get/get.dart';
 
 abstract class ProductDetailsController

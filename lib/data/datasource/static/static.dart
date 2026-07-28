@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/constant/imageassets.dart';
-import 'package:e_commerce/model/onboardingmodel.dart';
+import 'package:e_commerce/model/onboarding_model.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 // ignore: non_constant_identifier_names

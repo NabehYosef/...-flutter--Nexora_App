@@ -46,6 +46,7 @@ class HomePage extends StatelessWidget {
                     title: "Categories",
                   ),
                   const ListCategoriesHome(),
+                  SizedBox(height: 10),
                   const CustomTitleHome(
                     title:
                         "Product for you",

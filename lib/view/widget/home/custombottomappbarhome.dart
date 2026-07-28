@@ -33,9 +33,9 @@ class CustomBottomAppBarHome
                     : CustomButtonAppBar(
                         textbutton:
                             controller
-                                .titlebottomappbar[i],
-                        icondata:
-                            Icons.home,
+                                .bottomappbar[i]['title'],
+                        icondata: controller
+                            .bottomappbar[i]["icon"],
                         onPressed: () {
                           controller
                               .changePage(

@@ -3,18 +3,27 @@ import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/data/datasource/static/remote/favorite_data.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 
-class FavoriteController
+abstract class FavoriteController
     extends GetxController {
+  addFavorite(String productId);
+  removeFavorite(String productId);
+  setFavorite(
+    String productId,
+    bool val,
+  );
+}
+
+class FavoriteControllerImp
+    extends FavoriteController {
   FavoriteData favoriteData =
       FavoriteData(Get.find());
 
-  // مفتاح: productId — قيمة: true/false (هل هو مفضل أو لأ)
   Map<String, bool> isFavorite = {};
 
   Statusrequest? statusRequest;
 
+  @override
   setFavorite(
     String productId,
     bool val,
@@ -23,6 +32,7 @@ class FavoriteController
     update();
   }
 
+  @override
   addFavorite(String productId) async {
     statusRequest =
         Statusrequest.loading;
@@ -50,11 +60,9 @@ class FavoriteController
       if (response is Map &&
           response['message'] != null) {
         setFavorite(productId, true);
-        Get.rawSnackbar(
-          title: "إشعار",
-          messageText: const Text(
-            "تم إضافة المنتج للمفضلة",
-          ),
+        Get.snackbar(
+          "إشعار",
+          "تم إضافة المنتج للمفضلة",
         );
       } else {
         statusRequest =
@@ -65,6 +73,7 @@ class FavoriteController
     update();
   }
 
+  @override
   removeFavorite(
     String productId,
   ) async {
@@ -85,25 +94,19 @@ class FavoriteController
       "=============================== Controller $response ",
     );
 
-    statusRequest = handlingData(
-      response,
-    );
-
-    if (Statusrequest.success ==
-        statusRequest) {
-      if (response is Map &&
-          response['message'] != null) {
-        setFavorite(productId, false);
-        Get.rawSnackbar(
-          title: "إشعار",
-          messageText: const Text(
-            "تم حذف المنتج من المفضلة",
-          ),
-        );
-      } else {
-        statusRequest =
-            Statusrequest.failure;
-      }
+    if (response is Map &&
+        response['message'] ==
+            "Product removed from favourite") {
+      statusRequest =
+          Statusrequest.success;
+      setFavorite(productId, false);
+      Get.snackbar(
+        "إشعار",
+        "تم حذف المنتج من المفضلة",
+      );
+    } else {
+      statusRequest =
+          Statusrequest.serverfailure;
     }
 
     update();

@@ -2,7 +2,7 @@ import 'package:e_commerce/controller/App/home_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
-import 'package:e_commerce/model/productmodel.dart';
+import 'package:e_commerce/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

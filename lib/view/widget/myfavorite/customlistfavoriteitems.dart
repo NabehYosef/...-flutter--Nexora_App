@@ -1,7 +1,7 @@
 import 'package:e_commerce/controller/App/myfavoritecontroller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
-import 'package:e_commerce/model/my_favorite.dart';
+import 'package:e_commerce/model/myfavorite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,6 @@ class CustomListFavoriteItems
 
   @override
   Widget build(BuildContext context) {
-    // بيانات المنتج قد تكون موجودة (لو الباك ايند يعمل populate) أو لأ
     final product =
         favoriteModel.product;
 
@@ -36,7 +35,7 @@ class CustomListFavoriteItems
 
     return InkWell(
       onTap: () {
-        // لاحقاً: Get.toNamed(AppRoute.productdetails, arguments: {"productModel": product});
+        //  Get.toNamed(AppRoute.productdetails, arguments: {"productModel": product});
       },
       child: Card(
         child: Padding(

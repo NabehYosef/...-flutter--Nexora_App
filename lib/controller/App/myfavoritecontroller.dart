@@ -1,9 +1,10 @@
+import 'package:e_commerce/controller/App/favorite_controller.dart';
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/core/services/services.dart';
 import 'package:e_commerce/data/datasource/static/remote/myfavorite_data.dart';
-import 'package:e_commerce/model/my_favorite.dart';
+import 'package:e_commerce/model/myfavorite_model.dart';
 import 'package:get/get.dart';
 
 abstract class MyFavoriteController
@@ -56,6 +57,26 @@ class MyFavoriteControllerImp
                   ),
             )
             .toList();
+
+        // 👇 مزامنة القلب بصفحة Items
+        if (Get.isRegistered<
+          FavoriteControllerImp
+        >()) {
+          FavoriteControllerImp
+          favController =
+              Get.find<
+                FavoriteControllerImp
+              >();
+          for (var item in data) {
+            if (item.productId !=
+                null) {
+              favController.setFavorite(
+                item.productId!,
+                true,
+              );
+            }
+          }
+        }
       } else {
         statusRequest =
             Statusrequest.failure;
@@ -89,6 +110,22 @@ class MyFavoriteControllerImp
             element.productId ==
             productId,
       );
+
+      // 👇 تحديث القلب بصفحة Items
+      if (Get.isRegistered<
+        FavoriteControllerImp
+      >()) {
+        FavoriteControllerImp
+        favController =
+            Get.find<
+              FavoriteControllerImp
+            >();
+        favController.setFavorite(
+          productId,
+          false,
+        );
+      }
+
       update();
     }
   }

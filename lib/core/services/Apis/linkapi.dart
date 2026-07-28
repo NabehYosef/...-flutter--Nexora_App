@@ -9,6 +9,8 @@ class AppLink {
   static const String register =
       "$server/register";
   //====================================
+  // static const String imagesBaseUrl =
+  //     "http://10.0.2.2:5000";
   static const String imagesBaseUrl =
       "http://10.0.2.2:5000";
   //========================== Image ============================
@@ -40,6 +42,8 @@ class AppLink {
   //=================Product==============
   static const String products =
       "$server/product/products";
+  static const String filterProducts =
+      "$server/product/filter";
   //=================Favorite==============
   static const String addToFavourite =
       "$server/user/addToFavourite";
@@ -49,6 +53,9 @@ class AppLink {
   static const String
   showFavouriteList =
       "$server/user/favouriteList";
+  //=================Category==============
+  static const String categories =
+      "$server/product/categories";
 }
 
 //nabeh12

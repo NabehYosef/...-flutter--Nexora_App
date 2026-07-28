@@ -1,3 +1,4 @@
+import 'package:e_commerce/controller/App/favorite_controller.dart';
 import 'package:e_commerce/core/class/crud.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
@@ -10,6 +11,11 @@ class InitialBinding extends Bindings {
     Get.lazyPut<Crud>(
       () => Crud(),
       fenix: true,
+    );
+    Get.put(Crud(), permanent: true);
+    Get.put(
+      FavoriteControllerImp(),
+      permanent: true,
     );
   }
 }

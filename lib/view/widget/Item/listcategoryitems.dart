@@ -1,6 +1,6 @@
 import 'package:e_commerce/controller/App/itemes_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
-import 'package:e_commerce/model/productmodel.dart';
+import 'package:e_commerce/model/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,11 +28,8 @@ class ListCategoriesItems
         itemBuilder: (context, index) {
           return Categories(
             i: index,
-            categoriesModel:
-                CategoryModel.fromJson(
-                  controller
-                      .categories[index],
-                ),
+            categoriesModel: controller
+                .categories[index],
           );
         },
       ),
@@ -55,7 +52,6 @@ class Categories
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // controller.goToItems(controller.categories, i!);
         controller.changeCat(i!);
       },
       child: Column(
@@ -64,11 +60,12 @@ class Categories
             ItemsControllerImp
           >(
             builder: (controller) => Container(
-              padding: EdgeInsets.only(
-                right: 10,
-                left: 10,
-                bottom: 5,
-              ),
+              padding:
+                  const EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                    bottom: 5,
+                  ),
               decoration:
                   controller
                           .selectedCat ==

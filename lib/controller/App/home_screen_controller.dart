@@ -1,5 +1,7 @@
 import 'package:e_commerce/view/screen/home.dart';
+import 'package:e_commerce/view/screen/my_favorite.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class HomeScreenController
@@ -12,7 +14,7 @@ class HomeScreenControllerImp
   int currentpage = 0;
 
   List<Widget> listPage = [
-    const HomePage(), 
+    const HomePage(),
     Column(
       mainAxisAlignment:
           MainAxisAlignment.center,
@@ -27,20 +29,27 @@ class HomeScreenControllerImp
         Center(child: Text("Profile")),
       ],
     ),
-    Column(
-      mainAxisAlignment:
-          MainAxisAlignment.center,
-      children: [
-        Center(child: Text("Favorite")),
-      ],
-    ),
+    const MyFavorite(),
   ];
 
-  List titlebottomappbar = [
-    "home",
-    "settings",
-    "profile",
-    "favorite",
+  List bottomappbar = [
+    {
+      "title": "home",
+      "icon": Icons.home,
+    },
+    {
+      "title": "notifications",
+      "icon": Icons
+          .notifications_active_outlined,
+    },
+    {
+      "title": "profile",
+      "icon": Icons.person_pin_sharp,
+    },
+    {
+      "title": "Favorite",
+      "icon": Icons.favorite,
+    },
   ];
 
   @override
