@@ -1,111 +1,188 @@
+import 'package:e_commerce/core/class/statusrequest.dart';
+import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
+import 'package:e_commerce/core/services/Apis/troken_storage.dart';
+import 'package:e_commerce/data/datasource/static/remote/cart_data.dart';
+import 'package:e_commerce/model/cart_model.dart';
+import 'package:get/get.dart';
 
-// import 'package:e_commerce/core/class/statusrequest.dart';
-// import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
-// import 'package:e_commerce/core/services/services.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+abstract class CartController
+    extends GetxController {
+  view();
+  add(
+    String productId,
+    String color,
+    int quantity,
+  );
+  removeItem(String productId);
+  updateQuantity(
+    String productId,
+    int quantity,
+  );
+  clearCart();
+}
 
-// class CartController extends GetxController {
-//   CartData cartData = CartData(Get.find());
+class CartControllerImp
+    extends CartController {
+  CartData cartData = CartData(
+    Get.find(),
+  );
 
-//   late StatusRequest statusRequest;
+  Statusrequest? statusRequest;
 
-//   MyServices myServices = Get.find();
+  List<CartModel> data = [];
 
-//   List<CartModel> data = [];
+  num totalPrice = 0;
 
-//   double priceorders = 0.0;
+  @override
+  view() async {
+    statusRequest =
+        Statusrequest.loading;
+    update();
 
-//   int totalcountitems = 0;
+    String token =
+        await TokenStorage.getToken();
 
-//   add(String itemsid) async {
-//     statusRequest = Statusrequest.loading;
-//     update();
-//     var response = await cartData.addCart(
-//         myServices.sharedPreferences.getString("id")!, itemsid);
-//     print("=============================== Controller $response ");
-//     statusRequest = handlingData(response);
-//     if (Statusrequest.success == statusRequest) {
-//       // Start backend
-//       if (response['status'] == "success") {
-//         Get.rawSnackbar(
-//             title: "اشعار",
-//             messageText: const Text("تم اضافة المنتج الى السلة "));
-//         // data.addAll(response['data']);
-//       } else {
-//         statusRequest = StatusRequest.failure;
-//       }
-//       // End
-//     }
-//     update();
-//   }
+    var response = await cartData
+        .viewCart(token: token);
 
-//   delete(String itemsid) async {
-//     statusRequest = StatusRequest.loading;
-//     update();
+    print(
+      "=============================== Controller $response ",
+    );
 
-//     var response = await cartData.deleteCart(
-//         myServices.sharedPreferences.getString("id")!, itemsid);
-//     print("=============================== Controller $response ");
-//     statusRequest = handlingData(response);
-//     if (StatusRequest.success == statusRequest) {
-//       // Start backend
-//       if (response['status'] == "success") {
-//         Get.rawSnackbar(
-//             title: "اشعار",
-//             messageText: const Text("تم ازالة المنتج من السلة "));
-//         // data.addAll(response['data']);
-//       } else {
-//         statusRequest = StatusRequest.failure;
-//       }
-//       // End
-//     }
-//     update();
-//   }
+    statusRequest = handlingData(
+      response,
+    );
 
- 
+    if (Statusrequest.success ==
+        statusRequest) {
+      if (response['items'] != null) {
+        List rawList =
+            response['items'];
+        data = rawList
+            .map(
+              (e) =>
+                  CartModel.fromJson(e),
+            )
+            .toList();
+        totalPrice =
+            response['total'] ?? 0;
+      } else {
+        statusRequest =
+            Statusrequest.failure;
+      }
+    }
 
-//   resetVarCart() {
-//     totalcountitems = 0;
-//     priceorders = 0.0;
-//     data.clear();
-//   }
+    update();
+  }
 
-//   refreshPage() {
-//     resetVarCart();
-//     view();
-//   }
+  @override
+  add(
+    String productId,
+    String color,
+    int quantity,
+  ) async {
+    String token =
+        await TokenStorage.getToken();
 
-//   view() async {
-//     statusRequest = Statusrequest.loading;
-//     update();
-//     var response =
-//         await cartData.viewCart(myServices.sharedPreferences.getString("id")!);
-//     print("=============================== Controller $response ");
-//     statusRequest = handlingData(response);
-//     if (Statusrequest.success == statusRequest) {
-//       // Start backend
-//       if (response['status'] == "success") {
-//         if (response['datacart']['status'] == 'success') {
-//           List dataresponse = response['datacart']['data'];
-//           Map dataresponsecountprice = response['countprice'];
-//           data.clear();
-//       //    data.addAll(dataresponse.map((e) => CartModel.fromJson(e)));
-//           totalcountitems = int.parse(dataresponsecountprice['totalcount']);
-//           priceorders = double.parse(dataresponsecountprice['totalprice']);
-//           print(priceorders);
-//         }
-//       } else {
-//         statusRequest = Statusrequest.failure;
-//       }
-//       // End
-//     }
-//     update();
-//   }
+    var response = await cartData
+        .addToCart(
+          productId,
+          color,
+          quantity,
+          token: token,
+        );
 
-//   @override
-//   void onInit() {
-//     view();
-//     super.onInit();
-//   }
-// }
+    print(
+      "=============================== Controller $response ",
+    );
+
+    if (response is Map &&
+        response['message'] != null) {
+      Get.snackbar(
+        "إشعار",
+        "تم إضافة المنتج إلى السلة",
+      );
+      view();
+    }
+  }
+
+  @override
+  removeItem(String productId) async {
+    String token =
+        await TokenStorage.getToken();
+
+    var response = await cartData
+        .removeItem(
+          productId,
+          token: token,
+        );
+
+    print(
+      "=============================== Controller $response ",
+    );
+
+    if (response is Map &&
+        response['message'] != null) {
+      Get.snackbar(
+        "إشعار",
+        "تم حذف المنتج من السلة",
+      );
+      view();
+    }
+  }
+
+  @override
+  updateQuantity(
+    String productId,
+    int quantity,
+  ) async {
+    var responseFuture = cartData
+        .updateQuantity(
+          productId,
+          quantity,
+          token:
+              await TokenStorage.getToken(),
+        );
+
+    var response = await responseFuture;
+
+    print(
+      "=============================== Controller $response ",
+    );
+
+    if (response is Map &&
+        response['message'] != null) {
+      view();
+    }
+  }
+
+  @override
+  clearCart() async {
+    String token =
+        await TokenStorage.getToken();
+
+    var response = await cartData
+        .clearCart(token: token);
+
+    print(
+      "=============================== Controller $response ",
+    );
+
+    if (response is Map &&
+        response['message'] != null) {
+      Get.snackbar(
+        "إشعار",
+        "تم تفريغ السلة",
+      );
+      data.clear();
+      totalPrice = 0;
+      update();
+    }
+  }
+
+  @override
+  void onInit() {
+    view();
+    super.onInit();
+  }
+}

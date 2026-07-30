@@ -1,5 +1,6 @@
 import 'package:e_commerce/controller/App/myfavoritecontroller.dart';
 import 'package:e_commerce/core/constant/color.dart';
+import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
 import 'package:e_commerce/model/myfavorite_model.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,14 @@ class CustomListFavoriteItems
 
     return InkWell(
       onTap: () {
-        //  Get.toNamed(AppRoute.productdetails, arguments: {"productModel": product});
+        if (product != null) {
+          Get.toNamed(
+            AppRoute.productdetails,
+            arguments: {
+              "productModel": product,
+            },
+          );
+        }
       },
       child: Card(
         child: Padding(

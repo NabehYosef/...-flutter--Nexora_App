@@ -13,67 +13,71 @@ class SubitemsList
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: [
-        ...List.generate(
-          controller.subitems.length,
-          (index) => InkWell(
-            onTap: () {
-              controller.selectColor(
-                index,
-              );
-            },
-            child: Container(
-              alignment:
-                  Alignment.center,
-              padding:
-                  const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 5,
-                  ),
-              height: 45,
-              constraints:
-                  const BoxConstraints(
-                    minWidth: 70,
-                  ),
-              decoration: BoxDecoration(
-                color:
-                    controller
-                            .subitems[index]['active'] ==
-                        "1"
-                    ? AppColor
-                          .fourthColor
-                    : Colors.white,
-                border: Border.all(
-                  color: AppColor
-                      .fourthColor,
-                ),
-                borderRadius:
-                    BorderRadius.circular(
-                      10,
+    return GetBuilder<
+      ProductDetailsControllerImp
+    >(
+      builder: (controller) => Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          ...List.generate(
+            controller.subitems.length,
+            (index) => InkWell(
+              onTap: () {
+                controller.selectColor(
+                  index,
+                );
+              },
+              child: Container(
+                alignment:
+                    Alignment.center,
+                padding:
+                    const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 5,
                     ),
-              ),
-              child: Text(
-                controller
-                    .subitems[index]['name'],
-                style: TextStyle(
+                height: 45,
+                constraints:
+                    const BoxConstraints(
+                      minWidth: 70,
+                    ),
+                decoration: BoxDecoration(
                   color:
                       controller
                               .subitems[index]['active'] ==
                           "1"
-                      ? Colors.white
-                      : AppColor
-                            .fourthColor,
-                  fontWeight:
-                      FontWeight.bold,
+                      ? AppColor
+                            .fourthColor
+                      : Colors.white,
+                  border: Border.all(
+                    color: AppColor
+                        .fourthColor,
+                  ),
+                  borderRadius:
+                      BorderRadius.circular(
+                        10,
+                      ),
+                ),
+                child: Text(
+                  controller
+                      .subitems[index]['name'],
+                  style: TextStyle(
+                    color:
+                        controller
+                                .subitems[index]['active'] ==
+                            "1"
+                        ? Colors.white
+                        : AppColor
+                              .fourthColor,
+                    fontWeight:
+                        FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

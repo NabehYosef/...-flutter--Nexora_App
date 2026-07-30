@@ -56,6 +56,20 @@ class AppLink {
   //=================Category==============
   static const String categories =
       "$server/product/categories";
+  //=================Cart==============
+  static const String showUserCart =
+      "$server/cart/userCart";
+  static const String addToCart =
+      "$server/cart/addToCart";
+  static const String removeCartItem =
+      "$server/cart/removeitem";
+  static const String
+  updateCartQuantity =
+      "$server/cart/updateQuantity";
+  static const String clearCart =
+      "$server/cart/clearCart";
+  static const String cartTotalItems =
+      "$server/cart/totalItems";
 }
 
 //nabeh12

@@ -28,6 +28,7 @@ class AppRoute {
       "/productdetails";
   static const String myfavroite =
       "/myfavroite";
+  static const String cart = "/cart";
   //=======================================
   //======================================
   //settings

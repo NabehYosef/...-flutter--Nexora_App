@@ -1,5 +1,7 @@
+import 'package:e_commerce/controller/App/cart_controller.dart';
 import 'package:e_commerce/controller/App/productdetails_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
+import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/view/widget/productdetails/priceandcount.dart';
 import 'package:e_commerce/view/widget/productdetails/subitemslist.dart';
 import 'package:e_commerce/view/widget/productdetails/toppageproductdetails.dart';
@@ -36,7 +38,43 @@ class ProductDetails
                   ),
             ),
             color: AppColor.secondColor,
-            onPressed: () {},
+            onPressed: () async {
+              String selectedColor =
+                  controller
+                      .subitems
+                      .isNotEmpty
+                  ? controller.subitems
+                        .firstWhere(
+                          (e) =>
+                              e['active'] ==
+                              "1",
+                        )['name']
+                  : "";
+
+              CartControllerImp
+              cartController =
+                  Get.isRegistered<
+                    CartControllerImp
+                  >()
+                  ? Get.find<
+                      CartControllerImp
+                    >()
+                  : Get.put(
+                      CartControllerImp(),
+                    );
+
+              await cartController.add(
+                controller
+                    .productModel
+                    .id!,
+                selectedColor,
+                controller.count,
+              );
+
+              Get.toNamed(
+                AppRoute.cart,
+              );
+            },
             child: const Text(
               "Add To Cart",
               style: TextStyle(

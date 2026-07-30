@@ -1,3 +1,4 @@
+import 'package:e_commerce/controller/App/myfavoritecontroller.dart';
 import 'package:e_commerce/view/screen/home.dart';
 import 'package:e_commerce/view/screen/my_favorite.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,6 +56,18 @@ class HomeScreenControllerImp
   @override
   changePage(int i) {
     currentpage = i;
+
+    // لما ينتقل اليوزر لتاب Favorite (index 3)، حدّث البيانات من السيرفر
+    if (i == 3 &&
+        Get.isRegistered<
+          MyFavoriteControllerImp
+        >()) {
+      Get.find<
+            MyFavoriteControllerImp
+          >()
+          .getData();
+    }
+
     update();
   }
 }

@@ -58,7 +58,6 @@ class MyFavoriteControllerImp
             )
             .toList();
 
-        // 👇 مزامنة القلب بصفحة Items
         if (Get.isRegistered<
           FavoriteControllerImp
         >()) {
@@ -110,8 +109,10 @@ class MyFavoriteControllerImp
             element.productId ==
             productId,
       );
-
-      // 👇 تحديث القلب بصفحة Items
+      Get.snackbar(
+        "إشعار",
+        "تم حذف المنتج من المفضلة",
+      );
       if (Get.isRegistered<
         FavoriteControllerImp
       >()) {

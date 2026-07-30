@@ -2,6 +2,7 @@ import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/data/datasource/static/remote/favorite_data.dart';
+import 'package:e_commerce/data/datasource/static/remote/myfavorite_data.dart';
 import 'package:get/get.dart';
 
 abstract class FavoriteController
@@ -12,12 +13,15 @@ abstract class FavoriteController
     String productId,
     bool val,
   );
+  syncFavorites();
 }
 
 class FavoriteControllerImp
     extends FavoriteController {
   FavoriteData favoriteData =
       FavoriteData(Get.find());
+  MyFavoriteData myFavoriteData =
+      MyFavoriteData(Get.find());
 
   Map<String, bool> isFavorite = {};
 
@@ -30,6 +34,42 @@ class FavoriteControllerImp
   ) {
     isFavorite[productId] = val;
     update();
+  }
+
+  // 👇 جلب قائمة المفضلة الحقيقية من السيرفر وتعبئة isFavorite
+  @override
+  syncFavorites() async {
+    String token =
+        await TokenStorage.getToken();
+
+    var response = await myFavoriteData
+        .getData(token: token);
+
+    print(
+      "=============================== Sync Favorites $response ",
+    );
+
+    if (response is Map &&
+        response['data'] != null) {
+      List rawList = response['data'];
+      for (var item in rawList) {
+        String? productId;
+        if (item['productId'] != null) {
+          if (item['productId']
+              is Map) {
+            productId =
+                item['productId']['_id'];
+          } else {
+            productId =
+                item['productId'];
+          }
+        }
+        if (productId != null) {
+          isFavorite[productId] = true;
+        }
+      }
+      update();
+    }
   }
 
   @override
@@ -110,5 +150,11 @@ class FavoriteControllerImp
     }
 
     update();
+  }
+
+  @override
+  void onInit() {
+    syncFavorites();
+    super.onInit();
   }
 }

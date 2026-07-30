@@ -10,6 +10,7 @@ import 'package:e_commerce/view/auth/SighnUp/signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/success_resetpass.dart';
 import 'package:e_commerce/view/auth/SighnUp/verfiy_signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/verifycodeforgetpass.dart';
+import 'package:e_commerce/view/screen/cart.dart';
 import 'package:e_commerce/view/screen/home_screen.dart';
 import 'package:e_commerce/view/screen/items.dart';
 import 'package:e_commerce/view/screen/language.dart';
@@ -102,6 +103,10 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.productdetails,
     page: () => const ProductDetails(),
+  ),
+  GetPage(
+    name: AppRoute.cart,
+    page: () => const Cart(),
   ),
   GetPage(
     name: AppRoute.myfavroite,
