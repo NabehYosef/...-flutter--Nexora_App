@@ -1,3 +1,4 @@
+import 'package:e_commerce/controller/App/favorite_controller.dart';
 import 'package:e_commerce/controller/App/myfavoritecontroller.dart';
 import 'package:e_commerce/view/screen/home.dart';
 import 'package:e_commerce/view/screen/my_favorite.dart';
@@ -20,9 +21,12 @@ class HomeScreenControllerImp
       mainAxisAlignment:
           MainAxisAlignment.center,
       children: [
-        Center(child: Text("Settings")),
+        Center(
+          child: Text("Notifications"),
+        ),
       ],
     ),
+    const MyFavorite(),
     Column(
       mainAxisAlignment:
           MainAxisAlignment.center,
@@ -30,7 +34,6 @@ class HomeScreenControllerImp
         Center(child: Text("Profile")),
       ],
     ),
-    const MyFavorite(),
   ];
 
   List bottomappbar = [
@@ -44,12 +47,12 @@ class HomeScreenControllerImp
           .notifications_active_outlined,
     },
     {
-      "title": "profile",
-      "icon": Icons.person_pin_sharp,
-    },
-    {
       "title": "Favorite",
       "icon": Icons.favorite,
+    },
+    {
+      "title": "profile",
+      "icon": Icons.person_pin_sharp,
     },
   ];
 
@@ -57,8 +60,7 @@ class HomeScreenControllerImp
   changePage(int i) {
     currentpage = i;
 
-    // لما ينتقل اليوزر لتاب Favorite (index 3)، حدّث البيانات من السيرفر
-    if (i == 3 &&
+    if (i == 2 &&
         Get.isRegistered<
           MyFavoriteControllerImp
         >()) {
@@ -69,5 +71,16 @@ class HomeScreenControllerImp
     }
 
     update();
+  }
+
+  @override
+  void onInit() {
+    if (Get.isRegistered<
+      FavoriteControllerImp
+    >()) {
+      Get.find<FavoriteControllerImp>()
+          .syncFavorites();
+    }
+    super.onInit();
   }
 }

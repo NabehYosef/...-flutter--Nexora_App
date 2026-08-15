@@ -39,6 +39,8 @@ class AppLink {
   //Home User
   static const String home =
       "$server/home";
+  static const String filterProducts =
+      "$server/product/filter";
   //=================Product==============
   static const String products =
       "$server/product/products";
