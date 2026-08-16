@@ -35,4 +35,16 @@ class AppRoute {
   static String aboutUs = "/aboutus";
   static String contactUS =
       "/contactus";
+  //=======================================
+  static const String addressview =
+      "/addressview";
+  static const String addressadd =
+      "/addressadd";
+  static const String
+  addressadddetails =
+      "/addressadddetails";
+  static const String profile =
+      "/profile";
+  static const String editprofile =
+      "/editprofile";
 }

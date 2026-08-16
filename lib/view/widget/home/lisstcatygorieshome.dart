@@ -2,6 +2,7 @@ import 'package:e_commerce/controller/App/home_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
 import 'package:e_commerce/model/category_model.dart';
+import 'package:e_commerce/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,6 @@ class ListCategoriesHome
             Axis.horizontal,
         itemBuilder: (context, index) {
           return Categories(
-            i: index,
             categoriesModel: controller
                 .categories[index],
           );
@@ -40,11 +40,9 @@ class ListCategoriesHome
 class Categories
     extends GetView<HomeControllerImp> {
   final CategoryModel categoriesModel;
-  final int? i;
   const Categories({
     Key? key,
     required this.categoriesModel,
-    required this.i,
   }) : super(key: key);
 
   @override
@@ -64,11 +62,11 @@ class Categories
     return InkWell(
       onTap: () {
         controller.goToItems(
-          controller.categories,
-          i!,
+          categoriesModel.categoryName!,
         );
       },
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             alignment: Alignment.center,
@@ -80,8 +78,8 @@ class Categories
                     20,
                   ),
             ),
-            height: 70,
-            width: 70,
+            height: 65,
+            width: 65,
             child: fullImageUrl != null
                 ? ClipRRect(
                     borderRadius:
@@ -91,8 +89,8 @@ class Categories
                     child: Image.network(
                       fullImageUrl,
                       fit: BoxFit.cover,
-                      height: 70,
-                      width: 70,
+                      height: 65,
+                      width: 65,
                       errorBuilder:
                           (
                             context,
@@ -111,11 +109,14 @@ class Categories
                         .category_outlined,
                   ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 4),
           Text(
             "${categoriesModel.categoryName}",
+            maxLines: 1,
+            overflow:
+                TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 13,
+              fontSize: 12,
               color: AppColor.black,
             ),
           ),

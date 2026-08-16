@@ -39,8 +39,6 @@ class AppLink {
   //Home User
   static const String home =
       "$server/home";
-  static const String filterProducts =
-      "$server/product/filter";
   //=================Product==============
   static const String products =
       "$server/product/products";
@@ -72,6 +70,17 @@ class AppLink {
       "$server/cart/clearCart";
   static const String cartTotalItems =
       "$server/cart/totalItems";
+  //=================Address==============
+  static const String addressAdd =
+      "$server/user/addAddress";
+  static const String addressView =
+      "$server/user/addresses";
+  static const String addressDelete =
+      "$server/user/deleteAddress";
+  static const String profile =
+      "$server/user/profile";
+  static const String updateUser =
+      "$server/user/updateUser";
 }
 
 //nabeh12

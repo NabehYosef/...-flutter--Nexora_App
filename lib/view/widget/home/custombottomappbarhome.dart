@@ -8,6 +8,7 @@ class CustomBottomAppBarHome
   const CustomBottomAppBarHome({
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<
@@ -44,10 +45,8 @@ class CustomBottomAppBarHome
                         },
                         active:
                             controller
-                                    .currentpage ==
-                                i
-                            ? true
-                            : false,
+                                .currentpage ==
+                            i,
                       );
               }),
             ),

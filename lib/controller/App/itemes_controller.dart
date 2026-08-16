@@ -1,12 +1,14 @@
+import 'package:e_commerce/controller/App/home_controller.dart';
 import 'package:e_commerce/core/class/crud.dart';
 import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:e_commerce/core/services/Apis/linkapi.dart';
 import 'package:e_commerce/model/category_model.dart';
 import 'package:e_commerce/model/product_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 abstract class ItemsController
-    extends GetxController {
+    extends SearchMixController {
   intialData();
   changeCat(int val);
   getProducts();
@@ -22,6 +24,8 @@ class ItemsControllerImp
 
   @override
   void onInit() {
+    searchController =
+        TextEditingController();
     intialData();
     super.onInit();
   }

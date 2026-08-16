@@ -20,7 +20,6 @@ class Crud {
             "application/json; charset=UTF-8",
       };
 
-      // ✅ الـ token يروح في Header بطريقة واحدة فقط
       if (token != null &&
           token.isNotEmpty) {
         requestHeaders["token"] = token;
@@ -245,6 +244,85 @@ class Crud {
           return Right(responseBody);
         }
 
+        return const Left(
+          Statusrequest.serverfailure,
+        );
+      } catch (e) {
+        print("CRUD ERROR: $e");
+        return const Left(
+          Statusrequest.serverfailure,
+        );
+      }
+    }
+
+    return const Left(
+      Statusrequest.offlinefailure,
+    );
+  }
+
+  //====================PutData support upload photo
+  Future<Either<Statusrequest, Map>>
+  putMultipartData(
+    String linkurl,
+    Map<String, String> fields, {
+    String? token,
+    String? imageField,
+    String? imagePath,
+  }) async {
+    if (await CheckInternet()) {
+      try {
+        var request =
+            http.MultipartRequest(
+              'PUT',
+              Uri.parse(linkurl),
+            );
+
+        if (token != null &&
+            token.isNotEmpty) {
+          request.headers["token"] =
+              token;
+        }
+
+        request.fields.addAll(fields);
+
+        if (imageField != null &&
+            imagePath != null) {
+          request.files.add(
+            await http
+                .MultipartFile.fromPath(
+              imageField,
+              imagePath,
+            ),
+          );
+        }
+
+        var streamedResponse =
+            await request.send();
+        var response =
+            await http
+                .Response.fromStream(
+              streamedResponse,
+            );
+
+        print(
+          "STATUS CODE = ${response.statusCode}",
+        );
+        print(
+          "BODY = ${response.body}",
+        );
+
+        if (response.statusCode >=
+                200 &&
+            response.statusCode < 300) {
+          Map responseBody = jsonDecode(
+            response.body,
+          );
+          return Right(responseBody);
+        }
+
+        print(
+          "SERVER ERROR RESPONSE: ${response.body}",
+        );
         return const Left(
           Statusrequest.serverfailure,
         );

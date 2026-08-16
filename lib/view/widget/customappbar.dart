@@ -3,14 +3,24 @@ import 'package:flutter/material.dart';
 class CustomAppBar
     extends StatelessWidget {
   final String titleappbar;
-  final void Function()? onPressedIcon;
+  final void Function()?
+  onPressedIconFavorite;
   final void Function()?
   onPressedSearch;
+  final void Function(String)?
+  onChanged;
+  final void Function(String)?
+  onFieldSubmitted;
+  final TextEditingController
+  mycontroller;
   const CustomAppBar({
     Key? key,
     required this.titleappbar,
-    this.onPressedIcon,
     this.onPressedSearch,
+    required this.onPressedIconFavorite,
+    this.onChanged,
+    this.onFieldSubmitted,
+    required this.mycontroller,
   }) : super(key: key);
 
   @override
@@ -21,6 +31,10 @@ class CustomAppBar
         children: [
           Expanded(
             child: TextFormField(
+              controller: mycontroller,
+              onChanged: onChanged,
+              onFieldSubmitted:
+                  onFieldSubmitted,
               decoration: InputDecoration(
                 prefixIcon: IconButton(
                   icon: Icon(
@@ -62,10 +76,11 @@ class CustomAppBar
                   vertical: 8,
                 ),
             child: IconButton(
-              onPressed: onPressedIcon,
+              onPressed:
+                  onPressedIconFavorite,
               icon: Icon(
                 Icons
-                    .notifications_active_outlined,
+                    .favorite_border_outlined,
                 size: 30,
                 color: Colors.grey[600],
               ),

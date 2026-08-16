@@ -1,6 +1,10 @@
 import 'package:e_commerce/controller/App/setting_controller.dart';
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/core/constant/imageassets.dart';
+import 'package:e_commerce/core/constant/routes.dart';
+import 'package:e_commerce/view/address/view.dart';
+import 'package:e_commerce/view/settings/about_us_view.dart';
+import 'package:e_commerce/view/settings/contact_us_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -74,7 +78,12 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoute
+                            .addressview,
+                      );
+                    },
                     trailing: Icon(
                       Icons
                           .location_on_outlined,
@@ -84,7 +93,12 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(
+                        () =>
+                            const AboutUs(),
+                      );
+                    },
                     trailing: Icon(
                       Icons
                           .help_outline_rounded,
@@ -94,7 +108,12 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(
+                        () =>
+                            ContactUsView(),
+                      );
+                    },
                     trailing: Icon(
                       Icons
                           .phone_callback_outlined,
@@ -106,7 +125,7 @@ class Settings extends StatelessWidget {
                   ListTile(
                     onTap: () {
                       controller
-                          .logout();
+                          .confirmLogout();
                     },
                     title: Text(
                       "Logout",

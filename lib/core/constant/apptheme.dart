@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 
 ThemeData themeEnglish = ThemeData(
   fontFamily: "PlayfairDisplay",
+  floatingActionButtonTheme:
+      FloatingActionButtonThemeData(
+        backgroundColor:
+            AppColor.primaryColor,
+      ),
+  appBarTheme: AppBarTheme(
+    color: AppColor.primaryColor,
+  ),
   textTheme: TextTheme(
     headlineMedium: TextStyle(
       fontFamily: "Cairo",

@@ -1,8 +1,7 @@
 import 'package:e_commerce/controller/App/favorite_controller.dart';
-import 'package:e_commerce/controller/App/myfavoritecontroller.dart';
 import 'package:e_commerce/view/screen/home.dart';
-import 'package:e_commerce/view/screen/my_favorite.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce/view/screen/profile.dart';
+import 'package:e_commerce/view/screen/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,17 +25,13 @@ class HomeScreenControllerImp
         ),
       ],
     ),
-    const MyFavorite(),
-    Column(
-      mainAxisAlignment:
-          MainAxisAlignment.center,
-      children: [
-        Center(child: Text("Profile")),
-      ],
-    ),
+    // TODO: استبدلها بصفحة Profile الفعلية
+    const Profile(),
+    const Settings(),
   ];
 
-  List bottomappbar = [
+  List<Map<String, dynamic>>
+  bottomappbar = [
     {
       "title": "home",
       "icon": Icons.home,
@@ -47,29 +42,18 @@ class HomeScreenControllerImp
           .notifications_active_outlined,
     },
     {
-      "title": "Favorite",
-      "icon": Icons.favorite,
-    },
-    {
       "title": "profile",
       "icon": Icons.person_pin_sharp,
+    },
+    {
+      "title": "settings",
+      "icon": Icons.settings_outlined,
     },
   ];
 
   @override
   changePage(int i) {
     currentpage = i;
-
-    if (i == 2 &&
-        Get.isRegistered<
-          MyFavoriteControllerImp
-        >()) {
-      Get.find<
-            MyFavoriteControllerImp
-          >()
-          .getData();
-    }
-
     update();
   }
 

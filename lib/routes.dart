@@ -2,6 +2,8 @@ import 'package:e_commerce/controller/auth/signup/signup_controller.dart';
 import 'package:e_commerce/controller/auth/signup/verfiycodesignup_controller.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/middleware/mymiddleware.dart';
+import 'package:e_commerce/view/address/add.dart';
+import 'package:e_commerce/view/address/view.dart';
 import 'package:e_commerce/view/auth/SighnUp/success_signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/forgetpassword.dart';
 import 'package:e_commerce/view/auth/Login/login.dart';
@@ -11,12 +13,14 @@ import 'package:e_commerce/view/auth/forgetpassword/success_resetpass.dart';
 import 'package:e_commerce/view/auth/SighnUp/verfiy_signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/verifycodeforgetpass.dart';
 import 'package:e_commerce/view/screen/cart.dart';
+import 'package:e_commerce/view/screen/editprofile.dart';
 import 'package:e_commerce/view/screen/home_screen.dart';
 import 'package:e_commerce/view/screen/items.dart';
 import 'package:e_commerce/view/screen/language.dart';
 import 'package:e_commerce/view/screen/my_favorite.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
 import 'package:e_commerce/view/screen/productdetails.dart';
+import 'package:e_commerce/view/screen/profile.dart';
 import 'package:e_commerce/view/settings/about_us_view.dart';
 import 'package:e_commerce/view/settings/contact_us_view.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -112,5 +116,23 @@ List<GetPage<dynamic>>? routes = [
     name: AppRoute.myfavroite,
     page: () => const MyFavorite(),
   ),
+  /////////***************** */
+  GetPage(
+    name: AppRoute.addressview,
+    page: () => const AddressView(),
+  ),
+  GetPage(
+    name: AppRoute.addressadd,
+    page: () => const AddressAdd(),
+  ),
+  GetPage(
+    name: AppRoute.profile,
+    page: () => const Profile(),
+  ),
+  GetPage(
+    name: AppRoute.editprofile,
+    page: () => const EditProfile(),
+  ),
+  //  GetPage(name: AppRoute.addressadddetails, page: () => const AddressAddDetails()),
 ];
 //=================================

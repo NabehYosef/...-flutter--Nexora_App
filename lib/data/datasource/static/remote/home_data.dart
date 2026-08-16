@@ -30,4 +30,19 @@ class HomeData {
       (r) => r,
     );
   }
+
+  searchProducts(
+    String name, {
+    String? token,
+  }) async {
+    var response = await crud.getData(
+      AppLink.filterProducts,
+      queryParams: {"name": name},
+      token: token,
+    );
+    return response.fold(
+      (l) => l,
+      (r) => r,
+    );
+  }
 }
