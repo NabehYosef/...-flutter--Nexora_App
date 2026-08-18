@@ -7,15 +7,11 @@ import 'package:get/get.dart';
 
 class AddressView
     extends StatelessWidget {
-  const AddressView({Key? key})
-    : super(key: key);
+  const AddressView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AddressViewController controller =
-        Get.put(
-          AddressViewController(),
-        );
+    Get.put(AddressViewController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('address'),
@@ -34,27 +30,25 @@ class AddressView
             HandlingDataView(
               statusRequest: controller
                   .statusRequest,
-              widget: Container(
-                child: ListView.builder(
-                  itemCount: controller
-                      .data
-                      .length,
-                  itemBuilder: (context, i) {
-                    return CardAddress(
-                      addressModel:
-                          controller
-                              .data[i],
-                      onDelete: () {
+              widget: ListView.builder(
+                itemCount: controller
+                    .data
+                    .length,
+                itemBuilder: (context, i) {
+                  return CardAddress(
+                    addressModel:
                         controller
-                            .deleteAddress(
-                              controller
-                                  .data[i]
-                                  .id!,
-                            );
-                      },
-                    );
-                  },
-                ),
+                            .data[i],
+                    onDelete: () {
+                      controller
+                          .deleteAddress(
+                            controller
+                                .data[i]
+                                .id!,
+                          );
+                    },
+                  );
+                },
               ),
             ),
       ),
@@ -67,10 +61,10 @@ class CardAddress
   final AddressModel addressModel;
   final void Function()? onDelete;
   const CardAddress({
-    Key? key,
+    super.key,
     required this.addressModel,
     this.onDelete,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

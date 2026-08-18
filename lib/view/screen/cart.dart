@@ -8,23 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Cart extends StatelessWidget {
-  const Cart({Key? key})
-    : super(key: key);
+  const Cart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CartControllerImp cartController =
-        Get.put(CartControllerImp());
+    Get.put(CartControllerImp());
     return Scaffold(
       bottomNavigationBar:
           GetBuilder<CartControllerImp>(
             builder: (controller) =>
                 BottomNavgationBarCart(
-                  price:
-                      "${controller.totalPrice}",
-                  shipping: "300",
-                  totalprice:
-                      "${controller.totalPrice + 300}",
+                  price: controller
+                      .totalPrice,
+                  shipping: controller
+                      .shippingCost,
+                  totalprice: controller
+                      .totalAfterCoupon,
+                  onPlaceOrder:
+                      controller
+                          .placeOrder,
                 ),
           ),
       body: GetBuilder<CartControllerImp>(
@@ -43,6 +45,65 @@ class Cart extends StatelessWidget {
                 message:
                     "You Have ${controller.data.length} Items in Your List",
               ),
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8,
+                    ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller:
+                            controller
+                                .couponController,
+                        decoration: InputDecoration(
+                          hintText:
+                              "Enter coupon code",
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(
+                                  10,
+                                ),
+                          ),
+                          isDense: true,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    ElevatedButton(
+                      onPressed: controller
+                          .applyCoupon,
+                      child: const Text(
+                        "Apply",
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (controller
+                      .appliedCoupon !=
+                  null)
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(
+                        horizontal: 12,
+                      ),
+                  child: Text(
+                    "Coupon ${controller.appliedCoupon} will be validated on server at order creation",
+                    style:
+                        const TextStyle(
+                          color: Colors
+                              .green,
+                          fontWeight:
+                              FontWeight
+                                  .w600,
+                        ),
+                  ),
+                ),
               Container(
                 padding:
                     const EdgeInsets.all(
@@ -73,7 +134,6 @@ class Cart extends StatelessWidget {
                               );
                             }
                           },
-
                           onRemove: () async {
                             if (item.productId !=
                                 null) {

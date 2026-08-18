@@ -97,4 +97,40 @@ class CartData {
       (r) => r,
     );
   }
+
+  createOrder(
+    String shippingAddressId, {
+    String? notes,
+    String? discountCode,
+    String? token,
+  }) async {
+    final Map<String, dynamic> body = {
+      "shippingAddressId":
+          shippingAddressId,
+    };
+
+    if (notes != null &&
+        notes.trim().isNotEmpty) {
+      body["notes"] = notes.trim();
+    }
+
+    if (discountCode != null &&
+        discountCode
+            .trim()
+            .isNotEmpty) {
+      body["discountCode"] =
+          discountCode.trim();
+    }
+
+    var response = await crud.postData(
+      AppLink.createOrder,
+      body,
+      token: token,
+    );
+
+    return response.fold(
+      (l) => l,
+      (r) => r,
+    );
+  }
 }

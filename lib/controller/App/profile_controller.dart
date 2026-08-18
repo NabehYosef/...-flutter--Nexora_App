@@ -37,6 +37,11 @@ class ProfileController
     }
   }
 
+  removeImage() {
+    pickedImagePath = null;
+    update();
+  }
+
   getData() async {
     statusRequest =
         Statusrequest.loading;
@@ -118,11 +123,6 @@ class ProfileController
             Statusrequest.failure;
       }
     }
-    update();
-  }
-
-  removeImage() {
-    pickedImagePath = null;
     update();
   }
 

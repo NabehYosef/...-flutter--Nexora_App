@@ -3,6 +3,7 @@ import 'package:e_commerce/controller/auth/signup/verfiycodesignup_controller.da
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/middleware/mymiddleware.dart';
 import 'package:e_commerce/view/address/add.dart';
+import 'package:e_commerce/view/address/adddetails.dart';
 import 'package:e_commerce/view/address/view.dart';
 import 'package:e_commerce/view/auth/SighnUp/success_signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/forgetpassword.dart';
@@ -13,6 +14,7 @@ import 'package:e_commerce/view/auth/forgetpassword/success_resetpass.dart';
 import 'package:e_commerce/view/auth/SighnUp/verfiy_signup.dart';
 import 'package:e_commerce/view/auth/forgetpassword/verifycodeforgetpass.dart';
 import 'package:e_commerce/view/screen/cart.dart';
+import 'package:e_commerce/view/screen/check_out_screen.dart';
 import 'package:e_commerce/view/screen/editprofile.dart';
 import 'package:e_commerce/view/screen/home_screen.dart';
 import 'package:e_commerce/view/screen/items.dart';
@@ -113,6 +115,10 @@ List<GetPage<dynamic>>? routes = [
     page: () => const Cart(),
   ),
   GetPage(
+    name: AppRoute.checkout,
+    page: () => const Checkout(),
+  ),
+  GetPage(
     name: AppRoute.myfavroite,
     page: () => const MyFavorite(),
   ),
@@ -124,6 +130,11 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.addressadd,
     page: () => const AddressAdd(),
+  ),
+  GetPage(
+    name: AppRoute.addressadddetails,
+    page: () =>
+        const AddressAddDetails(),
   ),
   GetPage(
     name: AppRoute.profile,

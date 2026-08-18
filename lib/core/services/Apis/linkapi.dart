@@ -1,18 +1,20 @@
 class AppLink {
   //  static const String server =
   //       "http://localhost:5000/api";
-  //
-  //      //"http://10.0.2.2:5000/api";
   static const String server =
       "http://10.0.2.2:5000/api";
+  //
+  //      //"http://10.0.2.2:5000/api";
+  // static const String server =
+  //     "https://omnivore-politely-anaerobic.ngrok-free.dev/api";
 
   static const String register =
       "$server/register";
   //====================================
-  // static const String imagesBaseUrl =
-  //     "http://10.0.2.2:5000";
   static const String imagesBaseUrl =
       "http://10.0.2.2:5000";
+  // static const String imagesBaseUrl =
+  //     "https://omnivore-politely-anaerobic.ngrok-free.dev";
   //========================== Image ============================
   static const String
   imagestCategories =
@@ -70,9 +72,13 @@ class AppLink {
       "$server/cart/clearCart";
   static const String cartTotalItems =
       "$server/cart/totalItems";
+  static const String createOrder =
+      "$server/order/createOrder";
   //=================Address==============
   static const String addressAdd =
       "$server/user/addAddress";
+  static const String governorates =
+      "$server/user/governorates";
   static const String addressView =
       "$server/user/addresses";
   static const String addressDelete =

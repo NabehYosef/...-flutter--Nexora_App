@@ -1,18 +1,22 @@
+import 'dart:ui';
+
 import 'package:e_commerce/core/constant/color.dart';
 import 'package:e_commerce/view/widget/Cart/botton_cart.dart';
-
 import 'package:flutter/material.dart';
 
 class BottomNavgationBarCart
     extends StatelessWidget {
-  final String price;
-  final String shipping;
-  final String totalprice;
+  final num price;
+  final num shipping;
+  final num totalprice;
+  final VoidCallback onPlaceOrder;
+
   const BottomNavgationBarCart({
     Key? key,
     required this.price,
     required this.shipping,
     required this.totalprice,
+    required this.onPlaceOrder,
   }) : super(key: key);
 
   @override
@@ -28,10 +32,10 @@ class BottomNavgationBarCart
             children: [
               Container(
                 padding:
-                    EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
-                child: Text(
+                child: const Text(
                   "price",
                   style: TextStyle(
                     fontSize: 16,
@@ -40,18 +44,20 @@ class BottomNavgationBarCart
               ),
               Container(
                 padding:
-                    EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
                 child: Text(
                   "$price \$",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+                  style:
+                      const TextStyle(
+                        fontSize: 16,
+                      ),
                 ),
               ),
             ],
           ),
+
           Row(
             mainAxisAlignment:
                 MainAxisAlignment
@@ -59,10 +65,10 @@ class BottomNavgationBarCart
             children: [
               Container(
                 padding:
-                    EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
-                child: Text(
+                child: const Text(
                   "shipping",
                   style: TextStyle(
                     fontSize: 16,
@@ -71,19 +77,22 @@ class BottomNavgationBarCart
               ),
               Container(
                 padding:
-                    EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
                 child: Text(
                   "$shipping \$",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+                  style:
+                      const TextStyle(
+                        fontSize: 16,
+                      ),
                 ),
               ),
             ],
           ),
-          Divider(),
+
+          const Divider(),
+
           Row(
             mainAxisAlignment:
                 MainAxisAlignment
@@ -91,7 +100,7 @@ class BottomNavgationBarCart
             children: [
               Container(
                 padding:
-                    EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
                 child: Text(
@@ -107,7 +116,7 @@ class BottomNavgationBarCart
               ),
               Container(
                 padding:
-                    EdgeInsets.symmetric(
+                    const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
                 child: Text(
@@ -123,10 +132,12 @@ class BottomNavgationBarCart
               ),
             ],
           ),
-          SizedBox(height: 10),
+
+          const SizedBox(height: 10),
+
           CustomButtonCart(
             textbutton: "Place Order",
-            onPressed: () {},
+            onPressed: onPlaceOrder,
           ),
         ],
       ),

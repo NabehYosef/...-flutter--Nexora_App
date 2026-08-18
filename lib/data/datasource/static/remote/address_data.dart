@@ -18,6 +18,19 @@ class AddressData {
     );
   }
 
+  getGovernorates({
+    String? token,
+  }) async {
+    var response = await crud.getData(
+      AppLink.governorates,
+      token: token,
+    );
+    return response.fold(
+      (l) => l,
+      (r) => r,
+    );
+  }
+
   addData(
     String governorateId,
     String locationDetails, {

@@ -1,8 +1,10 @@
 import 'package:e_commerce/core/class/statusrequest.dart';
+import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/functions/handlingdatacontroller.dart';
 import 'package:e_commerce/core/services/Apis/troken_storage.dart';
 import 'package:e_commerce/data/datasource/static/remote/cart_data.dart';
 import 'package:e_commerce/model/cart_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class CartController
@@ -23,6 +25,7 @@ abstract class CartController
     int quantity,
   );
   clearCart();
+  placeOrder();
 }
 
 class CartControllerImp
@@ -36,6 +39,52 @@ class CartControllerImp
   List<CartModel> data = [];
 
   num totalPrice = 0;
+  final num shippingCost = 300;
+
+  final TextEditingController
+  couponController =
+      TextEditingController();
+  String? appliedCoupon;
+  bool isCreatingOrder = false;
+
+  num get totalAfterCoupon {
+    return totalPrice + shippingCost;
+  }
+
+  void applyCoupon() {
+    final code = couponController.text
+        .trim()
+        .toUpperCase();
+
+    if (code.isEmpty) {
+      Get.snackbar(
+        "Coupon",
+        "Please enter a coupon code",
+      );
+      return;
+    }
+
+    appliedCoupon = code;
+    Get.snackbar(
+      "Coupon",
+      "Coupon saved. It will be validated by server when placing the order.",
+    );
+    update();
+  }
+
+  @override
+  placeOrder() async {
+    if (isCreatingOrder) return;
+    if (data.isEmpty) {
+      Get.snackbar(
+        "Order",
+        "Cart is empty",
+      );
+      return;
+    }
+
+    Get.toNamed(AppRoute.checkout);
+  }
 
   @override
   view() async {

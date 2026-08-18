@@ -18,12 +18,33 @@ class AddAddressDetailsController
   TextEditingController? governorateId;
   TextEditingController?
   locationDetails;
+  List governorates = [];
+  String? selectedGovernorateId;
 
   intialData() {
     governorateId =
         TextEditingController();
     locationDetails =
         TextEditingController();
+    // Prefill locationDetails from navigation arguments if provided
+    try {
+      final args = Get.arguments;
+      if (args != null && args is Map) {
+        final lat =
+            args['lat']?.toString() ??
+            '';
+        final long =
+            args['long']?.toString() ??
+            '';
+        if (lat.isNotEmpty ||
+            long.isNotEmpty) {
+          locationDetails!.text =
+              '$lat,$long';
+        }
+      }
+    } catch (_) {}
+    // start fetching governorates
+    getGovernorates();
   }
 
   addAddress() async {
@@ -34,9 +55,13 @@ class AddAddressDetailsController
     String token =
         await TokenStorage.getToken();
 
+    final String govId =
+        selectedGovernorateId ??
+        governorateId!.text;
+
     var response = await addressData
         .addData(
-          governorateId!.text,
+          govId,
           locationDetails!.text,
           token: token,
         );
@@ -52,20 +77,61 @@ class AddAddressDetailsController
     if (Statusrequest.success ==
         statusRequest) {
       if (response['address'] != null) {
+        // call update to reflect success state first
+        update();
+        // navigate away and return immediately to avoid using controller after it's disposed
         Get.offAllNamed(
           AppRoute.HomePage,
         );
+        return;
       } else {
         statusRequest =
             Statusrequest.failure;
       }
     }
-    update();
+    // only update if still active
+    try {
+      update();
+    } catch (_) {}
+  }
+
+  getGovernorates() async {
+    try {
+      String token =
+          await TokenStorage.getToken();
+      var response = await addressData
+          .getGovernorates(
+            token: token,
+          );
+      if (response is Map &&
+          response['data'] != null) {
+        governorates = response['data'];
+        // if there's any, set default selected id
+        if (governorates.isNotEmpty) {
+          final first =
+              governorates.first;
+          selectedGovernorateId =
+              first['_id']
+                  ?.toString() ??
+              first['id']?.toString();
+        }
+      }
+    } catch (_) {}
+    try {
+      update();
+    } catch (_) {}
   }
 
   @override
   void onInit() {
     intialData();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    governorateId?.dispose();
+    locationDetails?.dispose();
+    super.onClose();
   }
 }
