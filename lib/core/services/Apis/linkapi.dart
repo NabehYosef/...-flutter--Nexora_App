@@ -72,8 +72,6 @@ class AppLink {
       "$server/cart/clearCart";
   static const String cartTotalItems =
       "$server/cart/totalItems";
-  static const String createOrder =
-      "$server/order/createOrder";
   //=================Address==============
   static const String addressAdd =
       "$server/user/addAddress";
@@ -87,6 +85,15 @@ class AppLink {
       "$server/user/profile";
   static const String updateUser =
       "$server/user/updateUser";
+  //=================Order==============
+  static const String createOrder =
+      "$server/order/createOrder";
+  static const String userOrders =
+      "$server/order/userOrders";
+  static const String singleOrder =
+      "$server/order/singleOrder";
+  static const String cancelOrder =
+      "$server/order/cancelOrder";
 }
 
 //nabeh12

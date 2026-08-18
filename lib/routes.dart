@@ -21,6 +21,7 @@ import 'package:e_commerce/view/screen/items.dart';
 import 'package:e_commerce/view/screen/language.dart';
 import 'package:e_commerce/view/screen/my_favorite.dart';
 import 'package:e_commerce/view/screen/onboarding.dart';
+import 'package:e_commerce/view/screen/order_details.dart';
 import 'package:e_commerce/view/screen/productdetails.dart';
 import 'package:e_commerce/view/screen/profile.dart';
 import 'package:e_commerce/view/settings/about_us_view.dart';
@@ -117,6 +118,10 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoute.checkout,
     page: () => const Checkout(),
+  ),
+  GetPage(
+    name: AppRoute.orderdetails,
+    page: () => const OrderDetails(),
   ),
   GetPage(
     name: AppRoute.myfavroite,
