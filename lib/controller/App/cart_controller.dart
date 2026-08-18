@@ -13,9 +13,13 @@ abstract class CartController
     String color,
     int quantity,
   );
-  removeItem(String productId);
+  removeItem(
+    String productId,
+    String color,
+  );
   updateQuantity(
     String productId,
+    String color,
     int quantity,
   );
   clearCart();
@@ -107,13 +111,17 @@ class CartControllerImp
   }
 
   @override
-  removeItem(String productId) async {
+  removeItem(
+    String productId,
+    String color,
+  ) async {
     String token =
         await TokenStorage.getToken();
 
     var response = await cartData
         .removeItem(
           productId,
+          color,
           token: token,
         );
 
@@ -134,11 +142,13 @@ class CartControllerImp
   @override
   updateQuantity(
     String productId,
+    String color,
     int quantity,
   ) async {
     var responseFuture = cartData
         .updateQuantity(
           productId,
+          color,
           quantity,
           token:
               await TokenStorage.getToken(),

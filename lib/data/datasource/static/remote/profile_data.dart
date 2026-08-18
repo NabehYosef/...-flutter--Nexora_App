@@ -42,6 +42,12 @@ class ProfileData {
           imageField: "profileImage",
           imagePath: imagePath,
         );
+
+    print(
+      "===== UPDATE PROFILE RESPONSE =====",
+    );
+    print(response);
+
     return response.fold(
       (l) => l,
       (r) => r,

@@ -64,6 +64,8 @@ class Cart extends StatelessWidget {
                                 null) {
                               await controller.updateQuantity(
                                 item.productId!,
+                                item.color ??
+                                    "",
                                 (item.quantity ??
                                             1)
                                         .toInt() +
@@ -71,6 +73,7 @@ class Cart extends StatelessWidget {
                               );
                             }
                           },
+
                           onRemove: () async {
                             if (item.productId !=
                                 null) {
@@ -79,6 +82,8 @@ class Cart extends StatelessWidget {
                                   1) {
                                 await controller.updateQuantity(
                                   item.productId!,
+                                  item.color ??
+                                      "",
                                   (item.quantity ??
                                               1)
                                           .toInt() -
@@ -87,12 +92,23 @@ class Cart extends StatelessWidget {
                               } else {
                                 await controller.removeItem(
                                   item.productId!,
+                                  item.color ??
+                                      "",
                                 );
                               }
                             }
                           },
                           imagename:
-                              "", // ⚠️ لا توجد صورة حاليًا برجوع Show User Cart
+                              (item.images !=
+                                      null &&
+                                  item
+                                      .images!
+                                      .isNotEmpty)
+                              ? item.images![0].replaceAll(
+                                  r'\',
+                                  '/',
+                                )
+                              : "",
                           name:
                               "${item.productName}",
                           price:

@@ -10,8 +10,8 @@ class FavoriteData {
     String? token,
   }) async {
     var response = await crud.postData(
-      "${AppLink.addToFavourite}/$productId",
-      {},
+      AppLink.addToFavourite,
+      {"productId": productId},
       token: token,
     );
     return response.fold(
@@ -24,10 +24,14 @@ class FavoriteData {
     String productId, {
     String? token,
   }) async {
-    var response = await crud.deleteData(
-      "${AppLink.removeFromFavourite}/$productId",
-      token: token,
-    );
+    var response = await crud
+        .deleteData(
+          AppLink.removeFromFavourite,
+          body: {
+            "productId": productId,
+          },
+          token: token,
+        );
     return response.fold(
       (l) => l,
       (r) => r,

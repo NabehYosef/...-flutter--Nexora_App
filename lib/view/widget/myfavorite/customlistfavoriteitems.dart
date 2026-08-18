@@ -40,7 +40,7 @@ class CustomListFavoriteItems
           Get.toNamed(
             AppRoute.productdetails,
             arguments: {
-              "productModel": product,
+              "productId": product.id,
             },
           );
         }

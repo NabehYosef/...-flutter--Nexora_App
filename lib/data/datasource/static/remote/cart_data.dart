@@ -35,13 +35,19 @@ class CartData {
   }
 
   removeItem(
-    String productId, {
+    String productId,
+    String color, {
     String? token,
   }) async {
-    var response = await crud.deleteData(
-      "${AppLink.removeCartItem}/$productId",
-      token: token,
-    );
+    var response = await crud
+        .deleteData(
+          AppLink.removeCartItem,
+          body: {
+            "productId": productId,
+            "color": color,
+          },
+          token: token,
+        );
     return response.fold(
       (l) => l,
       (r) => r,
@@ -50,12 +56,17 @@ class CartData {
 
   updateQuantity(
     String productId,
+    String color,
     int quantity, {
     String? token,
   }) async {
     var response = await crud.patchData(
-      "${AppLink.updateCartQuantity}/$productId",
-      {"quantity": quantity},
+      AppLink.updateCartQuantity,
+      {
+        "productId": productId,
+        "color": color,
+        "quantity": quantity,
+      },
       token: token,
     );
     return response.fold(

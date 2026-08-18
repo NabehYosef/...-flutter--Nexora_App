@@ -20,10 +20,14 @@ class MyFavoriteData {
     String productId, {
     String? token,
   }) async {
-    var response = await crud.deleteData(
-      "${AppLink.removeFromFavourite}/$productId",
-      token: token,
-    );
+    var response = await crud
+        .deleteData(
+          AppLink.removeFromFavourite,
+          body: {
+            "productId": productId,
+          },
+          token: token,
+        );
     return response.fold(
       (l) => l,
       (r) => r,

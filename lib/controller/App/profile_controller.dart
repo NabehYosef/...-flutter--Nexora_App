@@ -121,6 +121,11 @@ class ProfileController
     update();
   }
 
+  removeImage() {
+    pickedImagePath = null;
+    update();
+  }
+
   @override
   void onInit() {
     getData();

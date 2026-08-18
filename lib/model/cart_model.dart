@@ -5,6 +5,7 @@ class CartModel {
   num? quantity;
   String? color;
   num? subtotal;
+  List<dynamic>? images;
 
   CartModel({
     this.productId,
@@ -13,6 +14,7 @@ class CartModel {
     this.quantity,
     this.color,
     this.subtotal,
+    this.images,
   });
 
   CartModel.fromJson(
@@ -24,5 +26,6 @@ class CartModel {
     quantity = json['quantity'];
     color = json['color'];
     subtotal = json['subtotal'];
+    images = json['images'];
   }
 }

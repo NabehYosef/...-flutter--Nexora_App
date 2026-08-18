@@ -149,6 +149,7 @@ class Crud {
   Future<Either<Statusrequest, Map>>
   deleteData(
     String linkurl, {
+    Map<String, dynamic>? body,
     String? token,
   }) async {
     if (await CheckInternet()) {
@@ -168,6 +169,9 @@ class Crud {
             .delete(
               Uri.parse(linkurl),
               headers: requestHeaders,
+              body: body != null
+                  ? jsonEncode(body)
+                  : null,
             );
 
         print(
@@ -292,6 +296,11 @@ class Crud {
                 .MultipartFile.fromPath(
               imageField,
               imagePath,
+              contentType:
+                  http.MediaType(
+                    'image',
+                    'jpeg',
+                  ),
             ),
           );
         }

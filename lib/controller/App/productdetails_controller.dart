@@ -1,3 +1,4 @@
+import 'package:e_commerce/controller/App/home_controller.dart';
 import 'package:e_commerce/model/product_model.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +15,37 @@ class ProductDetailsControllerImp
       [];
 
   initialData() {
-    productModel =
-        Get.arguments['productModel'];
+    if (Get.arguments['productModel'] !=
+        null) {
+      productModel =
+          Get.arguments['productModel'];
+    } else if (Get
+            .arguments['productId'] !=
+        null) {
+      String productId =
+          Get.arguments['productId'];
+      HomeControllerImp homeController =
+          Get.isRegistered<
+            HomeControllerImp
+          >()
+          ? Get.find<
+              HomeControllerImp
+            >()
+          : Get.put(
+              HomeControllerImp(),
+            );
+
+      try {
+        productModel = homeController
+            .products
+            .firstWhere(
+              (p) => p.id == productId,
+            );
+      } catch (e) {
+        productModel = ProductModel();
+      }
+    }
+
     if (productModel.colors != null &&
         productModel
             .colors!

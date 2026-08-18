@@ -129,6 +129,46 @@ class EditProfile
                           ),
                         ),
                       ),
+                      if (_getProfileImage(
+                            controller,
+                          ) !=
+                          null)
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: InkWell(
+                            onTap: () {
+                              controller
+                                  .removeImage();
+                            },
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.all(
+                                    6,
+                                  ),
+                              decoration: BoxDecoration(
+                                color: Colors
+                                    .red,
+                                shape: BoxShape
+                                    .circle,
+                                border: Border.all(
+                                  color:
+                                      Colors.white,
+                                  width:
+                                      2,
+                                ),
+                              ),
+                              child: const Icon(
+                                Icons
+                                    .close,
+                                color: Colors
+                                    .white,
+                                size:
+                                    18,
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),

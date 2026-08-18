@@ -32,7 +32,7 @@ class CustomItemsCartList
               flex: 2,
               child: CachedNetworkImage(
                 imageUrl:
-                    "${AppLink.imagestItems}/$imagename",
+                    "${AppLink.imagesBaseUrl}/$imagename",
                 height: 80,
               ),
             ),
