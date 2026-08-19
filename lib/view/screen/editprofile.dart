@@ -14,6 +14,10 @@ class EditProfile
   ImageProvider? _getProfileImage(
     ProfileController controller,
   ) {
+    if (controller.removePhoto) {
+      return null;
+    }
+
     if (controller.pickedImagePath !=
         null) {
       return FileImage(
@@ -31,7 +35,7 @@ class EditProfile
 
     final url = img.startsWith("http")
         ? img
-        : "${AppLink.imagesBaseUrl}/$img";
+        : "${AppLink.imagesBaseUrl}/images/$img";
 
     return NetworkImage(url);
   }

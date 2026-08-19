@@ -57,7 +57,7 @@ class Profile extends StatelessWidget {
                                     .profileImage!
                                     .isNotEmpty)
                             ? NetworkImage(
-                                "${AppLink.imagesBaseUrl}/${controller.data!.profileImage}",
+                                "${AppLink.imagesBaseUrl}/images/${controller.data!.profileImage}",
                               )
                             : null,
                         child:

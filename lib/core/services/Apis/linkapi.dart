@@ -1,18 +1,18 @@
 class AppLink {
+  static const String host =
+      "10.0.2.2:5000";
   //  static const String server =
-  //       "http://localhost:5000/api";
+  //       "http://$host/api";
   static const String server =
-      "http://10.0.2.2:5000/api";
-  //
-  //      //"http://10.0.2.2:5000/api";
-  // static const String server =
+      "http://$host/api";
+  // static const Strig server =n
   //     "https://omnivore-politely-anaerobic.ngrok-free.dev/api";
 
   static const String register =
       "$server/register";
   //====================================
   static const String imagesBaseUrl =
-      "http://10.0.2.2:5000";
+      "http://$host";
   // static const String imagesBaseUrl =
   //     "https://omnivore-politely-anaerobic.ngrok-free.dev";
   //========================== Image ============================

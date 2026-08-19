@@ -55,11 +55,13 @@ class AddressData {
     String addressId, {
     required String token,
   }) async {
-    var response = await crud.postData(
-      AppLink.addressDelete,
-      {"addressId": addressId},
-      token: token,
-    );
+    // Use DELETE method and send the id field to match backend DELETE /user/deleteAddress
+    var response = await crud
+        .deleteData(
+          AppLink.addressDelete,
+          body: {"id": addressId},
+          token: token,
+        );
     return response.fold(
       (l) => l,
       (r) => r,

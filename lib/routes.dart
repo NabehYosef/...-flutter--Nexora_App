@@ -2,7 +2,6 @@ import 'package:e_commerce/controller/auth/signup/signup_controller.dart';
 import 'package:e_commerce/controller/auth/signup/verfiycodesignup_controller.dart';
 import 'package:e_commerce/core/constant/routes.dart';
 import 'package:e_commerce/core/middleware/mymiddleware.dart';
-import 'package:e_commerce/view/address/add.dart';
 import 'package:e_commerce/view/address/adddetails.dart';
 import 'package:e_commerce/view/address/view.dart';
 import 'package:e_commerce/view/auth/SighnUp/success_signup.dart';
@@ -132,10 +131,7 @@ List<GetPage<dynamic>>? routes = [
     name: AppRoute.addressview,
     page: () => const AddressView(),
   ),
-  GetPage(
-    name: AppRoute.addressadd,
-    page: () => const AddressAdd(),
-  ),
+
   GetPage(
     name: AppRoute.addressadddetails,
     page: () =>

@@ -33,12 +33,16 @@ class ProfileController
         );
     if (picked != null) {
       pickedImagePath = picked.path;
+      removePhoto = false;
       update();
     }
   }
 
+  bool removePhoto = false;
+
   removeImage() {
     pickedImagePath = null;
+    removePhoto = true;
     update();
   }
 

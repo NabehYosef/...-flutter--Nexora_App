@@ -2,6 +2,7 @@ import 'package:e_commerce/controller/address/adddetails_controller.dart';
 import 'package:e_commerce/core/class/handlingdataview.dart';
 import 'package:e_commerce/view/widget/auth/customtextformauth.dart';
 import 'package:flutter/material.dart';
+import 'package:e_commerce/core/class/statusrequest.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce/core/constant/color.dart';
 
@@ -34,58 +35,107 @@ class AddressAddDetails
             widget: ListView(
               children: [
                 // Governorate dropdown fetched from server
-                DropdownButtonFormField<
-                  String
-                >(
-                  value: controller
-                      .selectedGovernorateId,
-                  decoration: InputDecoration(
-                    labelText:
-                        'governorate',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(
-                            30,
+                if (controller
+                    .governorates
+                    .isEmpty)
+                  Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .stretch,
+                    children: [
+                      if (controller
+                              .statusRequest ==
+                          Statusrequest
+                              .loading)
+                        const Center(
+                          child: Padding(
+                            padding:
+                                EdgeInsets.all(
+                                  8.0,
+                                ),
+                            child:
+                                CircularProgressIndicator(),
                           ),
+                        )
+                      else
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                AppColor
+                                    .primaryColor,
+                          ),
+                          onPressed: () {
+                            controller
+                                .getGovernorates();
+                          },
+                          child: const Text(
+                            'Load governorates',
+                          ),
+                        ),
+                    ],
+                  )
+                else
+                  DropdownButtonFormField<
+                    String
+                  >(
+                    value: controller
+                        .selectedGovernorateId,
+                    decoration: InputDecoration(
+                      labelText:
+                          'governorate',
+                      border: OutlineInputBorder(
+                        borderRadius:
+                            BorderRadius.circular(
+                              30,
+                            ),
+                      ),
                     ),
-                  ),
-                  items: controller
-                      .governorates
-                      .map<
-                        DropdownMenuItem<
-                          String
-                        >
-                      >((g) {
-                        final id =
-                            g['_id']
-                                ?.toString() ??
-                            g['id']
-                                ?.toString();
-                        final name =
-                            g['name']
-                                ?.toString() ??
-                            '';
-                        return DropdownMenuItem(
-                          value: id,
-                          child: Text(
-                            name,
-                          ),
-                        );
-                      })
-                      .toList(),
-                  onChanged: (val) {
-                    controller
-                            .selectedGovernorateId =
-                        val;
-                    if (controller
-                            .governorateId !=
-                        null)
+                    items: controller
+                        .governorates
+                        .map<
+                          DropdownMenuItem<
+                            String
+                          >
+                        >((g) {
+                          final id =
+                              g['_id']
+                                  ?.toString() ??
+                              g['id']
+                                  ?.toString();
+                          final name =
+                              g['name']
+                                  ?.toString() ??
+                              '';
+                          return DropdownMenuItem(
+                            value: id,
+                            child: Text(
+                              name,
+                            ),
+                          );
+                        })
+                        .toList(),
+                    onChanged: (val) {
                       controller
-                              .governorateId!
-                              .text =
-                          val ?? '';
-                    controller.update();
-                  },
+                              .selectedGovernorateId =
+                          val;
+                      try {
+                        if (controller
+                                .governorateId !=
+                            null) {
+                          controller
+                                  .governorateId!
+                                  .text =
+                              val ?? '';
+                        }
+                      } catch (_) {}
+                      try {
+                        controller
+                            .update();
+                      } catch (_) {}
+                    },
+                  ),
+                const SizedBox(
+                  height: 15,
                 ),
                 CustomTextFormAuth(
                   isNumber: false,

@@ -14,13 +14,20 @@ class AddressView
     Get.put(AddressViewController());
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () => Get.back(),
+        ),
         title: const Text('address'),
       ),
       floatingActionButton:
           FloatingActionButton(
             onPressed: () {
               Get.toNamed(
-                AppRoute.addressadd,
+                AppRoute
+                    .addressadddetails,
               );
             },
             child: Icon(Icons.add),

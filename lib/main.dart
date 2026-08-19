@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: controller.appTheme,
       // home: Test(), //
       initialBinding: InitialBinding(),
+      initialRoute: "/",
       getPages: routes,
       //  routes: routes,
     );
