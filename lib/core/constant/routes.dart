@@ -53,4 +53,6 @@ class AppRoute {
       "/profile";
   static const String editprofile =
       "/editprofile";
+        static const String verifyPhoneChange =
+      "/verifyphonechange";
 }

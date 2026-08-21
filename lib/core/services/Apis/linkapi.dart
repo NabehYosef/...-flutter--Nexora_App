@@ -1,10 +1,13 @@
 class AppLink {
+  // static const String host =
+  // "https://omnivore-politely-anaerobic.ngrok-free.dev";
   static const String host =
       "10.0.2.2:5000";
-  //  static const String server =
-  //       "http://$host/api";
   static const String server =
       "http://$host/api";
+  //   static const String server =
+  //       "$host/api" ;
+
   // static const Strig server =n
   //     "https://omnivore-politely-anaerobic.ngrok-free.dev/api";
 
@@ -13,6 +16,10 @@ class AppLink {
   //====================================
   static const String imagesBaseUrl =
       "http://$host";
+  //   static const String imagesBaseUrl =
+  //       host;
+  // static const String imagesBaseUrl =
+  //     "https://$host";
   // static const String imagesBaseUrl =
   //     "https://omnivore-politely-anaerobic.ngrok-free.dev";
   //========================== Image ============================
@@ -94,6 +101,29 @@ class AppLink {
       "$server/order/singleOrder";
   static const String cancelOrder =
       "$server/order/cancelOrder";
+  static const String sendPhoneOtp =
+      "$server/user/sendPhoneOtp";
+  static const String verifyPhoneOtp =
+      "$server/user/verifyPhoneOtp";
+  static const String resendPhoneOtp =
+      "$server/user/resendPhoneOtp";
+  //=================Notifications / FCM==============
+  static const String saveFcmToken =
+      "$server/auth/saveFCMToken";
+  static const String notifications =
+      "$server/user/notifications";
+  static const String
+  notificationsRead =
+      "$server/user/notificationsRead";
+  static const String
+  notificationsReadAll =
+      "$server/user/notifications/readAll";
+  static const String
+  deleteNotification =
+      "$server/user/deleteNotification";
+  static const String
+  deleteAllNotifications =
+      "$server/user/deleteAllNotifications";
 }
 
 //nabeh12

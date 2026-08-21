@@ -145,6 +145,7 @@ List<GetPage<dynamic>>? routes = [
     name: AppRoute.editprofile,
     page: () => const EditProfile(),
   ),
+  
   //  GetPage(name: AppRoute.addressadddetails, page: () => const AddressAddDetails()),
 ];
 //=================================

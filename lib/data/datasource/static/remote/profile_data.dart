@@ -5,52 +5,54 @@ class ProfileData {
   Crud crud;
   ProfileData(this.crud);
 
-  getData({
-    required String token,
-  }) async {
-    var response = await crud.getData(
-      AppLink.profile,
-      token: token,
-    );
-    return response.fold(
-      (l) => l,
-      (r) => r,
-    );
+  Future<dynamic> getData({required String token}) async {
+    final response = await crud.getData(AppLink.profile, token: token);
+    return response.fold((l) => l, (r) => r);
   }
 
-  updateProfile(
+  Future<dynamic> updateProfile(
     String userName,
     String phone, {
     required String token,
     String? imagePath,
     String? password,
   }) async {
-    Map<String, String> fields = {
-      "userName": userName,
-      "phone": phone,
-    };
+    final Map<String, String> fields = {"userName": userName, "phone": phone};
 
     if (password != null) {
       fields["password"] = password;
     }
 
-    var response = await crud
-        .putMultipartData(
-          AppLink.updateUser,
-          fields,
-          token: token,
-          imageField: "profileImage",
-          imagePath: imagePath,
-        );
-
-    print(
-      "===== UPDATE PROFILE RESPONSE =====",
+    final response = await crud.putMultipartData(
+      AppLink.updateUser,
+      fields,
+      token: token,
+      imageField: "profileImage",
+      imagePath: imagePath,
     );
-    print(response);
 
-    return response.fold(
-      (l) => l,
-      (r) => r,
+    return response.fold((l) => l, (r) => r);
+  }
+
+  Future<dynamic> sendPhoneOtp({required String token}) async {
+    final response = await crud.postData(AppLink.sendPhoneOtp, {}, token: token);
+    return response.fold((l) => l, (r) => r);
+  }
+
+  Future<dynamic> verifyPhoneOtp({
+    required String token,
+    required String otp,
+  }) async {
+    final response = await crud.postData(
+      AppLink.verifyPhoneOtp,
+      {"otp": otp},
+      token: token,
     );
+    return response.fold((l) => l, (r) => r);
+  }
+
+  Future<dynamic> resendPhoneOtp({required String token}) async {
+    final response = await crud.postData(AppLink.resendPhoneOtp, {}, token: token);
+    return response.fold((l) => l, (r) => r);
   }
 }
